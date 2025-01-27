@@ -1,0 +1,30 @@
+<div class="collapse-container">
+  <nz-collapse class="collapse" nzAccordion>
+    @for(apiary of apiaries; track apiary.id){
+    <nz-collapse-panel
+      class="apiary-panel"
+      [nzHeader]="apiary.name"
+      [nzActive]="apiary.open"
+    >
+      <app-apiary-card [apiary]="apiary" />
+    </nz-collapse-panel>
+    }
+  </nz-collapse>
+</div>
+@if (apiaries.length === 0) {
+<nz-empty [nzNotFoundContent]="contentTpl" class="empty">
+  <ng-template #contentTpl>
+    <p>
+      {{ "Status.NO_DATA" | translate }}
+    </p>
+  </ng-template>
+</nz-empty>
+}
+<button (click)="navigate('add')" class="add-button" nz-button nzType="primary">
+  <span
+    [ngStyle]="{ fontSize: '50px' }"
+    nz-icon
+    nzType="plus"
+    nzTheme="outline"
+  ></span>
+</button>

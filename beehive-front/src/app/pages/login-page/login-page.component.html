@@ -1,0 +1,47 @@
+<div class="login-form">
+  <h2 class="login-form-title">{{ "Login.LOGIN" | translate }}</h2>
+  <form (submit)="onSubmit()" class="login-form-form">
+    <div class="login-form-field">
+      <label for="email" class="login-form-label"
+        >{{ "Login.EMAIL" | translate }}:</label
+      >
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="email"
+        name="email"
+        required
+        class="login-form-input"
+      />
+    </div>
+    <div class="login-form-field">
+      <label for="password" class="login-form-label"
+        >{{ "Login.PASSWORD" | translate }}:</label
+      >
+      <input
+        type="password"
+        id="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        class="login-form-input"
+      />
+    </div>
+    <button
+      type="submit"
+      [class]="
+        password && email
+          ? 'login-form-button'
+          : 'login-form-button invalid-button'
+      "
+    >
+      {{ "Login.LOGIN" | translate }}
+    </button>
+    <p *ngIf="errorMessage" class="login-form-error">{{ errorMessage }}</p>
+  </form>
+</div>
+<div class="login-form">
+  <button (click)="onRegister()" class="login-form-button">
+    {{ "Login.REGISTER" | translate }}
+  </button>
+</div>

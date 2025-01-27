@@ -1,0 +1,70 @@
+<div class="registration-container">
+  <h1 nz-typography>{{ "Beehive.REGISTRATION_TITLE" | translate }}</h1>
+
+  <nz-steps [nzCurrent]="currentStep">
+    <nz-step></nz-step>
+    <nz-step></nz-step>
+    <nz-step></nz-step>
+    <nz-step></nz-step>
+  </nz-steps>
+
+  <div class="step-content" [ngSwitch]="currentStep">
+    <ng-container *ngSwitchCase="0">
+      <form [formGroup]="serialForm" (ngSubmit)="onSerialSubmit()">
+        <nz-form-item class="serial-input">
+          <nz-form-label nzFor="serial">{{
+            "Beehive.SERIAL_INPUT" | translate
+          }}</nz-form-label>
+          <nz-form-control
+            nzErrorTip="{{ 'Beehive.SERIAL_ERROR' | translate }}"
+          >
+            <input
+              nz-input
+              id="serial"
+              formControlName="serial"
+              [placeholder]="'Beehive.SERIAL_INPUT_PLACEHOLDER' | translate"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <button nz-button nzType="primary" [disabled]="serialForm.invalid">
+          {{ "Commons.NEXT" | translate }}
+        </button>
+      </form>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="1">
+      <nz-spin nzTip="{{ 'Beehive.CHECKING_SERIAL' | translate }}"></nz-spin>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="2">
+      <nz-select [(ngModel)]="selectedApiary">
+        @for (apiary of apiaries; track apiary) {
+        <nz-option [nzValue]="apiary" [nzLabel]="apiary.name"></nz-option>
+        }
+      </nz-select>
+      <button
+        *ngIf="!isLoading"
+        nz-button
+        nzType="primary"
+        (click)="onApiarySubmit()"
+        [disabled]="!selectedApiary"
+      >
+        {{ "Commons.NEXT" | translate }}
+      </button>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="3">
+      <nz-result
+        nzStatus="success"
+        [nzTitle]="'Beehive.REGISTRATION_COMPLETE' | translate"
+        [nzSubTitle]="'Beehive.REGISTRATION_COMPLETE_MESSAGE' | translate"
+      >
+        <div nz-result-extra>
+          <button nz-button nzType="primary" (click)="onDone()">
+            {{ "Commons.DONE" | translate }}
+          </button>
+        </div>
+      </nz-result>
+    </ng-container>
+  </div>
+</div>

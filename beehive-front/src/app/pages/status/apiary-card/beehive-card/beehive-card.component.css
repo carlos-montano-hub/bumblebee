@@ -1,0 +1,24 @@
+.card {
+}
+::ng-deep .card .ant-card-body {
+}
+.center-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.droplet-high {
+  filter: invert(26%) sepia(69%) saturate(2551%) hue-rotate(2deg)
+    brightness(86%) contrast(104%);
+}
+.droplet-good {
+  filter: invert(58%) sepia(80%) saturate(5393%) hue-rotate(69deg)
+    brightness(96%) contrast(104%);
+}
+.droplet-low {
+  filter: invert(73%) sepia(98%) saturate(1706%) hue-rotate(4deg)
+    brightness(105%) contrast(104%);
+}

@@ -1,0 +1,20 @@
+<div class="registration-container">
+  <form [formGroup]="apiaryForm" (ngSubmit)="onApiarySubmit()">
+    <nz-form-item class="name-input">
+      <nz-form-label nzFor="name">{{
+        "Apiary.NAME_INPUT" | translate
+      }}</nz-form-label>
+      <nz-form-control nzErrorTip="{{ 'Apiary.NAME_ERROR' | translate }}">
+        <input
+          nz-input
+          id="name"
+          formControlName="name"
+          [placeholder]="'Apiary.NAME_INPUT_PLACEHOLDER' | translate"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <button nz-button nzType="primary" [disabled]="apiaryForm.invalid">
+      {{ "Commons.NEXT" | translate }}
+    </button>
+  </form>
+</div>

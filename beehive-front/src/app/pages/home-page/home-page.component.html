@@ -1,0 +1,27 @@
+<div class="home-container">
+  <div class="button-container">
+    <img src="assets/icons/apiary.svg" alt="apiary" class="apiary-svg" />
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      (click)="navigate('status')"
+    >
+      {{ "Home.STATUS" | translate }}
+      <img src="assets/icons/beehive.svg" alt="beehive" class="beehive-svg" />
+    </button>
+    <button
+      nz-button
+      nzType="default"
+      nzSize="large"
+      (click)="navigate('profile')"
+    >
+      {{ "Home.PROFILE" | translate }}
+      <span nz-icon nzType="user" nzTheme="outline"></span>
+    </button>
+    <button nz-button nzType="default" nzSize="large" (click)="logOut()">
+      {{ "Home.LOG_OUT" | translate }}
+      <span nz-icon nzType="logout" nzTheme="outline"></span>
+    </button>
+  </div>
+</div>

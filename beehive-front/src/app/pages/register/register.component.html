@@ -1,0 +1,115 @@
+<div class="login-form">
+  <h2 class="login-form-title">{{ "Login.REGISTER" | translate }}</h2>
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    class="login-form-form"
+  >
+    <div class="login-form-field">
+      <label for="name" class="login-form-label"
+        >{{ "Login.NAME" | translate }}:</label
+      >
+      <input
+        type="name"
+        id="name"
+        formControlName="name"
+        class="login-form-input"
+      />
+      @if (registerForm.get('name')?.invalid && (registerForm.get('name')?.dirty
+      || registerForm.get('name')?.touched)) {
+      <div class="login-form-error">
+        @if (registerForm.get('name')?.errors?.['required']) {
+        <small>{{ "Login.ERROR_NAME_REQUIRED" | translate }}</small>
+        } @if (registerForm.get('name')?.errors?.['name']) {
+        <small>{{ "Login.ERROR_NAME_INVALID" | translate }}</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="login-form-field">
+      <label for="phoneNumber" class="login-form-label"
+        >{{ "Login.PHONE_NUMBER" | translate }}:</label
+      >
+      <input
+        type="phoneNumber"
+        id="phoneNumber"
+        formControlName="phoneNumber"
+        class="login-form-input"
+      />
+      @if (registerForm.get('phoneNumber')?.invalid &&
+      (registerForm.get('phoneNumber')?.dirty ||
+      registerForm.get('phoneNumber')?.touched)) {
+      <div class="login-form-error">
+        @if (registerForm.get('phoneNumber')?.errors?.['required']) {
+        <small>{{ "Login.ERROR_PHONE_NUMBER_REQUIRED" | translate }}</small>
+        } @if (registerForm.get('phoneNumber')?.errors?.['phoneNumber']) {
+        <small>{{ "Login.ERROR_PHONE_NUMBER_INVALID" | translate }}</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="login-form-field">
+      <label for="emailAddress" class="login-form-label"
+        >{{ "Login.EMAIL" | translate }}:</label
+      >
+      <input
+        type="emailAddress"
+        id="emailAddress"
+        formControlName="emailAddress"
+        class="login-form-input"
+      />
+      @if (registerForm.get('emailAddress')?.invalid &&
+      (registerForm.get('emailAddress')?.dirty ||
+      registerForm.get('emailAddress')?.touched)) {
+      <div class="login-form-error">
+        @if (registerForm.get('emailAddress')?.errors?.['required']) {
+        <small>{{ "Login.ERROR_EMAIL_REQUIRED" | translate }}</small>
+        } @if (registerForm.get('emailAddress')?.errors?.['emailAddress']) {
+        <small>{{ "Login.ERROR_EMAIL_INVALID" | translate }}</small>
+        }
+      </div>
+      }
+    </div>
+    <div class="login-form-field">
+      <label for="password" class="login-form-label"
+        >{{ "Login.PASSWORD" | translate }}:</label
+      >
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="login-form-input"
+      />
+      @if (registerForm.get('password')?.invalid &&
+      (registerForm.get('password')?.dirty ||
+      registerForm.get('password')?.touched)) {
+      <div class="login-form-error">
+        @if (registerForm.get('password')?.errors?.['required']) {
+        <small>{{ "Login.ERROR_PASSWORD_REQUIRED" | translate }}</small>
+        } @if (registerForm.get('password')?.errors?.['minlength']) {
+        <small>{{ "Login.ERROR_PASSWORD_LENGTH" | translate }}</small>
+        }
+      </div>
+      }
+    </div>
+    <button
+      type="submit"
+      [class]="
+        registerForm.invalid
+          ? 'login-form-button invalid-button'
+          : 'login-form-button'
+      "
+      [disabled]="registerForm.invalid"
+    >
+      {{ "Login.REGISTER" | translate }}
+    </button>
+    @if (errorMessage) {
+    <p class="login-form-error">{{ errorMessage | translate }}</p>
+    }
+  </form>
+</div>
+<div class="login-form">
+  <button (click)="onLogin()" class="login-form-button">
+    {{ "Login.LOGIN" | translate }}
+  </button>
+</div>

@@ -1,0 +1,51 @@
+.header {
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  color: white;
+  font-size: medium;
+  margin: 0;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.beehive-svg {
+  max-height: 50px;
+}
+
+.dropdown-option {
+  font-size: x-large;
+  margin: 10px;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+}

@@ -1,0 +1,14 @@
+@for(beehive of beehives; track beehive.id){
+<app-beehive-card [beehive]="beehive" />
+} @if (beehives.length === 0) {
+<div class="button-container">
+  <button
+    (click)="navigate('add-hive')"
+    class="add-button"
+    nz-button
+    nzType="primary"
+  >
+    {{ "Apiary.ADD_BEEHIVE" | translate }}
+  </button>
+</div>
+}
