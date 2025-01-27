@@ -1,0 +1,22 @@
+<div class="home-container">
+  <div class="button-container">
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+      (click)="navigate('add-hive')"
+    >
+      {{ "Add.BEEHIVE" | translate }}
+      <img src="assets/icons/beehive.svg" alt="beehive" class="svg" />
+    </button>
+    <button
+      nz-button
+      nzType="default"
+      nzSize="large"
+      (click)="navigate('add-apiary')"
+    >
+      {{ "Add.APIARY" | translate }}
+      <img src="assets/icons/apiary.svg" alt="apiary" class="svg" />
+    </button>
+  </div>
+</div>

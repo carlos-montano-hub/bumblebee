@@ -1,0 +1,152 @@
+<nz-layout>
+  <nz-content>
+    <div class="inner-content">
+      <nz-card>
+        <h1 nz-typography>{{ beehive?.name }}</h1>
+        <h3 nz-typography>{{ beehive?.serial }}</h3>
+      </nz-card>
+      <nz-row [nzGutter]="16">
+        <nz-col [nzSpan]="24">
+          <nz-card class="header-card">
+            <div class="card-extra-title">
+              <p>{{ "Beehive.LAST_MEASURE" | translate }}</p>
+              <span class="card-extra-title">
+                <p>{{ latestMeasure?.time | date : "yyyy-MM-dd HH:mm:ss" }}</p>
+                <img
+                  src="assets/icons/time.svg"
+                  alt="time"
+                  width="25"
+                  height="25"
+                />
+              </span>
+            </div>
+            <div nz-row>
+              <div nz-col nzSpan="24" class="audio-container">
+                <div id="waveform"></div>
+                <div id="wave-timeline"></div>
+                <div class="controls"></div>
+              </div>
+            </div>
+
+            <button
+              nz-button
+              nzType="primary"
+              (click)="onPlayPausePressed()"
+              [disabled]="!latestMeasure?.audioRecordingUrl"
+            >
+              <i nz-icon nzType="sound" nzTheme="outline"></i>
+              {{ "Beehive.LAST_AUDIO" | translate }}
+            </button>
+            <button
+              nz-button
+              nzType="text"
+              (click)="onStopPressed()"
+              [disabled]="!latestMeasure?.audioRecordingUrl"
+            >
+              <i nz-icon nzType="sound" nzTheme="outline"></i>
+              {{ "Beehive.STOP" | translate }}
+            </button>
+          </nz-card>
+        </nz-col>
+      </nz-row>
+      <nz-row [nzGutter]="16">
+        <nz-col [nzSpan]="24">
+          <nz-card
+            class="chart-card"
+            [nzTitle]="'Beehive.TEMPERATURE' | translate"
+            [nzExtra]="extraTemplateTemperature"
+          >
+            <ng-template #extraTemplateTemperature>
+              <div class="card-extra-title">
+                <p>{{ latestMeasure?.temperature }}°C</p>
+                <img
+                  src="assets/icons/temperature.svg"
+                  alt="temperature"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </ng-template>
+            <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="temperatureData"
+              [xAxis]="true"
+              [yAxis]="true"
+              [showXAxisLabel]="true"
+              [xAxisLabel]="xAxisLabel"
+              [autoScale]="true"
+            >
+            </ngx-charts-line-chart>
+          </nz-card>
+        </nz-col>
+      </nz-row>
+
+      <nz-row [nzGutter]="16">
+        <nz-col [nzSpan]="24">
+          <nz-card
+            class="chart-card"
+            [nzTitle]="'Beehive.HUMIDITY' | translate"
+            [nzExtra]="extraTemplateHumidity"
+          >
+            <ng-template #extraTemplateHumidity>
+              <div class="card-extra-title">
+                <p>{{ latestMeasure?.humidity }}%</p>
+                <img
+                  src="assets/icons/droplet.svg"
+                  alt="droplet"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </ng-template>
+            <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="humidityData"
+              [xAxis]="true"
+              [yAxis]="true"
+              [showXAxisLabel]="true"
+              [xAxisLabel]="xAxisLabel"
+              [autoScale]="true"
+            >
+            </ngx-charts-line-chart>
+          </nz-card>
+        </nz-col>
+      </nz-row>
+
+      <nz-row [nzGutter]="16">
+        <nz-col [nzSpan]="24">
+          <nz-card
+            class="chart-card"
+            [nzTitle]="'Beehive.WEIGHT' | translate"
+            [nzExtra]="extraTemplateWeight"
+          >
+            <ng-template #extraTemplateWeight>
+              <div class="card-extra-title">
+                <p>{{ latestMeasure?.weight }}kg</p>
+                <img
+                  src="assets/icons/weight.svg"
+                  alt="weight"
+                  width="25"
+                  height="25"
+                />
+              </div>
+            </ng-template>
+            <ngx-charts-line-chart
+              [view]="view"
+              [scheme]="colorScheme"
+              [results]="weightData"
+              [xAxis]="true"
+              [yAxis]="true"
+              [showXAxisLabel]="true"
+              [xAxisLabel]="xAxisLabel"
+              [autoScale]="true"
+            >
+            </ngx-charts-line-chart>
+          </nz-card>
+        </nz-col>
+      </nz-row>
+    </div>
+  </nz-content>
+</nz-layout>

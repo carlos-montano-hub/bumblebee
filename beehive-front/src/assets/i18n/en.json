@@ -1,0 +1,77 @@
+{
+  "TITLE": "Guardian Bumblebee",
+
+  "SideMenu": {
+    "HOME": "Home"
+  },
+  "Home": {
+    "PROFILE": "Profile",
+    "LOG_OUT": "Log out",
+    "STATUS": "Beehives"
+  },
+  "Beehive": {
+    "ADD": "Add a new Beehive",
+    "DESCRIPTION": "Here comes some text...",
+    "SERIAL_INPUT_PLACEHOLDER": "Write the serial of the device",
+    "WEIGHT": "Weight",
+    "LAST_AUDIO": "Last Audio",
+    "HUMIDITY": "Humidity",
+    "TEMPERATURE": "Temperature",
+    "SERIAL_INPUT": "Serial of the device",
+    "STEP_ALL_DONE": "Registration completed",
+    "REGISTRATION_TITLE": "Beehive Registration",
+    "CHECKING_SERIAL": "Checking serial",
+    "SELECT_APIARY_PLACEHOLDER": "Select the apiary",
+    "SERIAL_ERROR": "Invalid Serial",
+    "REGISTRATION_COMPLETE": "Registration completed",
+    "REGISTRATION_COMPLETE_MESSAGE": "Beehive added",
+    "LAST_MEASURE": "Latest Measure"
+  },
+  "User": {
+    "PROFILE": "User Profile",
+    "ID": "ID",
+    "NAME": "Name",
+    "PHONE_NUMBER": "Phone Number",
+    "EMAIL_ADDRESS": "Email Address",
+    "ROLE_ID": "Role ID",
+    "ROLE_DESCRIPTION": "Role Description"
+  },
+  "Commons": {
+    "NEXT": "Next",
+    "DONE": "Done"
+  },
+  "Status": {
+    "NO_DATA": "No apiaries found"
+  },
+  "Add": {
+    "BEEHIVE": "Beehive",
+    "APIARY": "Apiary"
+  },
+  "Apiary": {
+    "NAME_INPUT": "Apiary Name",
+    "NAME_INPUT_PLACEHOLDER": "Enter the name of the apiary",
+    "NAME_ERROR": "Please provide a valid name for the apiary",
+    "CREATION_SUCCESS": "Apiary created successfully!",
+    "CREATION_ERROR": "An error occurred while creating the apiary. Please try again.",
+    "ADD_BEEHIVE": "Add a new Beehive"
+  },
+  "Login": {
+    "REGISTER": "Register",
+    "LOGIN": "Login",
+    "NAME": "Name",
+    "PHONE_NUMBER": "Phone Number",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "ERROR_NAME_REQUIRED": "Name is required",
+    "ERROR_NAME_INVALID": "Please enter a valid name",
+    "ERROR_PHONE_NUMBER_REQUIRED": "Phone number is required",
+    "ERROR_PHONE_NUMBER_INVALID": "Please enter a valid phone number",
+    "ERROR_EMAIL_REQUIRED": "Email is required",
+    "ERROR_EMAIL_INVALID": "Please enter a valid email address",
+    "ERROR_PASSWORD_REQUIRED": "Password is required",
+    "ERROR_PASSWORD_LENGTH": "Password must be at least 6 characters long",
+    "ERROR_INVALID_CREDENTIALS": "Invalid credentials",
+    "ERROR_FILL_ALL_FIELDS": "Please fill in all required fields correctly",
+    "REGISTRATION_SUCCESS": "Registration successful! Welcome to our platform."
+  }
+}

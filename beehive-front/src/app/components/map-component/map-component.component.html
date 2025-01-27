@@ -1,0 +1,16 @@
+@if ( mapOptions && latitude && longitude) {
+<div class="map-container">
+  <google-map
+    id="map"
+    [height]="'100px'"
+    [width]="'300px'"
+    [options]="mapOptions"
+  >
+    <map-rectangle [bounds]="bounds"></map-rectangle>
+    <map-marker
+      [position]="mapOptions.center!"
+      [options]="markerOptions"
+    ></map-marker>
+  </google-map>
+</div>
+}

@@ -1,0 +1,19 @@
+.main-layout {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.secondary-layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.content-layout::-webkit-scrollbar {
+  display: none;
+}
+
+.content-layout {
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

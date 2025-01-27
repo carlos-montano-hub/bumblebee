@@ -1,0 +1,35 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 16px;
+  background-color: #f0f2f5;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+  align-items: stretch;
+}
+[nz-button] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+[nz-icon] {
+  margin-right: 8px;
+}
+.apiary-svg {
+  width: 100%;
+  height: 100%;
+}
+.beehive-svg {
+  max-height: 25px;
+  margin-right: 2px;
+}

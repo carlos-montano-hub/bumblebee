@@ -1,0 +1,80 @@
+@if (beehive?.lastMeasure) {
+<nz-card class="card" [nzTitle]="beehive!.name" [nzExtra]="extraTemplate">
+  <ng-template #extraTemplate>
+    <span
+      nz-icon
+      nzType="exclamation-circle"
+      nzTheme="twotone"
+      [nzTwotoneColor]="hasEvent() ? '#cc0000' : ''"
+      style="font-size: 25px"
+      (click)="navigateToHiveDetails(beehive!.id)"
+    ></span>
+  </ng-template>
+  <div nz-row>
+    <div nz-col nzSpan="12" class="center-flex">
+      <p>{{ "Beehive.TEMPERATURE" | translate }}</p>
+    </div>
+    <div nz-col nzSpan="12" class="center-flex">
+      <div class="humidity-label">
+        <p>{{ "Beehive.HUMIDITY" | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="12" class="temperature-container center-flex">
+      <ngx-gauge
+        class="gauge"
+        [type]="'semi'"
+        [value]="beehive!.lastMeasure!.temperature"
+        [append]="'°C'"
+        [thick]="10"
+        [size]="125"
+        [thresholds]="thresholds"
+        [min]="30"
+        [max]="40"
+      />
+    </div>
+    <div nz-col nzSpan="12" class="center-flex">
+      <img
+        src="assets/icons/droplet.svg"
+        alt="Humidity"
+        width="50"
+        height="50"
+        class="droplet-svg"
+        [ngClass]="{
+          'droplet-high': beehive!.lastMeasure!.humidity > 60,
+          'droplet-good':
+            beehive!.lastMeasure!.humidity >= 50 &&
+            beehive!.lastMeasure!.humidity <= 60,
+          'droplet-low': beehive!.lastMeasure!.humidity < 50
+        }"
+      />
+      <p>{{ beehive!.lastMeasure!.humidity }}%</p>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="12" class="center-flex">
+      <p>{{ "Beehive.LAST_AUDIO" | translate }}</p>
+    </div>
+    <div nz-col nzSpan="12" class="center-flex">
+      <div>
+        <p>{{ "Beehive.WEIGHT" | translate }}</p>
+      </div>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="12" class="center-flex">
+      <img src="assets/icons/audio.svg" alt="audio" width="50" height="50" />
+    </div>
+    <div nz-col nzSpan="12" class="center-flex">
+      <img src="assets/icons/weight.svg" alt="weight" width="50" height="50" />
+      <p>{{ beehive!.lastMeasure!.weight }}kg</p>
+    </div>
+  </div>
+
+  <app-map-component
+    [latitude]="beehive!.latitude"
+    [longitude]="beehive!.longitude"
+  />
+</nz-card>
+}

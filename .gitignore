@@ -1,0 +1,7 @@
+beehive-mind/data
+beehive-mind/.idea
+beehive-mind/__pycache__
+
+beehive-front/.vscode
+
+beehive-nest/target

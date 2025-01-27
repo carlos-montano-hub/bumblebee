@@ -1,0 +1,61 @@
+{
+  "TITLE": "Bumblebee Guardían",
+
+  "SideMenu": {
+    "HOME": "Inicio"
+  },
+  "Home": {
+    "PROFILE": "Perfil",
+    "STATUS": "Colmenas"
+  },
+  "Beehive": {
+    "ADD": "Agregar una nueva colmena",
+    "DESCRIPTION": "Aquí viene un texto...",
+    "SERIAL_INPUT_PLACEHOLDER": "Escribe el número de serie del dispositivo",
+    "WEIGHT": "Peso",
+    "LAST_AUDIO": "Último Audio",
+    "HUMIDITY": "Humedad",
+    "TEMPERATURE": "Temperatura",
+    "SERIAL_INPUT": "Número de serie del dispositivo",
+    "STEP_ALL_DONE": "Registro completado",
+    "REGISTRATION_TITLE": "Registro de Colmena",
+    "CHECKING_SERIAL": "Verificando número de serie",
+    "SELECT_APIARY_PLACEHOLDER": "Selecciona el apiario",
+    "SERIAL_ERROR": "Número de serie inválido",
+    "REGISTRATION_COMPLETE": "Registro completado",
+    "REGISTRATION_COMPLETE_MESSAGE": "Colmena agregada",
+    "LAST_MEASURE": "Última Medición"
+  },
+  "User": {
+    "PROFILE": "Perfil del Usuario",
+    "ID": "ID",
+    "NAME": "Nombre",
+    "PHONE_NUMBER": "Número de Teléfono",
+    "EMAIL_ADDRESS": "Correo Electrónico",
+    "ROLE_ID": "ID del Rol",
+    "ROLE_DESCRIPTION": "Descripción del Rol"
+  },
+  "Commons": {
+    "NEXT": "Siguiente",
+    "DONE": "Finalizar"
+  },
+  "Login": {
+    "REGISTER": "Registrarse",
+    "LOGIN": "Iniciar sesión",
+    "NAME": "Nombre",
+    "PHONE_NUMBER": "Número de teléfono",
+    "EMAIL": "Correo electrónico",
+    "PASSWORD": "Contraseña",
+    "ERROR_NAME_REQUIRED": "El nombre es obligatorio",
+    "ERROR_NAME_INVALID": "Por favor, introduce un nombre válido",
+    "ERROR_PHONE_NUMBER_REQUIRED": "El número de teléfono es obligatorio",
+    "ERROR_PHONE_NUMBER_INVALID": "Por favor, introduce un número de teléfono válido",
+    "ERROR_EMAIL_REQUIRED": "El correo electrónico es obligatorio",
+    "ERROR_EMAIL_INVALID": "Por favor, introduce una dirección de correo electrónico válida",
+    "ERROR_PASSWORD_REQUIRED": "La contraseña es obligatoria",
+    "ERROR_PASSWORD_LENGTH": "La contraseña debe tener al menos 6 caracteres",
+    "ERROR_INVALID_CREDENTIALS": "Credenciales inválidas",
+    "ERROR_FILL_ALL_FIELDS": "Por favor, rellena correctamente todos los campos obligatorios",
+    "REGISTRATION_SUCCESS": "¡Registro exitoso! Bienvenido a nuestra plataforma."
+  }
+}

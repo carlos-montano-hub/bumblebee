@@ -1,0 +1,14 @@
+<nz-sider
+  [(nzCollapsed)]="isMenuCollapsed"
+  class="sider"
+  nzCollapsible
+  nzWidth="100vw"
+>
+  <div class="logo"></div>
+  <ul nz-menu nzTheme="dark" nzMode="inline">
+    <li nz-menu-item (click)="router.navigate([''])">
+      <span nz-icon nzType="home" nzTheme="outline"></span>
+      <span>{{ "SideMenu.HOME" | translate }}</span>
+    </li>
+  </ul>
+</nz-sider>

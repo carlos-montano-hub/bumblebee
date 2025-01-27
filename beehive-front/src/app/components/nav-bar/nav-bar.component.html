@@ -1,0 +1,22 @@
+<nz-header class="header">
+  <div class="nav-content">
+    <div class="title" (click)="router.navigate([''])">
+      <img src="assets/icons/beehive.svg" alt="beehive" class="beehive-svg" />
+      <h1 class="app-title">{{ "TITLE" | translate }}</h1>
+    </div>
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+      <button nz-button>
+        <i nz-icon nzType="global" nzTheme="outline"></i>
+      </button>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu class="dropdown-menu">
+        @for(lang of languages; track lang.name){
+        <li nz-menu-item (click)="changeLanguage(lang)" class="dropdown-option">
+          {{ lang.name }}
+        </li>
+        }
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</nz-header>

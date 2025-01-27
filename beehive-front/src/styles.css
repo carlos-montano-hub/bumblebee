@@ -1,0 +1,10 @@
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2980b9;
+  --error-color: #e74c3c;
+  --text-color: #333;
+  --background-color: #f5f5f5;
+  --input-background: #fff;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --disabled-background: #d9d9d9;
+}
