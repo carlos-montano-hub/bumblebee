@@ -5,3 +5,6 @@ beehive-mind/__pycache__
 beehive-front/.vscode
 
 beehive-nest/target
+
+beehive-guard/.idea
+beehive-guard/target
