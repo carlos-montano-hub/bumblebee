@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConf
 public class BeehiveGuardApplication {
 
     public static void main(String[] args) {
-        //TODO Find a way to use spring here
+        // TODO Find a way to use spring here
         DatabaseInitializer.createDatabaseIfNotExists();
         SpringApplication.run(BeehiveGuardApplication.class, args);
     }

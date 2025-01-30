@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-BeehiveGuardApplication<beehiveguard>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.beehive.beehiveGuard.BeehiveGuardApplication",
+      "projectName": "beehiveguard",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
