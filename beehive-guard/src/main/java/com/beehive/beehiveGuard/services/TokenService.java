@@ -25,6 +25,7 @@ public class TokenService {
     private final TokenRepository tokenRepository;
     private final AppUserRepository appUserRepository;
 
+    @Autowired
     public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository) {
         this.key = new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
         this.tokenRepository = tokenRepository;
