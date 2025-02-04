@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="0Ehuhb1XB6HRudho5oRP">
-        <mxGraphModel dx="2240" dy="2236" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2173" dy="2209" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -23,9 +23,6 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;curved=1;html=1;" parent="1" source="v3aUUR3QiwjMRuQs36bc-2" target="v3aUUR3QiwjMRuQs36bc-6" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;curved=1;html=1;" parent="1" source="v3aUUR3QiwjMRuQs36bc-2" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="v3aUUR3QiwjMRuQs36bc-2" value="beehive-guard" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#232F3D;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.traditional_server;" parent="1" vertex="1">
@@ -83,7 +80,7 @@
                 <mxCell id="3" style="edgeStyle=orthogonalEdgeStyle;html=1;curved=1;" parent="1" source="v3aUUR3QiwjMRuQs36bc-24" target="v3aUUR3QiwjMRuQs36bc-22" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" style="edgeStyle=none;html=1;" edge="1" parent="1" source="v3aUUR3QiwjMRuQs36bc-24" target="24">
+                <mxCell id="25" style="edgeStyle=none;html=1;" parent="1" source="v3aUUR3QiwjMRuQs36bc-24" target="24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="v3aUUR3QiwjMRuQs36bc-24" value="controller" style="shadow=0;dashed=0;align=center;html=1;strokeWidth=1;shape=mxgraph.electrical.logic_gates.dual_inline_ic;labelNames=a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t;whiteSpace=wrap;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;" parent="1" vertex="1">
@@ -92,22 +89,22 @@
                 <mxCell id="19" style="edgeStyle=orthogonalEdgeStyle;curved=1;html=1;" parent="1" source="2" target="v3aUUR3QiwjMRuQs36bc-7" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="30" style="edgeStyle=none;html=1;" edge="1" parent="1" source="2" target="29">
+                <mxCell id="30" style="edgeStyle=none;html=1;" parent="1" source="2" target="29" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="2" value="beehive-app" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#c0c0c0;fillColor=#00000;gradientColor=none;" parent="1" vertex="1">
                     <mxGeometry x="270" y="480" width="60" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="28" style="edgeStyle=none;html=1;" edge="1" parent="1" source="24" target="v3aUUR3QiwjMRuQs36bc-24">
+                <mxCell id="28" style="edgeStyle=none;html=1;" parent="1" source="24" target="v3aUUR3QiwjMRuQs36bc-24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="beehive" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#000000;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.eventbridge_saas_partner_event_bus_resource;" vertex="1" parent="1">
+                <mxCell id="24" value="beehive" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#000000;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.eventbridge_saas_partner_event_bus_resource;" parent="1" vertex="1">
                     <mxGeometry x="-380" y="326" width="78" height="78" as="geometry"/>
                 </mxCell>
-                <mxCell id="31" style="edgeStyle=none;html=1;" edge="1" parent="1" source="29" target="2">
+                <mxCell id="31" style="edgeStyle=none;html=1;" parent="1" source="29" target="2" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="beekeeper" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#000000;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.user;" vertex="1" parent="1">
+                <mxCell id="29" value="beekeeper" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#000000;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.user;" parent="1" vertex="1">
                     <mxGeometry x="270" y="700" width="60" height="60" as="geometry"/>
                 </mxCell>
             </root>
