@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="0Ehuhb1XB6HRudho5oRP">
-        <mxGraphModel dx="2240" dy="2236" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2008" dy="2070" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -66,7 +66,7 @@
                 <mxCell id="19" style="edgeStyle=elbowEdgeStyle;shape=connector;rounded=1;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;" parent="1" source="pweAOKBVjG3xuxcutzRM-17" target="9" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="pweAOKBVjG3xuxcutzRM-17" value="beehive-nest (ECS)" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="1" vertex="1">
+                <mxCell id="pweAOKBVjG3xuxcutzRM-17" value="beehive-guard (ECS)" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="1" vertex="1">
                     <mxGeometry x="-60" y="40" width="72" height="67.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="2jDkGB8KF75_uQe-T3II-2" value="Glacier" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.glacier;fillColor=#E05243;gradientColor=none;" parent="1" vertex="1">
@@ -76,14 +76,6 @@
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="330" y="209"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=1;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;curved=1;" parent="1" source="2" target="pweAOKBVjG3xuxcutzRM-17" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="50" y="365"/>
-                            <mxPoint x="50" y="74"/>
                         </Array>
                     </mxGeometry>
                 </mxCell>
@@ -125,7 +117,7 @@
                 <mxCell id="20" style="edgeStyle=elbowEdgeStyle;shape=connector;rounded=1;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;" parent="1" source="9" target="10" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="beehive-guard (ECS)" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="1" vertex="1">
+                <mxCell id="9" value="beehive-nest (ECS)" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecs;fillColor=#F58534;gradientColor=none;" parent="1" vertex="1">
                     <mxGeometry x="220" y="40" width="72" height="67.5" as="geometry"/>
                 </mxCell>
                 <mxCell id="21" style="edgeStyle=elbowEdgeStyle;shape=connector;rounded=1;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=classic;" parent="1" source="10" target="pweAOKBVjG3xuxcutzRM-3" edge="1">
