@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.beehive</groupId>
-    <artifactId>beehiveguard</artifactId>
+    <artifactId>beehiveGuard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>beehiveguard</name>
+    <name>beehiveGuard</name>
     <description>Demo project for Spring Boot</description>
     <url/>
     <licenses>

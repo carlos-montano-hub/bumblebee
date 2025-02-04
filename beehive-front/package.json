@@ -31,6 +31,7 @@
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "@swimlane/ngx-charts": "^21.0.0",
+    "bumblebee-guard": "file:",
     "ng-zorro-antd": "^18.1.1",
     "ngx-gauge": "^10.0.0",
     "rxjs": "~7.8.0",

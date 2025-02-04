@@ -9,6 +9,16 @@
       "projectName": "beehiveguard",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BeehiveNestApplication<beehiveNest>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.beehive.beehiveNest.BeehiveNestApplication",
+      "projectName": "beehiveNest",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

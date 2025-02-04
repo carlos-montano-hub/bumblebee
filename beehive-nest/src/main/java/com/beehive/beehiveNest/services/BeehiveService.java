@@ -13,7 +13,6 @@ import com.beehive.beehiveNest.model.forms.SelfRegisterBeehiveForm;
 import com.beehive.beehiveNest.model.mappers.BeehiveMapper;
 import com.beehive.beehiveNest.model.mappers.MeasureMapper;
 import com.beehive.beehiveNest.repository.ApiaryRepository;
-import com.beehive.beehiveNest.repository.AppUserRepository;
 import com.beehive.beehiveNest.repository.BeehiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,8 +29,6 @@ public class BeehiveService implements CrudService<BeehiveDto, BeehiveForm> {
     private BeehiveMapper mapper;
     @Autowired
     private BeehiveRepository beehiveRepository;
-    @Autowired
-    private AppUserRepository appUserRepository;
     @Autowired
     private ApiaryRepository apiaryRepository;
     @Autowired
@@ -65,7 +62,8 @@ public class BeehiveService implements CrudService<BeehiveDto, BeehiveForm> {
     private Beehive setDependencies(BeehiveForm form) {
         Beehive entity = mapper.getEntity(form);
         Apiary apiary = apiaryRepository.findById(form.getApiaryId())
-                .orElseThrow(() -> new DependencyNotFoundException("Apiary with ID " + form.getApiaryId() + " not found."));
+                .orElseThrow(
+                        () -> new DependencyNotFoundException("Apiary with ID " + form.getApiaryId() + " not found."));
         entity.setApiary(apiary);
         return entity;
     }
@@ -118,7 +116,8 @@ public class BeehiveService implements CrudService<BeehiveDto, BeehiveForm> {
         Beehive beehive = optionalBeehive.get();
 
         Apiary apiary = apiaryRepository.findById(form.getApiaryId())
-                .orElseThrow(() -> new DependencyNotFoundException("Apiary with ID " + form.getApiaryId() + " not found."));
+                .orElseThrow(
+                        () -> new DependencyNotFoundException("Apiary with ID " + form.getApiaryId() + " not found."));
         beehive.setApiary(apiary);
         beehive.setName("Hive Test");
         Beehive savedEntity = beehiveRepository.save(beehive);

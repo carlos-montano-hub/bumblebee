@@ -5,8 +5,6 @@ import com.beehive.beehiveGuard.model.security.RefreshToken;
 import com.beehive.beehiveGuard.repository.AppUserRepository;
 import com.beehive.beehiveGuard.repository.TokenRepository;
 import io.jsonwebtoken.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -25,7 +23,6 @@ public class TokenService {
     private final TokenRepository tokenRepository;
     private final AppUserRepository appUserRepository;
 
-    @Autowired
     public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository) {
         this.key = new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
         this.tokenRepository = tokenRepository;

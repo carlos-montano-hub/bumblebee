@@ -1,5 +1,6 @@
 package com.beehive.beehiveNest.model.dtos;
 
+import java.util.UUID;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,5 +14,5 @@ import lombok.ToString;
 public class ApiaryDto {
     private Long id;
     private String name;
-    private AppUserDto owner;
+    private UUID owner;
 }
