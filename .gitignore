@@ -8,3 +8,6 @@ beehive-nest/target
 
 beehive-guard/.idea
 beehive-guard/target
+
+beehive-front/node_modules
+beehive-front/.angular

@@ -6,7 +6,6 @@ import com.beehive.beehiveNest.model.forms.CheckForm;
 import com.beehive.beehiveNest.model.forms.RegisterBeehiveForm;
 import com.beehive.beehiveNest.model.forms.SelfRegisterBeehiveForm;
 import com.beehive.beehiveNest.services.BeehiveService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,10 +16,9 @@ import java.util.List;
 public class BeehiveController extends BaseController<BeehiveDto, BeehiveForm> {
     private final BeehiveService beehiveService;
 
-    @Autowired
     public BeehiveController(BeehiveService service) {
-        super(service);  // Injecting into the BaseController
-        this.beehiveService = service;  // Injecting into the controller as well
+        super(service); // Injecting into the BaseController
+        this.beehiveService = service; // Injecting into the controller as well
     }
 
     @GetMapping("/apiary/{apiaryId}")
@@ -49,4 +47,3 @@ public class BeehiveController extends BaseController<BeehiveDto, BeehiveForm> {
     }
 
 }
-

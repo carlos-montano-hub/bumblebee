@@ -2,17 +2,17 @@ package com.beehive.beehiveNest.services;
 
 import com.beehive.beehiveNest.exceptions.DependencyNotFoundException;
 import com.beehive.beehiveNest.model.dtos.ApiaryDto;
+import com.beehive.beehiveNest.model.dtos.AppUserDto;
 import com.beehive.beehiveNest.model.entities.Apiary;
-import com.beehive.beehiveNest.model.entities.AppUser;
 import com.beehive.beehiveNest.model.forms.ApiaryForm;
 import com.beehive.beehiveNest.model.mappers.ApiaryMapper;
 import com.beehive.beehiveNest.repository.ApiaryRepository;
-import com.beehive.beehiveNest.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,7 +23,7 @@ public class ApiaryService implements CrudService<ApiaryDto, ApiaryForm> {
     @Autowired
     private ApiaryRepository apiaryRepository;
     @Autowired
-    private AppUserRepository appUserRepository;
+    private ApiExchangeService apiExchangeService;
 
     @Override
     public List<ApiaryDto> getAll() {
@@ -48,9 +48,13 @@ public class ApiaryService implements CrudService<ApiaryDto, ApiaryForm> {
 
     private Apiary setDependencies(ApiaryForm form) {
         Apiary entity = mapper.getEntity(form);
-        AppUser user = appUserRepository.findById(form.getOwnerId())
-                .orElseThrow(() -> new DependencyNotFoundException("User with ID " + form.getOwnerId() + " not found."));
-        entity.setOwner(user);
+
+        AppUserDto userDto = apiExchangeService.getFromUserService(form.getOwnerId());
+
+        if (userDto == null) {
+            throw new DependencyNotFoundException("User not found");
+        }
+        entity.setOwner(userDto.getId());
         return entity;
     }
 
@@ -75,7 +79,7 @@ public class ApiaryService implements CrudService<ApiaryDto, ApiaryForm> {
         return true;
     }
 
-    public List<ApiaryDto> findApiariesByUserId(Long userId) {
+    public List<ApiaryDto> findApiariesByUserId(UUID userId) {
         return apiaryRepository.findByOwner_Id(userId).stream()
                 .map(mapper::getDto)
                 .collect(Collectors.toList());

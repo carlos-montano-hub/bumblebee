@@ -3,7 +3,6 @@ package com.beehive.beehiveNest.controllers;
 import com.beehive.beehiveNest.model.dtos.MeasureDto;
 import com.beehive.beehiveNest.model.forms.MeasureForm;
 import com.beehive.beehiveNest.services.MeasureService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -22,9 +21,8 @@ public class MeasureController {
     private final MeasureService measureService;
     private final String AUDIO_STORAGE_DIR = "uploads/audio/";
 
-    @Autowired
     public MeasureController(MeasureService service) {
-        this.measureService = service;  // Injecting into the controller as well
+        this.measureService = service; // Injecting into the controller as well
     }
 
     @GetMapping("/beehive/{beehiveId}")

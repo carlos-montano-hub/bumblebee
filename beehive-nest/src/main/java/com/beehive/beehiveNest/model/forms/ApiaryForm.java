@@ -1,5 +1,7 @@
 package com.beehive.beehiveNest.model.forms;
 
+import java.util.UUID;
+
 import lombok.*;
 
 @Setter
@@ -10,5 +12,5 @@ import lombok.*;
 @AllArgsConstructor
 public class ApiaryForm {
     private String name;
-    private Long ownerId;
+    private UUID ownerId;
 }
