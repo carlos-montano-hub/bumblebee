@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface ApiaryRepository extends JpaRepository<Apiary, Long> {
-    List<Apiary> findByOwner_Id(UUID userId);
+    List<Apiary> findByOwner(UUID userId);
 }

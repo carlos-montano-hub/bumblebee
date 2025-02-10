@@ -80,7 +80,7 @@ public class ApiaryService implements CrudService<ApiaryDto, ApiaryForm> {
     }
 
     public List<ApiaryDto> findApiariesByUserId(UUID userId) {
-        return apiaryRepository.findByOwner_Id(userId).stream()
+        return apiaryRepository.findByOwner(userId).stream()
                 .map(mapper::getDto)
                 .collect(Collectors.toList());
     }
