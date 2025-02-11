@@ -6,6 +6,7 @@ beehive-front/.vscode
 
 beehive-nest/target
 beehive-nest/uploads
+beehive-nest/.idea
 
 beehive-guard/.idea
 beehive-guard/target
