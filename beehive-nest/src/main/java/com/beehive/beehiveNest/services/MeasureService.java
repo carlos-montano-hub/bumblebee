@@ -11,6 +11,7 @@ import com.beehive.beehiveNest.repository.MeasureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,12 +46,19 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
         Measure entity = mapper.getEntity(form);
 
         Beehive beehive = beehiveRepository.findBySerial(form.getBeehiveSerial())
-                .orElseThrow(() -> new DependencyNotFoundException("Beehive with serial " + form.getBeehiveSerial() + " not found."));
+                .orElseThrow(() -> new DependencyNotFoundException(
+                        "Beehive with serial " + form.getBeehiveSerial() + " not found."));
         entity.setBeehive(beehive);
 
-        String filePath = audioService.saveFile(form.getAudioRecording());
+        String filePath;
+        try {
+            filePath = audioService.saveFile(form.getAudioRecording());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new RuntimeException("Failed to save or convert file", e);
+        }
         entity.setAudioRecordingUrl(filePath);
-
 
         Measure savedEntity = measureRepository.save(entity);
         return mapper.getDto(savedEntity);
@@ -64,7 +72,8 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
         Measure entity = mapper.getEntity(form);
 
         Beehive beehive = beehiveRepository.findBySerial(form.getBeehiveSerial())
-                .orElseThrow(() -> new DependencyNotFoundException("Beehive with Serial " + form.getBeehiveSerial() + " not found."));
+                .orElseThrow(() -> new DependencyNotFoundException(
+                        "Beehive with Serial " + form.getBeehiveSerial() + " not found."));
         entity.setBeehive(beehive);
 
         entity.setId(id);
@@ -84,7 +93,7 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
     public List<MeasureDto> findMeasuresByBeehiveId(Long beehiveId) {
         return measureRepository.findByBeehive_Id(beehiveId)
                 .stream()
-                .map(mapper::getDto)  // Adjust to the correct mapping method
+                .map(mapper::getDto) // Adjust to the correct mapping method
                 .collect(Collectors.toList());
     }
 }
