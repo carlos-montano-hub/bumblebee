@@ -2,6 +2,7 @@ import requests
 import time
 from datetime import datetime
 import os
+import random
 
 # API URL and Key
 API_URL = "http://localhost:8080/api/measure"
@@ -14,16 +15,15 @@ AUDIO_NAME = "CF003 - Active - Day - (214)-0-0.wav"
 HEADERS = {
     "Authorization": f"Bearer {API_KEY}",  # If using a Bearer token
     "x-api-key": API_KEY,  # Some APIs use a custom header like this
-    "Content-Type": "multipart/form-data",
 }
 
 while True:
     data = {
         "time": datetime.now().isoformat(),
         "beehiveSerial": "SER001",
-        "temperature": 25.0,
-        "humidity": 60.0,
-        "weight": 10.5,
+        "temperature": 31.0 + random.uniform(-1.5, 1.5),
+        "humidity": 60.0 + random.uniform(-10.0, 20.0),
+        "weight": 10.5 + random.uniform(-10.0, 10.0),
     }
 
     with open(AUDIO_PATH + AUDIO_NAME, "rb") as audio_file:
