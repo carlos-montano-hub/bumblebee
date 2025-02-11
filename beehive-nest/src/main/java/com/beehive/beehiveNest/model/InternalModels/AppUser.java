@@ -1,4 +1,4 @@
-package com.beehive.beehiveNest.model.entities;
+package com.beehive.beehiveNest.model.InternalModels;
 
 import java.util.UUID;
 
