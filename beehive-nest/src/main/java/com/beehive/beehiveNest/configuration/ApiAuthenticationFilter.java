@@ -2,7 +2,6 @@ package com.beehive.beehiveNest.configuration;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -23,7 +22,7 @@ public class ApiAuthenticationFilter implements Filter {
                 String apiKeyHeader = httpRequest.getHeader("X-API-Key");
 
                 if (apiKeyHeader == null || !apiKeyHeader.equals(API_KEY)) {
-                        ((HttpServletResponse) response).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        chain.doFilter(request, response);
                         return;
                 }
 

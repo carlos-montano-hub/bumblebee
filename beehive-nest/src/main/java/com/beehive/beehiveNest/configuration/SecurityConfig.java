@@ -15,19 +15,25 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        ApiAuthenticationFilter apiAuthFilter = new ApiAuthenticationFilter();
+        JwtAuthenticationFilter jwtAuthFilter = new JwtAuthenticationFilter();
         http
-                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection for testing (not recommended for production)
+                .csrf(AbstractHttpConfigurer::disable) // Disable CSRF protection for testing (not recommended for
+                                                       // production)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-resources/**",
-                                "/api/measure/audio/**"
-                        ).permitAll() // Allow these endpoints without authentication
+                                "/api/measure/audio/**")
+                        .permitAll() // Allow these endpoints without authentication
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                         .anyRequest().authenticated() // Require authentication for all other requests
                 )
-                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class) // Add JWT filter to handle token validation
+                .addFilterBefore(apiAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(
+                        jwtAuthFilter, UsernamePasswordAuthenticationFilter.class) // Add JWT filter to handle token
+                                                                                   // validation
                 .cors(cors -> cors.configurationSource(request -> {
                     var config = new org.springframework.web.cors.CorsConfiguration();
                     config.addAllowedOrigin("http://localhost:4200"); // Allow Angular app origin

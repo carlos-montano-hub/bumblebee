@@ -16,13 +16,20 @@ import java.io.IOException;
 
 public class JwtAuthenticationFilter implements Filter {
 
-    private final String secretKey = "HdjjgRMriwXo09icJXY5XKjuTAC85BWO"; // Same key used in TokenService
+    private final String SECRET_KEY = System.getenv("JWT_SECRET");
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
+
+        // If an API key has already authenticated the request, skip JWT validation
+        if (SecurityContextHolder.getContext().getAuthentication() != null) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         String authorizationHeader = httpRequest.getHeader("Authorization");
 
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
@@ -34,7 +41,7 @@ public class JwtAuthenticationFilter implements Filter {
 
         try {
             Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(new SecretKeySpec(secretKey.getBytes(), "HmacSHA256"))
+                    .setSigningKey(new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256"))
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
@@ -48,8 +55,8 @@ public class JwtAuthenticationFilter implements Filter {
                         .roles("USER") // Customize roles if needed
                         .build();
 
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
 
                 authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpRequest));
 
