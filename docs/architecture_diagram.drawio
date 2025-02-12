@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="0Ehuhb1XB6HRudho5oRP">
-        <mxGraphModel dx="2769" dy="1903" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2657" dy="2045" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -65,7 +65,7 @@
                 <mxCell id="v3aUUR3QiwjMRuQs36bc-22" value="MQTT&lt;br&gt;server" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.mqtt_protocol;fontFamily=Helvetica;labelBackgroundColor=default;" parent="1" vertex="1">
                     <mxGeometry x="425" y="320" width="90" height="90" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" style="edgeStyle=orthogonalEdgeStyle;html=1;curved=1;" edge="1" parent="1" source="v3aUUR3QiwjMRuQs36bc-24" target="v3aUUR3QiwjMRuQs36bc-1">
+                <mxCell id="52" style="edgeStyle=orthogonalEdgeStyle;html=1;curved=1;" parent="1" source="v3aUUR3QiwjMRuQs36bc-24" target="v3aUUR3QiwjMRuQs36bc-1" edge="1">
                     <mxGeometry relative="1" as="geometry">
                         <Array as="points">
                             <mxPoint x="280" y="360"/>
@@ -82,7 +82,7 @@
                 <mxCell id="2" value="beehive-app" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shadow=0;dashed=0;strokeWidth=1;shape=mxgraph.android.phone2;strokeColor=#c0c0c0;fillColor=#00000;gradientColor=none;" parent="1" vertex="1">
                     <mxGeometry x="270" y="480" width="60" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;curved=1;html=1;" edge="1" parent="1" source="24" target="v3aUUR3QiwjMRuQs36bc-24">
+                <mxCell id="53" style="edgeStyle=orthogonalEdgeStyle;curved=1;html=1;" parent="1" source="24" target="v3aUUR3QiwjMRuQs36bc-24" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="24" value="beehive" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#000000;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.eventbridge_saas_partner_event_bus_resource;" parent="1" vertex="1">
