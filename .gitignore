@@ -13,3 +13,6 @@ beehive-guard/target
 
 beehive-front/node_modules
 beehive-front/.angular
+
+.env
+running_pids.txt
