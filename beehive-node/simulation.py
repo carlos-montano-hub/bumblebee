@@ -8,7 +8,7 @@ import random
 API_URL = "http://localhost:8080/api/measure"
 API_KEY = os.getenv("API_KEY")  # Get the API key from environment variables
 
-AUDIO_PATH = "./beehive-mind/data/audio_input/active/"
+AUDIO_PATH = "../beehive-mind/data/audio_input/active/"
 AUDIO_NAME = "CF003 - Active - Day - (214)-0-0.wav"
 
 # Headers with API Key
