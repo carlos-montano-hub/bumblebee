@@ -33,6 +33,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginDto> login(@RequestBody LoginForm request) {
+        System.out.println("Login request: " + request);
         ResponseEntity<LoginDto> response = (ResponseEntity<LoginDto>) apiExchangeService.sendToGuardService(
                 "/auth/login",
                 HttpMethod.POST,

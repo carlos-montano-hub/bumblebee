@@ -30,13 +30,11 @@ public class S3Config {
     @Bean
     public S3Client s3Client() {
         return S3Client.builder()
-                .endpointOverride(URI.create(endpoint)) // Custom S3-compatible endpoint
-                .region(Region.of(region)) // Required but ignored by MinIO
+                .endpointOverride(URI.create(endpoint))
+                .region(Region.of(region))
                 .credentialsProvider(StaticCredentialsProvider.create(
                         AwsBasicCredentials.create(accessKey, secretKey)))
-                .serviceConfiguration(S3Configuration.builder().pathStyleAccessEnabled(true).build()) // MinIO needs
-                                                                                                      // path-style
-                                                                                                      // access
+                .serviceConfiguration(S3Configuration.builder().pathStyleAccessEnabled(true).build())
                 .build();
     }
 }

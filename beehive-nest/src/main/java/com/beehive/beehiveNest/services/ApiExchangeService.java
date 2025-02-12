@@ -16,7 +16,7 @@ import com.beehive.beehiveNest.model.dtos.AppUserDto;
 public class ApiExchangeService {
 
     private final RestTemplate restTemplate = new RestTemplate();
-    @Value("guard_service_url")
+    @Value("${guard_service_url}")
     private String guardServiceUrl;
     private final String API_KEY = System.getenv("API_KEY");
 
