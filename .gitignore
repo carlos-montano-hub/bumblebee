@@ -1,6 +1,7 @@
 beehive-mind/data
 beehive-mind/.idea
 beehive-mind/__pycache__
+beehive-mind/.venv
 
 beehive-front/.vscode
 

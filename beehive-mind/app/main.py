@@ -1,13 +1,13 @@
 from fastapi import FastAPI
+from config import settings
+from routers import items
 
-app = FastAPI()
+app = FastAPI(title=settings.app_name)
+
+
+app.include_router(items.router)
 
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
+    return {"message": "Hello World", "debug_mode": settings.debug}
