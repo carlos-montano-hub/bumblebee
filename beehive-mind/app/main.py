@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from config import settings
-from routers import items
+from routers import audios
 
 app = FastAPI(title=settings.app_name)
 
 
-app.include_router(items.router)
+app.include_router(audios.router)
 
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World", "debug_mode": settings.debug}
+@app.get("/", status_code=200)
+async def health():
+    return None

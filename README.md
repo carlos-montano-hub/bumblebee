@@ -4,28 +4,34 @@
 
 A smart monitoring system for beehives using IoT technologies and machine learning, designed to help beekeepers optimize hive management.
 
-## 📝 Abstract 
+## 📝 Abstract
+
 Beekeeping is essential for honey production and plant pollination. In Sonora, Mexico, while only contributing 7% of national honey production, hives are primarily used for crop pollination. Traditional manual hive monitoring becomes inefficient as operations scale. This system proposes an IoT solution with sensors for temperature, humidity, weight, and audio analysis, combined with a mobile app for real-time monitoring and anomaly detection.
 
 ## 🛠️ System Architecture
+
 ### Backend Services
 
 #### Java Catalog API (Spring Boot)
+
 - Manages hive metadata and sensor data
 - Integrates with audio storage service
 - Database: PostgreSQL
 
 #### Java Security API (Spring Boot)
+
 - Handles user authentication/authorization
 - Manages user permissions
 - Database: PostgreSQL
 
 #### Python ML API (FastAPI/Flask)
+
 - Audio pattern recognition for anomaly detection
 - Machine learning model integration
 - Processes audio from static service
 
 #### Static Audio Service
+
 - Stores/retrieves audio files
 - Unique ID system for audio recordings
 - Integrated with catalog database
@@ -33,15 +39,18 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 ### IoT Components
 
 #### MQTT Server
+
 - Mosquitto or EMQX implementation
 - Handles sensor data transmission
 
 #### Microcontroller Unit
+
 - Sensors: Temperature, Humidity, Weight, Audio
 - MQTT client implementation
 - Low-power operation
 
 #### Mobile App
+
 - Real-time data visualization
 - Alert/notification system
 - Cross-platform (Angular + capacitor)
@@ -49,20 +58,25 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 ## ⚙️ Installation
 
 ### Prerequisites
+
 - Java 17+
 - Python 3.10+
 - PostgreSQL 14+
 - MQTT Broker (Mosquitto/EMQX)
 - Angular 18+ (for the app)
+- Rust (For the Audio functions)
 
 ### Setup Steps
+
 1. Clone repository:
    ```bash
    git clone https://github.com/yourusername/beehive-monitoring-system.git
+   ```
 2. Configure databases:
    ```sql
     CREATE DATABASE beehive_nest;
     CREATE DATABASE beehive_guard;
+   ```
 3. Set up environment variables:
    ```bash
     # Java API Example
@@ -70,7 +84,9 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
     DB_USER=postgres
     DB_PASSWORD=yourpassword
     MQTT_BROKER=tcp://localhost:1883
+   ```
 4. Install dependencies for each service:
+
    ```bash
     # Java services
     cd catalog-api && ./mvnw clean install
@@ -78,9 +94,11 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 
     # Python service
     cd ml-api && pip install -r requirements.txt
+    choco install rust
 
     # Static service
     cd audio-service && npm install
+   ```
 
 ## 🚀 Usage
 
