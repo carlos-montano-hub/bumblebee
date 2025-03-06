@@ -88,21 +88,26 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 4. Install dependencies for each service:
 
    ```bash
-    # Java services
-    cd catalog-api && ./mvnw clean install
-    cd security-api && ./mvnw clean install
+   # Java services;
+   cd beehive-nest; ./mvnw clean install; cd ..;
+   cd beehive-guard; ./mvnw clean install; cd ..;
 
-    # Python service
-    cd ml-api && pip install -r requirements.txt
-    choco install rust
+   # Angular App;
+   cd beehive-front; npm i; cd ..;
 
-    # Static service
-    cd audio-service && npm install
+   # Python service;
+   cd beehive-mind;
+   python -m venv .venv;
+   pip install -r requirements.txt;
+   . .venv/Scripts/Activate.ps1;
+   cd ..;
+   choco install rust; # Audio cleaning dependency
    ```
 
 ## 🚀 Usage
 
     Start MQTT broker
+    Start S3 server
 
     Run Java APIs:
     bash
