@@ -1,10 +1,27 @@
 beehive-mind/data
 beehive-mind/.idea
 beehive-mind/__pycache__
-
+beehive-mind/.venv
+beehive-mind/app/scripts/__pycache__
+beehive-mind/app/service/audio_functions/__pycache__
+beehive-mind/app/__pycache__
+beehive-mind/app/notebooks/__pycache__
+beehive-mind/app/scripts/notebooks
+beehive-mind/app/models/__pycache__
+beehive-mind/app/tests/__pycache__
+beehive-mind/app/utils/__pycache__
+beehive-mind/app/routers/__pycache__
 beehive-front/.vscode
 
 beehive-nest/target
+beehive-nest/uploads
+beehive-nest/.idea
 
 beehive-guard/.idea
 beehive-guard/target
+
+beehive-front/node_modules
+beehive-front/.angular
+
+.env
+running_pids.txt

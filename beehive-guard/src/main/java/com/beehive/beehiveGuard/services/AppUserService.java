@@ -14,9 +14,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-public class AppUserService implements CrudService<AppUserDto, AppUserForm> {
+public class AppUserService {
 
     @Autowired
     private AppUserMapper appUserMapper;
@@ -44,27 +45,24 @@ public class AppUserService implements CrudService<AppUserDto, AppUserForm> {
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-
-    @Override
     public List<AppUserDto> getAll() {
         return appUserRepository.findAll().stream()
                 .map(appUserMapper::getDto)
                 .toList();
     }
 
-    @Override
-    public Optional<AppUserDto> getById(Long id) {
+    public Optional<AppUserDto> getById(UUID id) {
         return appUserRepository.findById(id)
                 .map(appUserMapper::getDto);
     }
 
-    @Override
     public AppUserDto create(AppUserForm form) {
         AppUser entity = appUserMapper.getEntity(form);
         entity.setPassword(passwordEncoder.encode(form.getPassword()));
 
         UserRole role = userRoleRepository.findById(form.getRoleId())
-                .orElseThrow(() -> new DependencyNotFoundException("User Role with ID " + form.getRoleId() + " not found."));
+                .orElseThrow(
+                        () -> new DependencyNotFoundException("User Role with ID " + form.getRoleId() + " not found."));
         entity.setRole(role);
 
         if (appUserRepository.findByEmailAddress(form.getEmailAddress()).isPresent()) {
@@ -75,8 +73,7 @@ public class AppUserService implements CrudService<AppUserDto, AppUserForm> {
         return appUserMapper.getDto(savedEntity);
     }
 
-    @Override
-    public Optional<AppUserDto> update(Long id, AppUserForm form) {
+    public Optional<AppUserDto> update(UUID id, AppUserForm form) {
         if (!appUserRepository.existsById(id)) {
             return Optional.empty();
         }
@@ -84,15 +81,15 @@ public class AppUserService implements CrudService<AppUserDto, AppUserForm> {
         entity.setPassword(passwordEncoder.encode(form.getPassword()));
 
         UserRole role = userRoleRepository.findById(form.getRoleId())
-                .orElseThrow(() -> new DependencyNotFoundException("User Role with ID " + form.getRoleId() + " not found."));
+                .orElseThrow(
+                        () -> new DependencyNotFoundException("User Role with ID " + form.getRoleId() + " not found."));
         entity.setRole(role);
         entity.setId(id);
         AppUser updatedEntity = appUserRepository.save(entity);
         return Optional.of(appUserMapper.getDto(updatedEntity));
     }
 
-    @Override
-    public boolean delete(Long id) {
+    public boolean delete(UUID id) {
         if (!appUserRepository.existsById(id)) {
             return false;
         }

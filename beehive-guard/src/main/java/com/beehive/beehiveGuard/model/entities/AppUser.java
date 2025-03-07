@@ -1,5 +1,7 @@
 package com.beehive.beehiveGuard.model.entities;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,8 +16,9 @@ import lombok.Setter;
 @Entity
 public class AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "UUID")
+    private UUID id;
     private String name;
     private String phoneNumber;
     @Column(nullable = false, unique = true)
@@ -27,4 +30,3 @@ public class AppUser {
     @Column(nullable = false)
     private String password;
 }
-

@@ -1,0 +1,60 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot - BeehiveGuard",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.beehive.beehiveGuard.BeehiveGuardApplication",
+      "projectName": "beehiveguard",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot - BeehiveNest",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.beehive.beehiveNest.BeehiveNestApplication",
+      "projectName": "beehiveNest",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "FastAPI Debugger",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["main:app", "--reload"],
+      "jinja": true,
+      "justMyCode": true,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "name": "Angular Debugger",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/path/to/angular-app/src",
+      "sourceMaps": true,
+      "trace": true,
+      "preLaunchTask": "npm: start",
+      "postDebugTask": "npm: stop"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug All Services",
+      "configurations": [
+        "Spring Boot - BeehiveGuard",
+        "Spring Boot - BeehiveNest",
+        "FastAPI Debugger",
+        "Angular Debugger"
+      ]
+    }
+  ]
+}

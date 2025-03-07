@@ -17,15 +17,11 @@ import java.util.UUID;
 
 @Service
 public class RefreshTokenService {
-    @Value("${app.jwt.secret}")
-    private String SECRET_KEY;
+    private final String SECRET_KEY = System.getenv("JWT_SECRET");
     @Value("${app.jwt.refreshTokenExpiryMs}")
     private Long refreshTokenExpiryMs;
     @Autowired
     private TokenRepository tokenRepository;
-
-    @Autowired
-    private AppUserRepository appUserRepository;
 
     public RefreshToken createRefreshToken(AppUser user) {
         RefreshToken refreshToken = new RefreshToken();

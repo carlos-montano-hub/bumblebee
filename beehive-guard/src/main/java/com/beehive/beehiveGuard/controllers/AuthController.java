@@ -9,11 +9,8 @@ import com.beehive.beehiveGuard.model.security.LoginForm;
 import com.beehive.beehiveGuard.model.security.RefreshTokenForm;
 import com.beehive.beehiveGuard.services.AppUserService;
 import com.beehive.beehiveGuard.services.TokenService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,15 +19,14 @@ public class AuthController {
     private final AppUserService appUserService;
     private final TokenService tokenService;
 
-    @Autowired
     public AuthController(AppUserService appUserService, TokenService tokenService) {
         this.appUserService = appUserService;
         this.tokenService = tokenService;
     }
 
-    @GetMapping("/profile")
-    public ResponseEntity<AppUserDto> getProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        AppUserDto profile = appUserService.findByEmail(userDetails.getUsername());
+    @GetMapping("/profile/{email}")
+    public ResponseEntity<AppUserDto> getProfile(@PathVariable String email) {
+        AppUserDto profile = appUserService.findByEmail(email);
         return ResponseEntity.ok(profile);
     }
 
@@ -38,10 +34,9 @@ public class AuthController {
     public ResponseEntity<LoginDto> login(@RequestBody LoginForm request) {
         AppUser user = appUserService.authenticate(request.getEmail(), request.getPassword());
         String accessToken = tokenService.generateToken(user);
-        String refreshToken = tokenService.fetchRefreshToken(user);  // Generate refresh token
+        String refreshToken = tokenService.fetchRefreshToken(user); // Generate refresh token
 
-
-        return ResponseEntity.ok(new LoginDto(accessToken, refreshToken));  // Send both tokens
+        return ResponseEntity.ok(new LoginDto(accessToken, refreshToken)); // Send both tokens
     }
 
     @PostMapping("/refresh")
@@ -59,10 +54,8 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<AppUserDto> registerUser(@RequestBody RegisterForm form) {
         AppUserDto createdEntity = appUserService.create(new AppUserForm(
-                form.getName(), form.getPhoneNumber(), form.getEmailAddress(), 2L, form.getPassword())
-        );
+                form.getName(), form.getPhoneNumber(), form.getEmailAddress(), 2L, form.getPassword()));
         return ResponseEntity.status(200).body(createdEntity);
     }
-
 
 }
