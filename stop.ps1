@@ -1,3 +1,7 @@
+$originalLocation = Get-Location
+$scriptPath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+Set-Location -Path $scriptPath
+
 # Read stored PIDs and stop the processes
 if (Test-Path "running_pids.txt") {
     Get-Content "running_pids.txt" | ForEach-Object {
@@ -8,3 +12,5 @@ if (Test-Path "running_pids.txt") {
 } else {
     Write-Host "No running services found."
 }
+
+Set-Location -Path $originalLocation

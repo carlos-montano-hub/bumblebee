@@ -1,3 +1,6 @@
+$originalLocation = Get-Location
+$scriptPath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+Set-Location -Path $scriptPath
 # Java services
 Set-Location beehive-nest; ./mvnw clean install -DskipTests; Set-Location ..;
 Set-Location beehive-guard; ./mvnw clean install -DskipTests; Set-Location ..;
@@ -22,4 +25,4 @@ choco install -y rust;
 # Install dependencies
 pip install -r requirements.txt;
 
-Set-Location ..;
+Set-Location -Path $originalLocation

@@ -1,3 +1,6 @@
+$originalLocation = Get-Location
+$scriptPath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+Set-Location -Path $scriptPath
 # Load environment variables from .env file
 Get-Content .env | ForEach-Object {
     if ($_ -match '^(.*?)=(.*)$') {
@@ -21,3 +24,5 @@ $pythonSim = Start-Process -NoNewWindow -PassThru -FilePath "python" -ArgumentLi
 # Store PIDs in a file
 Set-Location ..
 $mvnNest.Id, $mvnGuard.Id, $pythonSim.Id | Set-Content "running_pids.txt"
+
+Set-Location -Path $originalLocation
