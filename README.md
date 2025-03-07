@@ -62,7 +62,7 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 - Java 17+
 - Python 3.10+
 - PostgreSQL 14+
-- MQTT Broker (Mosquitto/EMQX)
+- MQTT Broker (Mosquitto/EMQX/AWS IOT)
 - Angular 18+ (for the app)
 - Rust (For the Audio functions)
 
@@ -79,25 +79,43 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
    ```
 3. Set up environment variables:
    ```bash
-    # Java API Example
-    DB_URL=jdbc:postgresql://localhost:5432/beehive_catalog
-    DB_USER=postgres
-    DB_PASSWORD=yourpassword
-    MQTT_BROKER=tcp://localhost:1883
+   JWT_SECRET=
+   API_KEY=
+   S3_ACCESS_KEY=
+   S3_SECRET_KEY=
+   GOOGLE_API_KEY=
    ```
-4. Install dependencies for each service:
+4. Install Microsoft C++ Build Tools, Rust and deepfilternet
+
+   - Install rust using chocolatey
+     ```bash
+     choco install rust
+     ```
+   - Download: [Build Tools for Visual Studio](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+   - Install:
+     - Select "C++ build tools" workload.
+     - Include "MSVC v143 - VS 2022 C++ x64/x86 build tools" and "Windows 10 SDK".
+   - Add cl.exe to path, usually in:
+
+     `C:\Program Files (x86)\Microsoft Visual Studio\20XX\Community\VC\Tools\MSVC\XXX\bin\Hostx64\x64`
+
+   - Or by running `cl` on `x64 Native Tools Command Prompt` (Search on Windows start menu)
+   - Install deepfilternet using `x64 Native Tools Command Prompt`:
+     ```bash
+     pip install deepfilternet
+     ```
+
+5. Install dependencies for each service:
 
    ```bash
     # Java services
-    cd catalog-api && ./mvnw clean install
-    cd security-api && ./mvnw clean install
+    cd beehive-guard && ./mvnw clean install
+    cd beehive-nest && ./mvnw clean install
 
     # Python service
-    cd ml-api && pip install -r requirements.txt
+    cd beehive-mind && pip install -r requirements.txt
     choco install rust
-
-    # Static service
-    cd audio-service && npm install
+    choco install ffmpeg
    ```
 
 ## 🚀 Usage
