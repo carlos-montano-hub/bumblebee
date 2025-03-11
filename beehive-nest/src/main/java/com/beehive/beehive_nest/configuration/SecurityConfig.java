@@ -25,7 +25,8 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-resources/**",
-                                "/api/measure/audio/**")
+                                "/api/measure/audio/**",
+                                "/health")
                         .permitAll() // Allow these endpoints without authentication
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll()
                         .anyRequest().authenticated() // Require authentication for all other requests
@@ -36,6 +37,10 @@ public class SecurityConfig {
                                                                                    // validation
                 .cors(cors -> cors.configurationSource(request -> {
                     var config = new org.springframework.web.cors.CorsConfiguration();
+                    /**
+                     * TODO: Create a env variable like this:
+                     * corsAllowOrigins: origin|origin1|origin2
+                     */
                     config.addAllowedOrigin("http://localhost:4200"); // Allow Angular app origin
                     config.addAllowedOrigin("http://192.168.100.80:4200");
                     config.addAllowedOrigin("http://localhost");
