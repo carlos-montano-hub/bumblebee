@@ -2,9 +2,11 @@ package com.beehive.beehive_nest.services;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.stereotype.Service;
 
 import lombok.Getter;
 
+@Service
 public class ClientService {
     @Getter
     private final RestTemplate restTemplate = new RestTemplate();
