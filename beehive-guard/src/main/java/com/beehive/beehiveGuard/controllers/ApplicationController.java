@@ -1,4 +1,4 @@
-package com.beehive.beehive_nest.controllers;
+package com.beehive.beehiveGuard.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;

@@ -6,6 +6,7 @@ import com.beehive.beehiveGuard.repository.AppUserRepository;
 import com.beehive.beehiveGuard.repository.TokenRepository;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -15,7 +16,6 @@ import java.util.Optional;
 
 @Service
 public class TokenService {
-    private final String SECRET_KEY = System.getenv("JWT_SECRET");
     private SecretKey key;
 
     private final int expirationMs = 86400000; // 1 day for refresh tokens
@@ -23,7 +23,7 @@ public class TokenService {
     private final TokenRepository tokenRepository;
     private final AppUserRepository appUserRepository;
 
-    public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository) {
+    public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository, @Value("${app.jwt.secret}") String secretKey) {
         this.key = new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
         this.tokenRepository = tokenRepository;
         this.appUserRepository = appUserRepository;
