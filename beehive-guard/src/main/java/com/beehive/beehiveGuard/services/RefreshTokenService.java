@@ -17,9 +17,12 @@ import java.util.UUID;
 
 @Service
 public class RefreshTokenService {
-    private final String SECRET_KEY = System.getenv("JWT_SECRET");
+    @Value("${app.jwt.secret}")
+    private String secretKey;
+    
     @Value("${app.jwt.refreshTokenExpiryMs}")
     private Long refreshTokenExpiryMs;
+    
     @Autowired
     private TokenRepository tokenRepository;
 
@@ -45,7 +48,7 @@ public class RefreshTokenService {
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationDays))
-                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }
 
