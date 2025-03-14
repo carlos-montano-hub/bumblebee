@@ -2,7 +2,6 @@ from typing import List
 from pydub import AudioSegment
 import numpy as np
 
-from service.audio_functions.extract_mfcc import extract_mfcc
 from service.audio_functions.filter_silence import filter_audio_segments
 from service.audio_functions.low_pass_filter import apply_low_pass_filter
 from service.audio_functions.reduce_noise import reduce_noise_deep_filter

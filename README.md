@@ -24,7 +24,7 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 - Manages user permissions
 - Database: PostgreSQL
 
-#### Python ML API (FastAPI/Flask)
+#### Python ML API (FastAPI)
 
 - Audio pattern recognition for anomaly detection
 - Machine learning model integration
