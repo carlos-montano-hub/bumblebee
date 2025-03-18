@@ -76,6 +76,7 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
    ```sql
     CREATE DATABASE beehive_nest;
     CREATE DATABASE beehive_guard;
+    CREATE DATABASE beehive_mind;
    ```
 3. Set up environment variables:
    ```bash

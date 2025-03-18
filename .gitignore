@@ -29,3 +29,5 @@ beehive-front/.angular
 
 .env
 running_pids.txt
+
+*.env

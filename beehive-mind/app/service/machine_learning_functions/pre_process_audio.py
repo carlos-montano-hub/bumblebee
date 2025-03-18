@@ -6,6 +6,7 @@ from service.audio_functions.filter_silence import filter_audio_segments
 from service.audio_functions.low_pass_filter import apply_low_pass_filter
 from service.audio_functions.reduce_noise import reduce_noise_deep_filter
 from service.audio_functions.split_audio import split_audio_file
+from service.feature_extraction.extract_mfcc import extract_mfcc
 
 
 def get_full_preprocessing(audio: AudioSegment):

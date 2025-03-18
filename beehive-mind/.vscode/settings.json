@@ -3,5 +3,8 @@
   "python.testing.pytestArgs": ["app"],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
-  "cSpell.words": ["cumsum"]
+  "cSpell.words": [
+    "cumsum",
+    "sessionmaker"
+  ]
 }
