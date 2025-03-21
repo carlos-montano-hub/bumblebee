@@ -44,10 +44,15 @@ public class TestDataService {
                                 "123e4567-e89b-12d3-a456-426614174003"), "Carlos Montaño", "6621438271",
                                 "montanoc70@gmail.com", adminRole,
                                 "$2a$10$eRwbLEwfv.Lb0QA8jmqMSeviFaNEt5mT/Sa5SydsATx47rM5c7KRi");
+                AppUser luisro = new AppUser(UUID.fromString(
+                                "feedf10e-5d16-4172-9334-c331fd08c07d"), "Luis R", "0000000000",
+                                "luisrodev@hotmail.com", adminRole,
+                                "$2a$10$NdLjj6Wt7JPVrte0QBF4Aud6U1ERdegzbbTp.Gt8zmvULJSbpHTPC");
                 appUserRepository.save(adminUser);
                 appUserRepository.save(johnDoe);
                 appUserRepository.save(janeSmith);
                 appUserRepository.save(carlos);
+                appUserRepository.save(luisro);
 
         }
 }
