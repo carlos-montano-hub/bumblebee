@@ -23,8 +23,9 @@ public class TokenService {
     private final TokenRepository tokenRepository;
     private final AppUserRepository appUserRepository;
 
-    public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository, @Value("${app.jwt.secret}") String secretKey) {
-        this.key = new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
+    public TokenService(TokenRepository tokenRepository, AppUserRepository appUserRepository,
+            @Value("${app.jwt.secret}") String secretKey) {
+        this.key = new SecretKeySpec(secretKey.getBytes(), SignatureAlgorithm.HS256.getJcaName());
         this.tokenRepository = tokenRepository;
         this.appUserRepository = appUserRepository;
     }
