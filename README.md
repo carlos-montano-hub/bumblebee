@@ -133,6 +133,12 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
    choco install rust; # Audio cleaning dependency
    ```
 
+## Docker
+
+   ```bash
+   docker compose up
+   ```
+
 ## 🚀 Usage
 
     Start MQTT broker
