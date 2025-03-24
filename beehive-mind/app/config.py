@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     s3_access_key: str | None = None
     s3_secret_key: str | None = None
     google_api_key: str | None = None
+    s3_region: str = "us-east-1"
 
     model_config = ConfigDict(
         env_file="../.env",

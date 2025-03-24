@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException
-from models.audio import RegisterAudioForm
-from config import settings
-from service.api_functions import s3_functions
+from app.models.audio import RegisterAudioForm
+from app.config import settings
+from app.service.api_functions import s3_functions
 
 router = APIRouter(prefix="/api/audio", tags=["Items"])
 

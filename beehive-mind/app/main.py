@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from config import settings
-from routers import audios
+from app.config import settings
+from app.routers import audios
 
 app = FastAPI(title=settings.app_name)
 

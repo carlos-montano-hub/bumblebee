@@ -3,7 +3,7 @@ import os
 import boto3
 from botocore.exceptions import BotoCoreError, ClientError
 from fastapi import HTTPException
-from config import settings
+from app.config import settings
 from pydub import AudioSegment
 
 s3_client = boto3.client(

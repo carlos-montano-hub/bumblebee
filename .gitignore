@@ -11,6 +11,7 @@ beehive-mind/app/models/__pycache__
 beehive-mind/app/tests/__pycache__
 beehive-mind/app/utils/__pycache__
 beehive-mind/app/routers/__pycache__
+beehive-mind/beehive_mind.egg-info
 *.pyc
 *.pyo
 
