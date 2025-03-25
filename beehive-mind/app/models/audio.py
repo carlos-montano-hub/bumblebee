@@ -10,17 +10,11 @@ class RegisterAudioForm(BaseModel):
 Base = declarative_base()
 
 
-class Measurement(Base):
-    __tablename__ = "measurement"
-    id = Column(BigInteger, primary_key=True, autoincrement=True)
-    measurement_uuid = Column(UUID, unique=True, nullable=False)
-    date = Column(Date, nullable=False)
-
-
 class Feature(Base):
     __tablename__ = "features"
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    measurement_id = Column(BigInteger, ForeignKey("measurement.id"), nullable=False)
+    measurement_id = Column(UUID, unique=True, nullable=False)
+    date = Column(Date, nullable=False)
     zero_crossing_rate = Column(Double)
     energy = Column(Double)
     energy_entropy = Column(Double)

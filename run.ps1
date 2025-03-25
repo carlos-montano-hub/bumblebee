@@ -17,12 +17,15 @@ Set-Location ../beehive-guard
 $mvnGuard = Start-Process -NoNewWindow -PassThru -FilePath "mvn" -ArgumentList "spring-boot:run"
 
 # Start beehive-node simulation
-Start-Sleep -Seconds 10
-Set-Location ../beehive-node
-$pythonSim = Start-Process -NoNewWindow -PassThru -FilePath "python" -ArgumentList "simulation.py"
+# Start-Sleep -Seconds 10
+# Set-Location ../beehive-node
+# $pythonSim = Start-Process -NoNewWindow -PassThru -FilePath "python" -ArgumentList "simulation.py"
+
+Set-Location ../beehive-mind
+$pythonMind = Start-Process -NoNewWindow -PassThru -FilePath "powershell" -ArgumentList "-File .\run.ps1"
 
 # Store PIDs in a file
 Set-Location ..
-$mvnNest.Id, $mvnGuard.Id, $pythonSim.Id | Set-Content "running_pids.txt"
+$mvnNest.Id, $mvnGuard.Id, $pythonSim.Id, $pythonMind.Id | Set-Content "running_pids.txt"
 
 Set-Location -Path $originalLocation
