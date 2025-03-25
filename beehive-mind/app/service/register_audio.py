@@ -76,5 +76,6 @@ def register_audio(
             mfcc_12=mfcc[11, i],
             mfcc_13=mfcc[12, i],
         )
+        print(frame_feature)
         session.add(frame_feature)
     session.commit()

@@ -1,3 +1,4 @@
+from datetime import date
 from sqlalchemy import Column, BigInteger, Date, UUID, ForeignKey, Double
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
@@ -5,6 +6,7 @@ from pydantic import BaseModel
 
 class RegisterAudioForm(BaseModel):
     audioId: str
+    date: date
 
 
 Base = declarative_base()
