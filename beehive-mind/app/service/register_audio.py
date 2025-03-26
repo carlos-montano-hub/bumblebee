@@ -1,10 +1,10 @@
 import numpy as np
 import librosa
 from pydub import AudioSegment
-from models.audio import Feature
+from app.models.audio import Feature
 from sqlalchemy.orm import Session
 from datetime import date
-from service.feature_extraction.extraction import (
+from app.service.feature_extraction.extraction import (
     compute_zcr,
     compute_energy,
     compute_energy_entropy,
