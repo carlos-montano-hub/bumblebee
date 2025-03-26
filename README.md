@@ -143,7 +143,7 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
    # Ports
    BEEHIVE_GUARD_PORT=8852
    BEEHIVE_NEST_PORT=8080
-   BEEHIVE_MIND_PORT=
+   BEEHIVE_MIND_PORT=8084
 
    # Database
    DB_URL=jdbc:postgresql://host.docker.internal:5433/
