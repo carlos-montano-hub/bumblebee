@@ -1,7 +1,7 @@
 import numpy as np
 from pydub import AudioSegment
 from scipy.fftpack import fft
-from service.audio_functions.reshape_to_mono import convert_to_mono
+from app.service.audio_functions.reshape_to_mono import convert_to_mono
 import librosa
 
 
