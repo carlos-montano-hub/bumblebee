@@ -2,11 +2,11 @@ $originalLocation = Get-Location
 
 $scriptPath = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
 Set-Location -Path $scriptPath
-
+Set-Location ..
 # Ensure the virtual environment exists
 if (-Not (Test-Path -Path ".\.venv")) {
-	Write-Host "Virtual environment not found. Creating one..."
-	python -m venv .venv
+    Write-Host "Virtual environment not found. Creating one..."
+    python -m venv .venv
 }
 
 # Add the Python of the venv to the PATH
