@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   beehive_guard:
     container_name: beehive_guard-container
@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SERVER_PORT=8080
-      - DB_URL=${DB_URL}
+      - JAVA_DB_URL=${JAVA_DB_URL}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
@@ -23,7 +23,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - SERVER_PORT=8080
-      - DB_URL=${DB_URL}
+      - JAVA_DB_URL=${JAVA_DB_URL}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - GUARD_SERVICE_URL=http://host.docker.internal:${BEEHIVE_GUARD_PORT}
@@ -33,7 +33,7 @@ services:
       - S3_SECRET_KEY=${S3_SECRET_KEY}
       - API_KEY=${API_KEY}
     ports:
-      - "${BEEHIVE_NEST_PORT}:8080"
+      - "${NEST_SERVICE_PORT}:8080"
     depends_on:
       - beehive_postgres
       - beehive_guard
@@ -69,7 +69,7 @@ services:
     container_name: beehive_postgres-container
     image: postgres:latest
     ports:
-    - "5433:5432"
+      - "5433:5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -78,4 +78,3 @@ services:
 volumes:
   minio_data:
   postgres_data:
-

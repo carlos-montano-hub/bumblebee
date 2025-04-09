@@ -1,5 +1,7 @@
 package com.beehive.beehive_nest.services;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -40,7 +42,7 @@ public class BeehiveMindService {
     }
 
     public ClassificationResult registerAudio(String audioId) {
-        AudioRegisterForm audioRegisterForm = new AudioRegisterForm(audioId);
+        AudioRegisterForm audioRegisterForm = new AudioRegisterForm(audioId, LocalDate.now());
         ResponseEntity<ClassificationResult> results = sendToBeehiveMindService(
                 audioRegisterPath,
                 HttpMethod.POST,

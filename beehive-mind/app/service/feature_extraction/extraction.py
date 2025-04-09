@@ -31,6 +31,7 @@ def compute_energy_entropy(audio: AudioSegment, num_bins: int = 10) -> float:
 
     hist, _ = np.histogram(energy, bins=num_bins, density=True)
 
+    hist = hist[hist > 0]
     entropy = -np.sum(hist * np.log2(hist))
 
     return entropy

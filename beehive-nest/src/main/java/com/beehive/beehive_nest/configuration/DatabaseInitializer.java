@@ -8,7 +8,7 @@ public class DatabaseInitializer {
 
     // TODO get from env variables
     // The databases are not case sensitive
-    private static final String DB_URL = System.getenv("DB_URL");
+    private static final String DB_URL = System.getenv("JAVA_DB_URL");
     private static final String USER = System.getenv("DB_USER");
     private static final String PASSWORD = System.getenv("DB_PASSWORD");
     private static final String DB_NAME = "beehive_nest";

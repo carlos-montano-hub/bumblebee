@@ -135,37 +135,37 @@ Beekeeping is essential for honey production and plant pollination. In Sonora, M
 
 ## Docker
 
-   Create `.env` file in root of the project with content:
+Create `.env` file in root of the project with content:
 
-   ```yml
-   # Global env variables
+```yml
+# Global env variables
 
-   # Ports
-   BEEHIVE_GUARD_PORT=8852
-   BEEHIVE_NEST_PORT=8080
-   BEEHIVE_MIND_PORT=8084
+# Ports
+BEEHIVE_GUARD_PORT=8852
+NEST_SERVICE_PORT=8080
+BEEHIVE_MIND_PORT=8084
 
-   # Database
-   DB_URL=jdbc:postgresql://host.docker.internal:5433/
-   DB_USER=admin
-   DB_PASSWORD=admin123
+# Database
+DB_URL=jdbc:postgresql://host.docker.internal:5433/
+DB_USER=admin
+DB_PASSWORD=admin123
 
-   JWT_SECRET=<VALID_SECRET_KEY>
-   API_KEY=<ANY_API_KEY>
-
-
-   S3_ENDPOINT=http://host.docker.internal:9000
-   S3_ACCESS_KEY=<ACCESS_KEY_S3>
-   S3_SECRET_KEY=<SECRET_KEY_S3>
+JWT_SECRET=<VALID_SECRET_KEY>
+API_KEY=<ANY_API_KEY>
 
 
-   MINIO_ROOT_USER=minioadmin
-   MINIO_ROOT_PASSWORD=minioadmin123
-   ```
+S3_ENDPOINT=http://host.docker.internal:9000
+S3_ACCESS_KEY=<ACCESS_KEY_S3>
+S3_SECRET_KEY=<SECRET_KEY_S3>
 
-   ```bash
-   docker compose --env-file .env up
-   ```
+
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin123
+```
+
+```bash
+docker compose --env-file .env up
+```
 
 ## 🚀 Usage
 

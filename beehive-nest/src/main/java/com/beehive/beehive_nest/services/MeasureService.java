@@ -1,6 +1,7 @@
 package com.beehive.beehive_nest.services;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.beehive.beehive_nest.exceptions.DependencyNotFoundException;
 import com.beehive.beehive_nest.model.dtos.MeasureDto;
@@ -47,6 +48,7 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
     }
 
     @Override
+    @Transactional
     public MeasureDto create(MeasureForm form) {
         Measure entity = mapper.getEntity(form);
 

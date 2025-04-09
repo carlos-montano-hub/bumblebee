@@ -9,13 +9,18 @@ class RegisterAudioForm(BaseModel):
     date: date
 
 
+class ClassificationResult(BaseModel):
+    label: str
+    confidence: float
+
+
 Base = declarative_base()
 
 
 class Feature(Base):
     __tablename__ = "features"
     id = Column(BigInteger, primary_key=True, autoincrement=True)
-    measurement_id = Column(UUID, unique=True, nullable=False)
+    measurement_id = Column(UUID, nullable=False)
     date = Column(Date, nullable=False)
     zero_crossing_rate = Column(Double)
     energy = Column(Double)

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const API_URL = `http://localhost:${process.env.BEEHIVE_NEST_PORT}/api/measure`;
+const API_URL = `http://localhost:${process.env.NEST_SERVICE_PORT}/api/measure`;
 const API_KEY = process.env.API_KEY;
 const AUDIO_PATH = "../beehive-front/src/assets/audio/";
 const AUDIO_NAME = "beehive_sound.wav";
@@ -48,4 +48,3 @@ async function sendData() {
 }
 
 setInterval(sendData, 2000);
-

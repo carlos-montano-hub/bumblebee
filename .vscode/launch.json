@@ -9,7 +9,8 @@
       "mainClass": "com.beehive.beehiveGuard.BeehiveGuardApplication",
       "projectName": "beehiveguard",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote"
     },
     {
       "type": "java",
@@ -44,6 +45,16 @@
       "trace": true,
       "preLaunchTask": "npm: start",
       "postDebugTask": "npm: stop"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-BeehiveNestApplication<beehiveNest>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.beehive.beehive_nest.BeehiveNestApplication",
+      "projectName": "beehiveNest",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ],
   "compounds": [
