@@ -98,11 +98,20 @@ def compute_spectral_rolloff(
     return rolloff
 
 
-def compute_mfcc(audio: AudioSegment, n_mfcc: int = 13) -> np.ndarray:
+def compute_mfcc(
+    audio: AudioSegment, frame_length: int, hop_length: int, n_mfcc: int = 13
+) -> np.ndarray:
     samples = np.array(audio.get_array_of_samples())
     audio = convert_to_mono(audio)
     samples = samples.astype(np.float32)
     samples /= np.iinfo(np.int16).max
     sr = audio.frame_rate
-    mfccs = librosa.feature.mfcc(y=samples, sr=sr, n_mfcc=n_mfcc)
+    mfccs = librosa.feature.mfcc(
+        y=samples,
+        sr=sr,
+        n_mfcc=n_mfcc,
+        n_fft=frame_length,
+        hop_length=hop_length,
+        win_length=frame_length,
+    )
     return mfccs

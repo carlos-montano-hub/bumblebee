@@ -23,8 +23,8 @@ def register_audio(
     samples = np.array(audio.get_array_of_samples(), dtype=np.float32)
     sr = audio.frame_rate
 
-    frame_length = 2048
-    hop_length = 512
+    frame_length = int(sr * 1.0)  # sr samples/sec × 1 sec
+    hop_length = int(sr * 1.0)  # same as mid‑term step
 
     frames = librosa.util.frame(
         samples, frame_length=frame_length, hop_length=hop_length
@@ -56,8 +56,8 @@ def register_audio(
         spectral_rolloff_frames.append(compute_spectral_rolloff(audio_frame, sr))
 
     mfcc = compute_mfcc(
-        audio
-    )  # Uses     frame_length = 2048    hop_length = 512 by default
+        audio=audio, n_mfcc=13, frame_length=frame_length, hop_length=hop_length
+    )
     session = SessionLocal()
 
     n_frames = mfcc.shape[1]
