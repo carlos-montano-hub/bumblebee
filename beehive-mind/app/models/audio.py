@@ -1,5 +1,5 @@
 from datetime import date
-from sqlalchemy import Column, BigInteger, Date, UUID, ForeignKey, Double
+from sqlalchemy import Column, BigInteger, Date, UUID, ForeignKey, Double, String
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
 
@@ -7,6 +7,7 @@ from pydantic import BaseModel
 class RegisterAudioForm(BaseModel):
     audioId: str
     date: date
+    label: str | None = None
 
 
 class ClassificationResult(BaseModel):
@@ -43,3 +44,4 @@ class Feature(Base):
     mfcc_11 = Column(Double)
     mfcc_12 = Column(Double)
     mfcc_13 = Column(Double)
+    label = Column(String(50), nullable=True)

@@ -18,13 +18,16 @@ from app.persistence.database import SessionLocal
 
 
 def register_audio(
-    audio: AudioSegment, measurement_uuid: str, record_date: date
+    audio: AudioSegment,
+    measurement_uuid: str,
+    record_date: date,
+    label: str | None = None,
 ) -> None:
     samples = np.array(audio.get_array_of_samples(), dtype=np.float32)
     sr = audio.frame_rate
 
-    frame_length = int(sr * 1.0)  # sr samples/sec × 1 sec
-    hop_length = int(sr * 1.0)  # same as mid‑term step
+    frame_length = int(sr)  # sr samples/sec × 1 sec
+    hop_length = int(sr)  # same as mid‑term step
 
     frames = librosa.util.frame(
         samples, frame_length=frame_length, hop_length=hop_length
@@ -86,6 +89,7 @@ def register_audio(
             mfcc_11=float(mfcc[10, i]),
             mfcc_12=float(mfcc[11, i]),
             mfcc_13=float(mfcc[12, i]),
+            label=label,
         )
         session.add(frame_feature)
     session.commit()

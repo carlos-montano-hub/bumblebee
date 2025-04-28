@@ -18,4 +18,5 @@ public class MeasureForm {
     private double humidity;
     private double weight;
     private MultipartFile audioRecording;
+    private String label;
 }

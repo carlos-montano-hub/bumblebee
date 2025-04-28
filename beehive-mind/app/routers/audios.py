@@ -14,13 +14,15 @@ async def register(input: RegisterAudioForm, background_tasks: BackgroundTasks):
     date = input.date
 
     try:
-        file_data = get_file_from_s3(settings.raw_bucket_name, audio_id)
+        file_data = get_file_from_s3(settings.audio_bucket_name, audio_id)
         return_data = {
             "message": "File retrieved successfully",
             "file_size": file_data.frame_count(),
         }
         print(return_data)
-        background_tasks.add_task(register_audio, file_data, audio_id, date)
+        background_tasks.add_task(
+            register_audio, file_data, audio_id, date, input.label
+        )
 
         return ClassificationResult(label="test", confidence=1.0)
     except HTTPException as e:

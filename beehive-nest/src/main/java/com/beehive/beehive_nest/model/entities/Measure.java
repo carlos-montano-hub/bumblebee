@@ -27,4 +27,5 @@ public class Measure {
     private double humidity;
     private double weight;
     private String audioRecordingUrl;
+    private String label;
 }

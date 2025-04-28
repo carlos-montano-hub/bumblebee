@@ -17,11 +17,16 @@ $mvnGuard = Start-Process -NoNewWindow -PassThru -FilePath "mvn" -ArgumentList "
 Set-Location ../beehive-mind
 $pythonMind = Start-Process -NoNewWindow -PassThru -FilePath "powershell" -ArgumentList "-File .\run.ps1"
 
-Start-Sleep -Seconds 10
-Set-Location ../beehive-node
-$nodeSim = Start-Process -NoNewWindow -PassThru -FilePath "node" -ArgumentList "simulation.js"
-
 Set-Location ..
+Start-Process -NoNewWindow -PassThru -FilePath "docker" `
+    -ArgumentList "compose up -d beehive_minio"
+
+Start-Sleep -Seconds 10
+Start-Process -NoNewWindow -Wait -FilePath "powershell" -ArgumentList "-File ./set_up_minio.ps1"
+
+# Set-Location ./beehive-node
+# $nodeSim = Start-Process -NoNewWindow -PassThru -FilePath "node" -ArgumentList "simulation.js"
+
 $mvnNest.Id, $mvnGuard.Id, $nodeSim.Id, $pythonMind.Id | Set-Content "running_pids.txt"
 
 Set-Location -Path $originalLocation

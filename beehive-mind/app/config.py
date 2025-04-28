@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     s3_access_key: str | None = None
     s3_secret_key: str | None = None
     s3_region: str = "us-east-1"
-    raw_bucket_name: str = "raw-audios"
+    audio_bucket_name: str | None = None
     google_api_key: str | None = None
+
 
 settings = Settings()

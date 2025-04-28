@@ -64,7 +64,7 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
             e.printStackTrace();
             throw new RuntimeException("Failed to save or convert file", e);
         }
-        beehiveMindService.registerAudio(filePath);
+        beehiveMindService.registerAudio(filePath, form.getLabel());
         entity.setAudioRecordingUrl(filePath);
 
         Measure savedEntity = measureRepository.save(entity);

@@ -1,19 +1,12 @@
-version: "3.8"
 services:
   beehive_guard:
     container_name: beehive_guard-container
     build:
       context: ./beehive-guard
       dockerfile: Dockerfile
-    environment:
-      - SERVER_PORT=8080
-      - JAVA_DB_URL=${JAVA_DB_URL}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - JWT_SECRET=${JWT_SECRET}
-      - API_KEY=${API_KEY}
+    env_file: .env
     ports:
-      - "${BEEHIVE_GUARD_PORT}:8080"
+      - "${GUARD_SERVICE_PORT}:8080"
     depends_on:
       - beehive_postgres
   beehive_nest:
@@ -21,17 +14,7 @@ services:
     build:
       context: ./beehive-nest
       dockerfile: Dockerfile
-    environment:
-      - SERVER_PORT=8080
-      - JAVA_DB_URL=${JAVA_DB_URL}
-      - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - GUARD_SERVICE_URL=http://host.docker.internal:${BEEHIVE_GUARD_PORT}
-      - MIND_SERVICE_URL=http://host.docker.internal:8000
-      - S3_ENDPOINT=${S3_ENDPOINT}
-      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
-      - S3_SECRET_KEY=${S3_SECRET_KEY}
-      - API_KEY=${API_KEY}
+    env_file: .env
     ports:
       - "${NEST_SERVICE_PORT}:8080"
     depends_on:
@@ -43,23 +26,16 @@ services:
     build:
       context: ./beehive-mind
       dockerfile: Dockerfile
-    environment:
-      - JWT_SECRET=${JWT_SECRET}
-      - API_KEY=${API_KEY}
-      - S3_ENDPOINT=${S3_ENDPOINT}
-      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
-      - S3_SECRET_KEY=${S3_SECRET_KEY}
+    env_file: .env
     ports:
-      - "${BEEHIVE_MIND_PORT}:8000"
+      - "${MIND_SERVICE_PORT}:8000"
     depends_on:
       - beehive_minio
   beehive_minio:
     container_name: beehive_minio-container
     image: quay.io/minio/minio
     command: server /data --console-address ":9001"
-    environment:
-      - MINIO_ROOT_USER=${MINIO_ROOT_USER}
-      - MINIO_ROOT_PASSWORD=${MINIO_ROOT_PASSWORD}
+    env_file: .env
     volumes:
       - minio_data:/data
     ports:
@@ -70,9 +46,7 @@ services:
     image: postgres:latest
     ports:
       - "5433:5432"
-    environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    env_file: .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
 volumes:
