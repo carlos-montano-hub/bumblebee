@@ -25,7 +25,7 @@ if (-not $envPort) {
     $envPort = 8001
 }
 
-& uvicorn app.main:app --reload --env-file ../.env --host $envHost --port $envPort
+& python -m uvicorn app.main:app --reload --env-file ../.env --host $envHost --port $envPort
 
 Set-Location -Path $originalLocation
 

@@ -209,3 +209,5 @@ cython_debug/
 .pypirc
 
 **cache**
+
+beehive-mind/test_**
