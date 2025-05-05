@@ -8,6 +8,7 @@ import com.beehive.beehive_nest.model.dtos.MeasureDto;
 import com.beehive.beehive_nest.model.entities.Beehive;
 import com.beehive.beehive_nest.model.entities.Measure;
 import com.beehive.beehive_nest.model.forms.MeasureForm;
+import com.beehive.beehive_nest.model.internal_models.ClassificationResult;
 import com.beehive.beehive_nest.model.mappers.MeasureMapper;
 import com.beehive.beehive_nest.repository.BeehiveRepository;
 import com.beehive.beehive_nest.repository.MeasureRepository;
@@ -64,10 +65,12 @@ public class MeasureService implements CrudService<MeasureDto, MeasureForm> {
             e.printStackTrace();
             throw new RuntimeException("Failed to save or convert file", e);
         }
-        beehiveMindService.registerAudio(filePath, form.getLabel());
+        ClassificationResult classificationResult = beehiveMindService.registerAudio(filePath, form.getLabel());
         entity.setAudioRecordingUrl(filePath);
+        entity.setLabel(classificationResult.getLabel());
 
         Measure savedEntity = measureRepository.save(entity);
+
         return mapper.getDto(savedEntity);
     }
 

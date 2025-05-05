@@ -21,4 +21,5 @@ public class AudioRegisterForm {
     private String audioId;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date = LocalDate.now(); // Default to current date if not provided
+    private String label;
 }

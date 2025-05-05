@@ -42,7 +42,7 @@ public class BeehiveMindService {
     }
 
     public ClassificationResult registerAudio(String audioId, String label) {
-        AudioRegisterForm audioRegisterForm = new AudioRegisterForm(audioId, LocalDate.now());
+        AudioRegisterForm audioRegisterForm = new AudioRegisterForm(audioId, LocalDate.now(), label);
         ResponseEntity<ClassificationResult> results = sendToBeehiveMindService(
                 audioRegisterPath,
                 HttpMethod.POST,
