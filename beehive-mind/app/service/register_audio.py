@@ -1,7 +1,8 @@
+import joblib
 import numpy as np
 import librosa
 from pydub import AudioSegment
-from app.models.audio import Feature
+from app.models.audio import ClassificationResult, Feature
 from datetime import date
 from app.service.feature_extraction.extraction import (
     compute_zcr,
@@ -15,6 +16,7 @@ from app.service.feature_extraction.extraction import (
     compute_mfcc,
 )
 from app.persistence.database import SessionLocal
+import keras
 
 
 def register_audio(
@@ -22,7 +24,7 @@ def register_audio(
     measurement_uuid: str,
     record_date: date,
     label: str | None = None,
-) -> None:
+) -> ClassificationResult:
     samples = np.array(audio.get_array_of_samples(), dtype=np.float32)
     sr = audio.frame_rate
 
@@ -64,6 +66,9 @@ def register_audio(
     session = SessionLocal()
 
     n_frames = mfcc.shape[1]
+
+    predicted_labels_array = []
+    predicted_labels_confidence_array = []
     for i in range(min(len(energy_entropy_frames), n_frames)):
         frame_feature = Feature(
             measurement_id=measurement_uuid,
@@ -91,5 +96,38 @@ def register_audio(
             mfcc_13=float(mfcc[12, i]),
             label=label,
         )
+        if label is None:
+            label, confidence = predict_label(frame_feature.as_feature_list())
+            predicted_labels_confidence_array.append(confidence)
+            predicted_labels_array.append(label)
+            frame_feature.label = label
         session.add(frame_feature)
     session.commit()
+    if len(predicted_labels_confidence_array) > 0:
+        predicted_labels_confidence_array = np.array(predicted_labels_confidence_array)
+        predicted_labels_array = np.array(predicted_labels_array)
+        predicted_labels_confidence = np.mean(predicted_labels_confidence_array)
+        predicted_labels = np.mean(predicted_labels_array)
+        if predicted_labels > 0.5:
+            label = "anomaly"
+        else:
+            label = "active"
+    return ClassificationResult.model_validate(
+        {
+            "label": str(label),
+            "confidence": (
+                predicted_labels_confidence
+                if len(predicted_labels_confidence_array) > 0
+                else 1
+            ),
+        }
+    )
+
+
+def predict_label(feature_vector):
+    model = keras.saving.load_model("data/models/base_model.keras", compile=False)
+    scaler = joblib.load("data/scaler/base_scaler.pkl")
+    feature_vector = scaler.transform([feature_vector])
+    confidence = model.predict(feature_vector)[0][0]
+    label = int(confidence > 0.45)
+    return label, confidence

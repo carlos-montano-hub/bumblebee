@@ -20,10 +20,9 @@ async def register(input: RegisterAudioForm, background_tasks: BackgroundTasks):
             "file_size": file_data.frame_count(),
         }
         print(return_data)
-        background_tasks.add_task(
-            register_audio, file_data, audio_id, date, input.label
-        )
+        print(input)
+        classification_result = register_audio(file_data, audio_id, date, input.label)
 
-        return ClassificationResult(label="test", confidence=1.0)
+        return classification_result
     except HTTPException as e:
         return {"error": e.detail}
