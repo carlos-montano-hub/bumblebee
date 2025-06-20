@@ -88,10 +88,10 @@ def tversky_loss(alpha=0.7, beta=0.3, smooth=1e-6):
 # }
 
 STEPS_PER_LAYER = [
-    16,
-    8,
     4,
     2,
+    1,
+    1,
 ]
 
 
@@ -105,7 +105,10 @@ def build_tuned_model(
     inputs = keras.Input(shape=(input_dim,))
     x = inputs
 
-    num_layers = hp.Int("layers", 2, 4, step=1)
+    # num_layers = hp.Int(
+    #     "layers", hp_ranges["layers"]["min"], hp_ranges["layers"]["max"], step=1
+    # )
+    num_layers = 4  # Fixed to 4 layers for this example
 
     def dense_block(x, idx):
         u = hp.Int(
@@ -118,7 +121,7 @@ def build_tuned_model(
             f"dropout{idx}",
             hp_ranges[f"dropout{idx}"]["min"],
             hp_ranges[f"dropout{idx}"]["max"],
-            step=0.1,
+            step=0.01,
         )
         y = keras.layers.Dense(u, activation="relu")(x)
         y = keras.layers.Dropout(d)(y)
@@ -156,13 +159,13 @@ def build_tuned_model(
                 "focal_gamma",
                 hp_ranges["focal_gamma"]["min"],
                 hp_ranges["focal_gamma"]["max"],
-                step=0.5,
+                step=0.05,
             ),
             alpha=hp.Float(
                 "focal_alpha",
                 hp_ranges["focal_alpha"]["min"],
                 hp_ranges["focal_alpha"]["max"],
-                step=0.1,
+                step=0.01,
             ),
         )
     else:
