@@ -1,0 +1,28 @@
+
+\begin{figure}[ht]
+    \centering
+    % Cronograma de actividades Gantt chart
+    \begin{ganttchart}[
+            x unit=0.6cm,
+            y unit title=0.75cm,
+            y unit chart=0.7cm,
+            vgrid,
+            hgrid,
+            title label font=\bfseries
+        ]{1}{16}
+        \gantttitle{Semestre I 2023}{16} \\
+        \gantttitle{Septiembre}{4} \gantttitle{Octubre}{4} \gantttitle{Noviembre}{4} \gantttitle{Diciembre}{4} \\
+        \gantttitlelist{1,...,16}{1} \\
+        \ganttbar{Revisión de artículos}{1}{8} \\
+        \ganttbar{Planteamiento del problema}{5}{12} \\
+        \ganttbar{Objetivos}{9}{12} \\
+        \ganttbar{Justificación}{9}{12} \\
+        \ganttbar{Alcances y delimitaciones}{13}{16} \\
+        \ganttbar{Metodología}{13}{16} \\
+        \ganttbar{Antecedentes}{1}{4} \\
+        \ganttbar{Organización de la tesis}{13}{16} \\
+        \ganttbar{Presentación}{13}{16}
+    \end{ganttchart}
+    \caption{Cronograma de actividades del Semestre I 2023.}
+    \label{fig:cronograma}
+\end{figure}

@@ -1,0 +1,97 @@
+\documentclass[12pt]{Tesis}
+
+% Para los informes parciales
+%\documentclass[12pt,informe]{Tesis}
+\usepackage{lipsum}
+\usepackage[
+backend=biber,
+style=ieee
+]{biblatex}
+\addbibresource{referencias.bib}
+\usepackage[spanish]{babel}
+\usepackage{pgfgantt}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{caption}
+\usepackage[table]{xcolor}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{pst-all,amssymb,graphicx,marvosym,array,fancyhdr,amsmath,multirow,pdflscape,rotating}
+\usepackage{tabularx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\fancyhf{} % Clear all headers/footers
+\fancyhead[R]{\thepage} % Page number top-right
+\renewcommand{\headrulewidth}{0pt}
+
+% Also override chapter-start pages (which use 'plain' by default)
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+% Para links sin decoración
+\hypersetup{colorlinks=false,allbordercolors=white}
+
+\title{Sistema de monitoreo de variables físicas de colmenas apícolas utilizando reconocimiento de patrones}
+\date{\today}
+\grado{Maestría en Ciencias De la Computación}
+\author{Carlos Humberto Montaño Alcalá}
+\director{Rafael Armando Galaz Bustamante}
+\codirector{María Trinidad Serna Encinas}
+% \tutor{Erwin Schrödinger}
+
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\graphicspath{{./figuras/}}
+\renewcommand{\lstlistingname}{Código}
+\begin{document}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.95}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+\newboolean{showAutorizacion}
+\setboolean{showAutorizacion}{false}
+
+\maketitle
+
+\frontmatter
+
+\include{chapters/abstract}
+
+\tableofcontents
+% {\noskip\listoffigures} % No usar en informes parciales
+% {\noskip\listoftables} % No usar en informes parciales
+
+\mainmatter
+\include{chapters/introduccion}
+\include{chapters/chapter1/index}
+\include{chapters/chapter2/index}
+\include{chapters/chapter3/index}
+
+
+\backmatter
+
+\printbibliography[title={REFERENCIAS}]
+
+\end{document}

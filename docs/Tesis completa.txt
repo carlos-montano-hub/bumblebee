@@ -1,0 +1,430 @@
+DEPARTAMENTO DE POSGRADO E INVESTIGACIÓN
+
+MAESTRÍA EN CIENCIAS DE COMPUTACIÓN
+
+TESIS:
+Sistema de monitoreo de variables físicas de colmenas apícolas utilizando reconocimiento de patrones
+
+
+Estudiante:
+Carlos Humberto Montaño Alcalá
+
+
+Director:
+Rafael Armando Galaz Bustamante
+
+Co-director:
+María Trinidad Serna Encinas
+
+
+FECHA ACTUAL[CM1].
+
+
+Índice
+Introducción	2
+Capítulo I	2
+Antecedentes	2
+Planteamiento del problema	4
+Preguntas de investigación	4
+General	4
+Específicas	4
+Objetivos	5
+General	5
+Específicos	5
+Justificación de la investigación	5
+Alcances y delimitaciones	6
+Alcance	6
+Delimitaciones	6
+Metodología de trabajo	6
+Organización de la tesis	7
+Cronograma	8
+Capitulo II	8
+Estado del arte	8
+Marco teórico	8
+Trabajos relacionados	12
+Métodos y herramientas	19
+Sensor DHT22	19
+Celda de carga y modulo HX711	20
+Controlador ESP32	23
+Micrófono multidireccional INMP441	26
+Bibliografia	27
+
+Introducción
+La apicultura es la actividad que se encarga de la crianza y explotación de abejas, de la cual dependen miles apicultores a nivel mundial, y más de 14 mil apicultores a nivel nacional [1].
+Las colmenas apícolas tienen 2 funciones, la primera es la elaboración de productos provenientes de las abejas, entre estos se encuentra el polen, los propóleos, la cera, la jalea real y, el principal producto, la miel. Además, las colmenas brindan un servicio de polinización a las plantas con flor que se encuentren a los alrededores de la colmena [2].
+Como ya se mencionó una de las funciones de las colmenas es la polinización, este proceso es fundamental para la reproducción es de plantas con flor, y se realiza al momento en el que una abeja lleva polen de la parte masculina de una planta a una parte femenina [2].[CM2]
+
+[CM3]Capítulo I
+Antecedentes[CM4]
+En cuanto al panorama nacional y según la Secretaría de Agricultura y Desarrollo Rural (SADER), México se posiciono como el noveno productor de miel a nivel mundial [3] contando con más de 2 millones de colmenas registradas en el 2018 [4].
+La SADER tiene clasificadas 5 regiones apícolas en el territorio mexicano, la región Norte, región Golfo, región Costa del pacifico, región Altiplano y la región Sureste o península de Yucatán, siendo esta ultima la de mayor producción, con un 32% de la producción nacional en contraste con la región norte, que produce un 7% de la producción nacional [4].
+Además de la producción de miel, las colmenas cumplen el rol de brindar el servicio de polinización, tanto la producción bovina como la agricultura en general necesitan de este servicio, por este motivo aproximadamente 150 mil colmenas están destinadas a la polinización de plantas para consumo de ganado y producción agrícola [4].
+En cuanto al panorama estatal, en estado de Sonora se encuentra dentro de la región Norte [4], participando en el 7% de la producción de miel del país, sin embargo, este no es el fin principal de la apicultura sonorense, ya que, así como en varios estados de la región Norte, el objetivo principal de las colmenas es la polinización de cultivos, contando Sonora con 24,000 colmenas registradas en el 2008 para este fin [5].
+Otro factor que se añade al peso de la importancia de la polinización es el sector de la producción bovina, Sonora es el principal productor, con una producción bruta total de $4,150 millones de MXN en el 2019, correspondiente a aproximadamente un 34% de la producción nacional [6]. 
+Esta conexión entre la apicultura, agricultura y ganadería resalta la necesidad de mantener un monitoreo constante de las colmenas apícolas y de optimizar dicho monitoreo, una de las opciones para realizar esto es mediante un sistema automático como el presentado en [7] que se utilice para la medición de variables físicas relevantes de la colmena, tomando en cuenta la adición de un proyecto como el presentado en [8] que contemple un sistema informático para el procesamiento y visualización de los datos.
+El monitoreo de colmenas apícolas mediante técnicas de Internet de las cosas (IoT) ha ganado relevancia en los últimos años. Actualmente, existen diversas opciones comerciales y propuestas de diseño de sistemas de monitoreo, reflejando el interés en las ventajas que ofrece un sistema automatizado
+Las opciones comerciales son consideradas como alternativas confiables, ya sea como productos independientes, como [9] o como sistemas con versatilidad mínima pero aplicables en un amplio rango de situaciones, con [10] como ejemplo, Sin embargo, estas opciones tienden a requerir un presupuesto más elevado y presentan limitaciones en cuanto a la personalización, ya que suelen carecer de modularidad.
+En el ámbito de la investigación pública, se distinguen principalmente dos tipos de proyectos. Por un lado, proyectos diseñados específicamente para zonas particulares, como es el caso de [7] Por otro lado, proyectos que se centran en aspectos muy específicos del sistema de monitoreo, tal como lo hace el sistema de reconocimiento de audio descrito en [11].
+Planteamiento del problema
+Para asegurar la salud y producción eficiente de las colmenas es necesario contar con un monitoreo constante, este proceso se realiza de manera manual, con un apicultor en sitio, que visita la colmena en un periodo de 8 a 15 días en búsqueda de anomalías y enfermedades [12].
+Conforme se incrementa la producción de miel, el proceso de monitoreo manual se puede volver ineficiente y tardado, añadiendo requerimientos de logística y el riesgo de que no se monitoreen las colmenas en el tiempo recomendado. 
+Abordar este problema podría significar en beneficios de logística en la producción apícola, así como brindar una perspectiva general de todas las colmenas.
+Preguntas de investigación
+Principal
+¿Como implementar un sistema de monitoreo, procesamiento y visualización de las variables de temperatura, humedad, peso y audio de colmenas apícolas?
+Específicas
+1. ¿Cómo implementar un sistema de monitoreo portátil de temperatura, humedad, peso y audio que sea efectivo y compatible con las necesidades específicas de las colmenas apícolas en Sonora?
+2. ¿Cómo implementar un sistema de reconocimiento de patrones que procese los datos recopilados por el sistema de monitoreo y reconozca eventos de interés?
+3. ¿Qué características y funcionalidades son necesarias para el desarrollo de un servicio que procese los datos recopilados por el sistema de monitoreo?
+4. ¿Cómo se puede diseñar una aplicación móvil que brinde una interfaz para visualizar los datos recopilados por el sistema de monitoreo y los resultados del sistema de reconocimiento de patrones?
+Objetivos
+General
+Desarrollar un sistema de monitoreo de temperatura, humedad, peso y audio de una colmena apícola que cuente con la capacidad de procesar y mostrar la información, así como de integrar un sistema de reconocimiento de patrones para alertar sobre posibles situaciones que requieran la atención del apicultor. 
+Específicos
+* Implementar un sistema de monitoreo portátil de la temperatura, humedad, peso y audio de tipo “Internet de las cosas”.
+* Implementar un sistema de reconocimiento de patrones sobre las variables medidas.
+* Desarrollar un servicio para procesar los datos del sistema de monitoreo.
+* Desarrollar una aplicación móvil que muestre los datos recopilados y los resultados del sistema de reconocimiento de patrones.
+Justificación de la investigación
+Si bien, no es posible eliminar la visita de un apicultor, es posible mejorar el proceso añadiendo un sistema monitoreo automático que permita a los apicultores conocer el estado de las colmenas en tiempo real, así como desplegar alertas que permita a los apicultores conocer de posibles eventos de interés y programar un monitoreo oportuno a la colmena.
+El principal aporte de este proyecto es la adicción de un algoritmo de reconocimiento de patrones para detectar eventos de interés.
+Alcances y delimitaciones
+Alcance
+La implementación de un sistema de monitoreo IoT, el desarrollo de una aplicación móvil para visualizar la información, la creación de un algoritmo de reconocimiento de patrones de las variables medidas por el sistema y un software de procesamiento en la red.
+Delimitaciones
+* Sistema de Monitoreo Existente: El diseño del sistema de monitoreo se basará en uno previamente definido. Se realizarán mejoras y adaptaciones según sea necesario.
+* Sistema informático: El sistema informático se desarrollará tomando como base sistemas similares previamente implementados.
+* Área Geográfica y Condiciones Atmosféricas: La geografía y condiciones atmosféricas se limitarán a las colmenas apícolas ubicadas en las colindantes al municipio de Hermosillo.
+Metodología de trabajo
+La metodología consiste en realizar las siguientes etapas:
+1. Revisión de bibliografía relevante para tomar referencia sobre el diseño del sistema, incluyendo los temas de desarrollo móvil, desarrollo backend, internet de las cosas (IoT), apicultura y algoritmos de reconocimiento de patrones.
+2. Toma de información sobre los requerimientos necesarios para que el sistema se adapte correctamente a las colmenas apícolas Sonorenses.
+3. Desarrollo del sistema de monitoreo incluyendo elección de sensores, fuentes de energía y controlador.
+4. Desarrollo del servicio de procesamiento, incluyendo procesamiento de los datos del sistema de monitoreo, reconocimiento de patrones y almacenamiento de datos.
+5. Desarrollo de una aplicación móvil para visualizar los datos proporcionados por el servicio.
+6. Prueba del sistema y análisis de los resultados obtenidos.
+Organización de la tesis
+Capítulo 1: Introducción y antecedentes
+Capítulo 2: Marco teórico y estado del arte
+Capítulo 3: Análisis de requerimientos y diseño
+Capítulo 4: Implementación, pruebas y resultados
+Capítulo 5: conclusiones 
+
+
+Cronograma
+CRONOGRAMA DE ACTIVIDADES SEMESTRE I    FECHA: 12/12/2023MES-->SeptiembreOctubreNoviembre DiciembreACTIVIDAD:                 SEMANA-->123456789101112131415161Revisión de artículos2Planteamiento del problema3Objetivos4Justificación5Alcances y delimitaciones6Metodología7Antecedentes8Organización de la tesis9Presentación
+Capitulo II
+Estado del arte
+Marco teórico
+Introducción
+La implementación de la infraestructura de telecomunicaciones ha transformado numerosos aspectos de la vida cotidiana y el ámbito industrial, dando lugar a innovaciones que facilitan la comunicación y el control de diversos sistemas. Uno de estos avances es el Internet de las Cosas (IoT), que conecta objetos físicos a la red, permitiendo su monitoreo y control a través de dispositivos electrónicos y software. En este contexto, en el área de la apicultura se han adoptado tecnologías IoT para mejorar la gestión y el monitoreo de las colmenas, creando lo que se conoce como colmenas inteligentes.
+En este capítulo ofrece un marco teórico sobre los conceptos clave del internet, IoT y su aplicación en la apicultura. Se explora la arquitectura IoT, desglosada en sus siete capas fundamentales, y se examina la interacción de los sensores en estos sistemas. Además, se profundiza en el uso de IoT en las colmenas, destacando su capacidad para monitorear parámetros críticos como la temperatura, la humedad y el peso de la colmena, así como para detectar el enjambrado a través del análisis de sonidos específicos. También se proporciona una visión general sobre la inteligencia artificial y su potencial integración en sistemas IoT para optimizar el control y análisis de datos en la apicultura.
+Apicultura
+Abejas
+Se refiere a un insecto social que durante su ciclo de vida se encarga de producir miel, cera y panal y polinizar plantas para apoyarlas en su reproducción, por lo cual se les considera de los insectos más importantes del planeta. [13]
+Colmena
+Una abeja no puede sobrevivir de manera individual, una abeja obrera no se puede reproducir y una abeja reina no puede construir o mantener una colmena ya que la estructura social de las abejas requiere de a las obreras, las reinas y los drones para sobrevivir, por lo cual se considera a la misma como un organismo independiente. [13] En la figura 1 se muestra una imagen ilustrativa de las 3 castas de abeja.
+
+Figura 1 castas de abejas. [13]
+Como se observa en la figura 1 las castas de abejas son las siguientes:
+a) Obreras: Estas se encargan de todas las tareas no relacionadas con la reproducción, incluyendo la construcción del panal, la recolección de polen, la producción de miel, entre otras actividades vitales para la colmena.
+b) Reinas: Son la única hembra completa de la colonia, su única responsabilidad es reproducirse y poner huevos.
+c) Drones: Similar a la reina, su única responsabilidad es reproducirse con reinas de otras colonias.
+Temperatura de la colmena
+Una colmena debe de mantener una temperatura cercana a los 34 grados centígrados, para lograr esto pueden implementar ciertos mecanismos de regulación de temperatura. [13]
+Cuando las abejas necesitan elevar la temperatura, generan una capa de abejas vivas alrededor de la reina, después proceden a vibrar con el objetivo de producir calor. Para este proceso es necesario que la colmena cuente con suficiente alimento, además, se apoya del aislamiento de la colmena, ya sea natural o artificial, de modo natural, la miel y la cera son buenos aislantes. [14]
+Por otro lado, las abejas suelen iniciar un aleteo con sus alas para reducir la temperatura dentro de la colmena. [14]
+Humedad de la colmena
+La humedad tiene un papel importante en la prevención de enfermedades dentro de la colmena, por esta razón es de importancia para las abejas controlar esta propiedad, el mecanismo que utilizan las abejas en estos casos es utilizar sus alas como ventiladores para expulsar la humedad de la colmena. [14]
+Peso de la colmena
+El peso es el principal factor utilizado por los apicultores para medir la cantidad en los almacenes de miel, de manera tradicional, los apicultores intentan levantar la colmena, en caso de no ser capaces, consideran que la miel esta lista para ser extraída [14], de manera precisa, se considera una extracción cuando el almacén de miel pesa cerca a los 40kg.[13]
+Enjambrado
+El evento de enjambre sucede cuando una colonia de abejas ha sobrepasado el límite físico de la colmena en la que habita, este proceso comienza con la reina engendrando nuevas reinas y drones, después de esto un enjambre de abejas y drones emigran a un nuevo posible lugar en el cual comienza una nueva colmena. [14]
+Uno de los principales indicadores del enjambrado es el sonido que emiten las abejas, durante este proceso comienzan a emitir un sonido de vibración, este sonido es conocido por los apicultores y es la principal fuente de información que se obtiene sobre este proceso [13] [14]. 
+Internet e IoT
+Internet
+En el contexto actual, internet se refiere a una red global con varios protocolos de conectividad que permite comunicar paquetes de datos de dispositivos, mediante un sistema de rúters, a la red. [15]
+Rúter, router o enrutador
+Se refiere a un dispositivo capaz de almacenar direcciones y enlaces mediante las cuales se encarga de mandar paquetes de datos.[15]
+Internet de las cosas (IOT)
+El termino de internet de las coas, o IOT por sus siglas en inglés (Internet of things), se refiere al concepto de entrelazar objetos físicos dentro de una red de internet, mediante componentes electrónicos y sistemas de software, con el objetivo de permitir la comunicación entre ellos y monitorear o controlar un sistema físico. [15]
+Arquitectura IOT
+Este concepto se refiere a la forma de estructurar u diseñar un sistema IOT y estos se dividen en capas y son 7 principales
+1. Componentes físicos: sensores y controladores.
+2. Dispositivos de conectividad.
+3. Computación perimetral (análisis de datos y procesamiento).
+4. Persistencia de datos.
+5. Abstracción de datos (Acceso y manipulación).
+6. Aplicación (Reportes, análisis y control).
+7. Colaboración y procesos (usuarios y procesos comerciales). 
+Estas capas sirven para estructurar y definir la arquitectura del sistema IOT.[15]
+Sensores
+El sistema IOT interactúa con sensores, dispositivos físicos con el objetivo de adquirir datos mediante la capacidad de reaccionar a parámetros físicos como la humedad, temperatura, presión y luz y convertirla en energía eléctrica capaz de interactuar con el sistema. Durante esta interacción es posible configurar los dispositivos de manera que se ajusten a los requerimientos de la aplicación.[15]
+Colmenas IOT
+Los términos Colmenas IOT o colmenas inteligentes se refieren a la adición de un sistema IOT a una colmena apícola, esto con el objetivo de monitorear los parámetros de la colonia de abejas y hacer accesible la información de manera que pueda ser procesada para conocer el estado de la colmena. [16]
+Inteligencia artificial
+Sistema inteligente
+Se refiere a un concepto abstracto en el cual se define a un sistema que actúa y razona de manera humana o de manera lógica [17]. Es uno de los posibles métodos para procesar datos de un sistema IOT [16]. 
+Minería de datos
+
+Preprocesamiento de datos
+El preprocesamiento de datos es una etapa en la minería de datos que consiste en preparar y limpiar el conjunto de datos con el objetivo de mejorar su calidad para que sean adecuados para el análisis o modelado. Esto implica corregir valores inválidos, eliminar columnas irrelevantes, manejar valores faltantes, ajustar datos inconsistentes, entre otros [18].
+Aprendizaje maquina
+Extracción de características
+La extracción de características es una técnica de preprocesamiento de datos utilizada en el aprendizaje máquina para transformar un conjunto de datos complejos y con muchas características, en un espacio más manejable y representativo. Se utiliza cuando hay demasiadas características ya sea para un análisis efectivo o para la visualización de datos [19]. 
+Trabajos relacionados
+Introducción
+La adición de tecnologías de internet de las cosas (IOT) en la apicultura ha significado un cambio revolucionario a comparación de las prácticas tradicionales, aumentando la eficiencia, productividad y escalabilidad. Estas tecnologías involucran el uso de diferentes sistemas interconectados, incluyendo sensores, microcontroladores y software, con el objetivo de ayudar a monitorear y administrar las actividades apícolas en tiempo real. 
+En este capítulo se exploran las aplicaciones relevantes en las cuales se han desarrollado las aplicaciones de IOT en el monitoreo de colmenas apícolas, con el objetivo de dar seguimiento a la salud y actividad de las colonias de abejas, proveyendo así información de la colmena, incluyendo parámetros como temperatura, humedad, peso y acústica que ayudan a los apicultores a mantener colonias saludables y tomar decisiones acordes a la información en tiempo real.
+La arquitectura de sistemas IOT para monitoreo de colmenas involucra varios componentes clave, incluyendo nodos de sensores, sistemas de transmisión de datos, sistemas de energía y el componente de procesamiento de datos. En este capítulo se examinan las practicas utilizadas para implementar estos sistemas.
+Nodos de sensores
+Este capítulo se enfoca en examinar las implementaciones de nodos de sensores. Los nodos de sensores son componentes críticos en el monitoreo de colmenas, ya que estos son los encargados de colectar datos en variables ambientales y específicas de la colmena, haciendo posible el análisis de datos y permitiendo la toma de decisiones.
+Embedded Software for IOT Bee Hive Monitoring Node
+En este artículo se presenta un sistema embebido para monitoreo de variables relevantes, se propone un sistema que tiene las capacidades de monitorear humedad, temperatura, peso y audio, sin embargo, no se implementó el monitoreo de peso y audio. Para este sistema se utilizó el sensor SHT21 [20] para la medición de temperatura y humedad.[21]
+A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring
+En el Sistema propuesto en este artículo se desarrolla un sistema de monitoreo de parámetros relevantes para la colmena, incluyendo peso, sonido, temperatura, humedad y CO2. El objetivo es desarrollar un sistema que de una visión general del ambiente interno y externo de la colmena.[22]
+Este sistema es modular y se compone de dos módulos principales:
+* Modulo Abeja: Este módulo se instala en cada colmena y está constituido por un módulo Raspberry pi 3B [23], una tarjeta de sonido UCA22 [24], dos micrófonos ADMP401 MEMS [25] dos sensores de humedad y temperatura DHT22 [26], células de carga TAL220 [27] con el módulo interfaz HX711[28] y un sensor de CO2 TL6615 [29].
+* Modulo Reina: Este módulo se instala cerca del grupo de sensores abeja y se encarga de colectar la información de los mismos. También está constituido por una Raspberry pi 3B, sensores DHT22 y un puente 5g (no especificado) utilizado para comunicarse con el servidor remoto.[22]
+El sistema de micrófonos recopila muestras de 30 segundos cada 10 minutos, a una tasa de 32 kHz
+High Reliability Wireless Sensor Node for Bee Hive Monitoring
+En este artículo se propone un sistema diseñado para condiciones ambientales de entre -20 a 60 grados centígrados y con una arquitectura principalmente modular, permitiendo intercambiar sensores según se requiera, esto mediante la interfaz digital I2C.[30]
+Se denota la importancia de utilizar sensores de temperatura y humedad, principalmente durante el invierno para prevenir la formación de rocío dentro de la colmena. El sensor de temperatura utilizado fue un SHT21 de Sensirion, este sensor tiene un consumo de 1mW en modo medición y 1 ?W en modo inactivo.[30]
+Se utiliza el sistema de medición de peso HX711 de Avia Semiconductor que consta de un sistema de alimentación, un amplificador y un convertidor analógico digital de 24-bit, en conjunto con 4 células de carga. Todo este sistema tiene un consumo de 8.25mW en modo activo y 5.5 µW en modo inactivo.[30]
+Adicionalmente, el sistema cuenta con un sensor de inclinación DMA08 para monitorear si la colmena esta nivelada, si ha sido robada y detectar caídas.[30]
+El sistema también cuenta con un micrófono MP34DT05-A, la justificación para este el elemento es que es útil para detectar eventos de enjambre y escasez de comida en el invierno.[30]
+Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service
+En esta investigación se procesa información recopilada de un sistema que utiliza un micrófono TDK InvenSense ICS-40300 y una placa Atmel ATmega32U4 sobre la colmena para posteriormente ser procesada en un servidor remoto.[31]
+Maintenance-free IOT Gateway Design for Bee Hive Monitoring
+El módulo descrito en este articulo tiene las capacidades de recopilar información importante sobre el estado de la colmena mediante: un sensor SHT21 para medir humedad y temperatura, un sensor de presión atmosférica MPL3115A2 [32] , un sensor de intensidad lumínica TSL2561 [33], células de carga HX711 colocadas con el objetivo de monitorear el peso de la colmena, un sensor de radiación UV VEML6075 [34] y finalmente, un sensor de concentración de polvo GP2Y1010AU0F [35]. [36]
+A Pi-Based IoT System Design
+En este Sistema se integra la suite de sensores de GrovePi [37], en concreto los sensores de humedad, temperatura, GPS, sonido e imágenes térmicas. [7]
+Sistema de transmisión de datos
+Este capítulo se centra en los sistemas de transmisión de datos utilizados en estos sistemas, presentando diversas soluciones de hardware y software que permiten la transmisión eficiente de datos desde las colmenas hasta las plataformas de análisis y monitoreo remoto.
+Embedded Software for IOT Bee Hive Monitoring Node
+El sistema está construido alrededor del componente ESP8266 que integra un microcontrolador Tensilica L106 32-bit en conjunto con el módulo transmisor wifi que integra circuitos de radio frecuencia y es capaz de transmitir datos mediante interfaces digitales como SPI, I2C, y UART. Además, el módulo ESP8266 cuenta con tres modos de operación: activo, dormido y dormido profundo, los cuales son aprovechados por el sistema para optimizar el uso de energía. [21]
+High Reliability Wireless Sensor Node for Bee Hive Monitoring
+En este sistema también se utiliza un módulo ESP8266 serie 32-bit a 80MHz, el objetivo de utilizar este componente es simplificar el diseño utilizando la capacidad del componente para una conexión wifi directa.[30]
+Maintenance-free IOT Gateway Design for Bee Hive Monitoring
+El módulo ESP8266 es de nuevo utilizado en este sistema, en concreto la versión ESP8266-12[38] producido por A.I.Thinker para dar conectividad al módulo que contiene el nodo de sensores. Adicionalmente en este proyecto se agrega un modem A6 GSM/GPRS [39] que sirve como compuerta para conectar los módulos a la red 5G. [36]
+A Pi-Based IoT System Design
+Este sistema también implementa el método de múltiples módulos con conexión WIFI conectados a un modem independiente que se conecta a la red móvil para proveer de internet a los módulos. [7]
+
+Manejo de energía
+Este capítulo examina las diversas estrategias de manejo de energía implementadas en sistemas de monitoreo avanzado de colmenas. Desde la conexión a la red eléctrica hasta soluciones autónomas con energía solar y super capacitores. 
+A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring 
+En este articulo se energiza mediante una conexión a la red eléctrica, los módulos Reina y Abeja consumen 4 y 4.2 watts respectivamente.[22]
+High Reliability Wireless Sensor Node for Bee Hive Monitoring
+Para este sistema se tomó la decisión de utilizar super capacitores XV Supercapacitor de Eaton[40], principalmente por su vida útil de 20 años y su alto desempeño en altas temperaturas, en conjunto con paneles solares (no especificados) y un convertidor step up para transformar el voltaje de salida del panel de 2.7V a 3.3V.[30]
+Maintenance-free IOT Gateway Design for Bee Hive Monitoring
+En esta investigación, la energía se obtiene utilizando paneles solares (no especificado) en conjunto con un módulo LT3652[41] que regula la cantidad de voltaje de salida del panel solar para maximizar la transferencia de energía. Además, se utiliza un cargador LTC3652[42] para ajustar el voltaje de carga de los super capacitores al voltaje especificado por el módulo LT3652.[36]
+A Pi-Based IoT System Design
+En este sistema se cuenta con una batería para dispositivos celulares con una capacidad de 10000 mAh (180000 Joules a 5V) que mantiene el sistema encendido entre 27 y 33 horas. [7]
+
+Procesamiento de datos
+El capítulo se enfoca en el procesamiento de datos acústicos para la detección de eventos de enjambre en un servicio agrícola basado en IoT.
+Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service
+Como ya se mencionó, el enfoque de esta investigación es el procesamiento de datos acústicos con el objetivo de detectar eventos de enjambre, el recurso principal para para es el desarrollo del modelo es el proyecto de fuente abierta de colmenas Open Source Beehives Project (OSBP) [43]. [31]
+Los datos de entrenamiento fueron recopilados del OSBP, los cuales consistieron de ~122 minutos de audio a los cuales se les disminuyo la frecuencia a 16kHz, la resolución a 16 bits y fueron divididos en muestras de 3 segundos, resultando en 1800 muestras destinadas para entrenamiento y 643 para pruebas. Se tomo la precaución de utilizar muestras de una sola colmena.[31]
+El diseño experimental se desarrolló utilizando referencias de reconocimiento del habla [44] de este modo, se desarrollaron dos procesos, los cuales consistieron en aplicar una extracción de características al audio para generar un vector de características que posteriormente seria clasificado.[31]
+Para la extracción de características se utilizaron 2 métodos:
+* Mel-Frequency Cepstral Coefficients (MFCC): Este es el principal método para la extracción de características, el resultado de este proceso fue un vector con 12 coeficientes Mel-Frequency Cepstral a los cuales se les sumo un coeficiente de energía. Posteriormente se calcularon y añadieron las derivadas de primero y segundo orden para los primeros 13 elementos, lo que resulto en 39 coeficientes.[31]
+* Linear Predictive Coding (LFC): Este método fue secundario y utilizado como comparación, durante este proceso también se aplicó una sustracción espectral para reducir el ruido de fondo. Este método requiere una señal en el dominio de la frecuencia, por lo que se utilizó una transformada rápida de furier (Fast Fourier Transform FFT) para transformar la frecuencia.[31]
+En cuanto a la clasificación de muestras se utilizaron 2 métodos paralelos:
+* Hidden Markov Model (HMM): Este método se desarrollo con 2 topologías, una con 15 estados, similar a los modelos de reconocimiento del habla, y otra con 1 estado, similar a los modelos de GMM. [31]
+* Gaussian Mixture Model (GMM): Para este modelo se inició con la inicialización plana de parámetros y se continuó con la reestimación de Baum-Welch, repitiendo el proceso hasta alcanzar 32 mezclas de PDFs Gaussianas por estado.[31]
+
+Conclusión
+A lo largo de este capítulo, se han explorado diversas arquitecturas y tecnologías utilizadas en estos sistemas, destacando los componentes esenciales como los nodos de sensores y los sistemas de transmisión de datos, así como las soluciones innovadoras para el manejo de energía y el procesamiento de datos.
+* Nodos de Sensores: Los sistemas presentados varían en cuanto a la complejidad y especificidad de los sensores utilizados, pero todos apuntan a proporcionar una visión detallada del ambiente interno y externo de la colmena. Los sensores más comunes incluyen:
+o Temperatura y Humedad: Sensores como el SHT21 y DHT22.
+o Peso: Células de carga junto con el módulo HX711.
+o Acústica: Micrófonos MEMS, como el ADMP401 y MP34DT05-A.
+* Sistemas de Transmisión de Datos: La mayoría de los sistemas utilizan el módulo ESP8266 para la transmisión de datos vía Wi-Fi, destacando su eficiencia energética y capacidad de operación en modos de bajo consumo. Algunos sistemas también incorporan módulos GSM/GPRS para asegurar la conectividad con la red móvil en áreas remotas.
+* Manejo de Energía: Las soluciones energéticas tienen una amplia variación, sin embargo, la opción más común es el uso de paneles solares en conjunto con baterías de alta capacidad. Adicionalmente se destaca el uso de super capacitores como una opción para almacenar energía. 
+* Procesamiento de Datos: La utilización de modelos como HMM y GMM para clasificar eventos en las colmenas demuestra el potencial del procesamiento avanzado de datos en la mejora de la gestión apícola.
+Los trabajos relacionados en sistemas de monitoreo de colmenas basados en IoT muestra un progreso notable en términos de integración de tecnologías y mejora de la eficiencia. Sin embargo, hay margen para la innovación, especialmente en áreas como la conectividad, la optimización energética y el desarrollo de algoritmos más avanzados para el análisis de datos. La colaboración entre investigadores, ingenieros y apicultores es crucial para impulsar esta área de oportunidad y asegurar un futuro sostenible para la apicultura.
+Métodos y herramientas
+Sensor DHT22
+Conexión
+
+Ilustración 1 sensor DHT22 
+En la ilustración 1 se pueden observar los pines de conexión del sensor DHT22, estos se conectan de la siguiente manera:
+* + se conecta a una fuente de voltaje directo de 3.3V a 6V
+* Out es la salida de información del sensor mediante el protocolo de 1 cable (1-wire-protocol)
+* - se conecta a 0V
+[45]
+Una opción de conexión se muestra en la ilustración 2
+
+Ilustración 2 conexion DHT22 – Arduino [45]
+Herramientas de software
+Ambiente de desarrollo
+* Arduino IDE: Se utilizará la versión más actual del Arduino IDE, en este caso la versión 2.2.1
+* Windows 10: La programación de Arduino se realizará en el sistema operativo Windows 10
+Librerías
+Se utilizarán las librerías desarrolladas por Adafruit Industries para el manejo de sensores y sensores DHT en específico:
+* DHT sensor library
+* Adafruit Unified Sensor [45]
+Celda de carga y modulo HX711
+Celda de carga
+Las celdas de carga son los sensores que recolectan información sobre el peso de una carga aplicada sobre los mismos. Los sensores a utilizar son equivalentes a los de la ilustración 3, cuentan con 4 cables y 4 orificios roscados para fijar la celda, así como una imagen indicativa de la dirección de la carga.
+
+
+Ilustración 3 celda de carga [46]
+Modulo HX711
+El módulo HX711 es una placa electrónica que funciona como interfaz entre una placa Arduino y una celda de carga. Este se muestra en la ilustración 4
+	
+Ilustración 4 modulo HX711 [46]
+Conexión
+Las conexiones se realizan de acuerdo a las tablas 1 y 2.
+Conexión celda-modulo
+
+COLOR DEL CABLECONEXIÓN EN MODULOROJOE+NEGROE-BLANCOA-VERDEA+Tabla 1 conexiones celda-modulo
+Conexión modulo-Arduino
+
+CONEXIÓN EN MODULOCONEXIÓN EN ARDUINOGNDGNDDTA1SCKA0VCC5VTabla 2 conexiones modulo-Arduino
+Herramientas de software
+Ambiente de desarrollo
+* Arduino IDE: Se utilizará la versión más actual del Arduino IDE, en este caso la versión 2.2.1
+* Windows 10: La programación de Arduino se realizará en el sistema operativo Windows 10
+Librerías
+Se utilizará la librería desarrollada por Bogde para la comunicación con el módulo HX711:
+* Librería HX711 para Arduino [47]
+Ejemplo de código
+#include "HX711.h"
+const int DOUT=A1;
+const int CLK=A0;
+HX711 balanza;
+
+void setup() {
+  Serial.begin(9600);
+  balanza.begin(DOUT, CLK);
+  Serial.print("Lectura del valor del ADC:  ");
+  Serial.println(balanza.read());
+  Serial.println("No ponga ningun  objeto sobre la balanza");
+  Serial.println("Destarando...");
+  Serial.println("...");
+  balanza.set_scale(439430.25); // Establecemos la escala
+  balanza.tare(20);  //El peso actual es considerado Tara.
+  
+  Serial.println("Listo para pesar");  
+}
+
+void loop() {
+  Serial.print("Peso: ");
+  Serial.print(balanza.get_units(20),3);
+  Serial.println(" kg");
+  delay(500);
+}
+Código  1 ejemplo de código para medir carga [47]
+Controlador ESP32
+El chip ESP32 es el sucesor del chip ESP8266 mencionado en los trabajos relacionados [48], incluye componentes para agregar las funcionalidades de Wi-Fi a 2.4 GHz y Bluetooth diseñado con la tecnología TSMC de bajo consumo.
+Especificaciones relevantes:
+* Microprocesador: Xtensa® single-/dual-core 32-bit LX6 
+* Ram: 520 KB SRAM
+* Oscilador interno: 8MHz
+Una cualidad importante es el modo Deep sleep que mantiene el consumo de energía a 10 µA con 3.3V de voltaje. [49]
+Programación
+Para utilizar el controlador con el Arduino IDE2.0 es necesario agregar el siguiente paquete a Additional Boards Manager
+https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+Como se muestra en la ilustración 5:
+
+Ilustración 5 adición de manejador de placas
+El siguiente paso es instalar los controladores para la placa ESP32, se muestra en la ilustración 6.
+
+Ilustración 6
+Código de prueba
+#include <Arduino.h>
+#define LED 2
+void setup() {
+  Serial.begin(115200);
+  pinMode(LED, OUTPUT);
+}
+void loop() {
+  digitalWrite(LED, HIGH);
+  Serial.println("LED is on");
+  delay(1000);
+  digitalWrite(LED, LOW);
+  Serial.println("LED is off");
+  delay(1000);
+}
+Al momento de iniciar la carga a la placa, se selecciona de manera específica la placa ESP32. [50]
+Micrófono multidireccional INMP441
+El sensor INMP441 es un micrófono multidireccional que utiliza el protocolo I2S [51] para transferencia de audio, de la misma manera que, y como se mencionó en los trabajos relacionados, el dispositivo INMP401 es utilizado con el controlador ESP8266, el dispositivo INMP441 es comúnmente utilizado con el dispositivo ESP32, principalmente por su compatibilidad mediante el protocolo I2S. El módulo INMP441 se muestra en la ilustración 7. [52]
+
+Ilustración 7
+
+Capitulo III
+
+Ilustración 8 Arquitectura del sistema
+
+Ilustración 9 Diseño de la base de datos
+ 
+Ilustración 10 Diagrama de flujo del controlador
+Bibliografia
+[1]	Data Mexico, “Trabajadores en la Apicultura: Salarios, diversidad, industrias e informalidad laboral | Data México.” Accessed: Dec. 03, 2023. [Online]. Available: https://www.economia.gob.mx/datamexico/es/profile/occupation/trabajadores-en-la-apicultura?typeJob1=formalOption
+[2]	N. Bradbear, “La apicultura y los medios de vida sostenible,” Folleto de la FAO sobre diversificación, vol. 1, p. 17, 2005.
+[3]	Secretaría de Agricultura y Desarrollo Rural, “Crecen producción y exportaciones de miel en México al cierre de 2021: Agricultura.” Accessed: Dec. 10, 2023. [Online]. Available: https://www.gob.mx/agricultura/prensa/crecen-produccion-y-exportaciones-de-miel-en-mexico-al-cierre-de-2021-agricultura-293944?idiom=es
+[4]	Secretaría de Agricultura y Desarrollo Rural, “Apicultura: el arte de criar abejas.” Accessed: Dec. 01, 2023. [Online]. Available: https://www.gob.mx/agricultura/articulos/apicultura-el-arte-de-criar-abejas?idiom=es
+[5]	Coordinación General de Ganadería., “Situación actual y perspectiva de la apicultura en México,” Claridades Agropecuarias, 2015. Accessed: Dec. 07, 2023. [Online]. Available: https://atlas-abejas.agricultura.gob.mx/pdfs/ca199-3.pdf
+[6]	Data Mexico, “Cría y Explotación de Animales.” Accessed: Dec. 02, 2023. [Online]. Available: https://www.economia.gob.mx/datamexico/es/profile/industry/animal-production-and-aquaculture?yearSelectorGdp=timeOption0
+[7]	Y.-L. Chen, H.-Y. Chien, T.-H. Hsu, Y.-J. Jing, C.-Y. Lin, and Y.-C. Lin, “A Pi-Based Beehive IoT System Design,” 2020, pp. 535–543. doi: 10.1007/978-3-030-16946-6_43.
+[8]	MARINA LARA MEZA, “SISTEMA INFORMÁTICO EN LA NUBE PARA GESTIÓN DE DATOS DE CONDICIONES DE TEMPERATURA EN APICULTURA,” TECNM, 2023.
+[9]	Solutionbee, “Solutionbee Products.” Accessed: Nov. 22, 2023. [Online]. Available: https://solutionbee.com/our-products/#1445768525054-f27aac85-c1db
+[10]	OpenEnergyMonitor, “Openenergymonitor shop.” Accessed: Nov. 22, 2023. [Online]. Available: https://shop.openenergymonitor.com/
+[11]	V. Kulyukin, S. Mukherjee, and P. Amlathe, “Toward Audio Beehive Monitoring: Deep Learning vs. Standard Machine Learning in Classifying Beehive Audio Samples,” Applied Sciences, vol. 8, no. 9, p. 1573, Sep. 2018, doi: 10.3390/app8091573.
+[12]	MVZ. Adriana Correa Benítez, MVZ. Itzel Vasquez Valencia, Dra. Nelly Peña Haaz, MVZ. Leticia León Luna, and MC. Ricardo Anguiano Báez, “BUENAS PRÁCTICAS PECUARIAS EN LA PRODUCCIÓN PRIMARIA DE MIEL,” Facultad de Medicina Veterinaria y Zootecnia de la UNAMDepartamento de Medicina y Zootecnia de Abejas,  Conejos y Organismos Acuáticos. Accessed: Dec. 02, 2023. [Online]. Available: https://atlas-abejas.agricultura.gob.mx/pdfs/Manual_BPP_en_la_Producci_n_primaria_de_Miel_octubre_2018.pdf
+[13]	David Cramp, “A Practical Manual of BEEKEEPING”, Accessed: Jun. 05, 2024. [Online]. Available: www.howtobooks.co.uk
+[14]	F. Chadwick, S. Alton, E. S. Tennant, B. Fitzmaurice, and J. Earl, “The bee book,” p. 221, 2016.
+[15]	Raj Kamal, INTERNET OF THINGS Architecture and Design Principles. Rau, Indore, Madhya Pradesh, India: McGraw Hill Education (India) Private Limited, 2017.
+[16]	“The Open Source Beehives Project - The IAAC.” Accessed: Jun. 04, 2024. [Online]. Available: https://iaac.net/project/open-source-beehives-project/
+[17]	Stuart J. Russell and Peter Norvig, Artificial Intelligence A Modern Approach Global Edition, 4th ed. Pearson Education Limited , 2022.
+[18]	Statistical Modeling in Machine Learning. Elsevier, 2023. doi: 10.1016/C2021-0-01370-5.
+[19]	W. Richer and L. P. Coelho, Building Machine Learning Systems with Python. Sciendo, 2013. doi: doi:10.0000/9781782161417-001.
+[20]	“SHT21-±2% Digital humidity and temperature sensor.” Accessed: Jun. 01, 2024. [Online]. Available: https://sensirion.com/products/catalog/SHT21/
+[21]	M. G. Vidrascu and P. M. Svasta, “Embedded software for IOT bee hive monitoring node,” in 2017 IEEE 23rd International Symposium for Design and Technology in Electronic Packaging (SIITME), IEEE, Oct. 2017, pp. 183–188. doi: 10.1109/SIITME.2017.8259887.
+[22]	S. Cecchi, S. Spinsante, A. Terenzi, and S. Orcioni, “A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring,” Sensors, vol. 20, no. 9, p. 2726, May 2020, doi: 10.3390/s20092726.
+[23]	“Buy a Raspberry Pi 3 Model B – Raspberry Pi.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.raspberrypi.com/products/raspberry-pi-3-model-b/
+[24]	“Behringer | Product | UCA222.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.behringer.com/product.html?modelCode=0805-AAG
+[25]	“ADMP401 Datasheet and Product Info | Analog Devices.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.analog.com/en/products/admp401.html
+[26]	T. Liu, “Digital-output relative humidity & temperature sensor/module DHT22 (DHT22 also named as AM2302) Capacitive-type humidity and temperature module/sensor”.
+[27]	“Load Cell - 10kg, Straight Bar (TAL220) - SEN-13329 - SparkFun Electronics.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.sparkfun.com/products/13329
+[28]	“HX711 Datasheet by SparkFun Electronics | Digi-Key Electronics.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.digikey.com/htmldatasheets/production/1836471/0/0/1/hx711.html
+[29]	“T6615 Dual Channel CO2 Sensor Module | Telaire.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.amphenol-sensors.com/en/telaire/co2/525-co2-sensor-modules/319-t6615
+[30]	M. G. Vidrascu, P. M. Svasta, and M. Vladescu, “High reliability wireless sensor node for bee hive monitoring,” in 2016 IEEE 22nd International Symposium for Design and Technology in Electronic Packaging (SIITME), IEEE, Oct. 2016, pp. 134–138. doi: 10.1109/SIITME.2016.7777262.
+[31]	A. Zgank, “Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service,” Sensors, vol. 20, no. 1, p. 21, Dec. 2019, doi: 10.3390/s20010021.
+[32]	NXP BV, “MPL3115A2, I2C precision pressure sensor with altrimetry - data sheet”.
+[33]	“Overview | TSL2561 Luminosity Sensor | Adafruit Learning System.” Accessed: Jun. 01, 2024. [Online]. Available: https://learn.adafruit.com/tsl2561/overview
+[34]	“Adafruit VEML6075 UVA UVB and UV Index Sensor Breakout?: ID 3964?: Adafruit Industries, Unique & fun DIY electronics and kits.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.adafruit.com/product/3964
+[35]	“Sensor de polvo SHARP GP2Y1010AU0F.” Accessed: Jun. 01, 2024. [Online]. Available: https://naylampmechatronics.com/sensores-gas/353-sensor-de-polvo-sharp-gp2y1010au0f.html
+[36]	M. G. Vidrascu and P. M. Svasta, “Maintenance-free IOT gateway design for bee hive monitoring,” in 2017 IEEE 23rd International Symposium for Design and Technology in Electronic Packaging (SIITME), IEEE, Oct. 2017, pp. 189–193. doi: 10.1109/SIITME.2017.8259886.
+[37]	“GrovePi Internet of Things Robot Kit.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.dexterindustries.com/grovepi/
+[38]	“Módulo ESP8266 ESP-12E.” Accessed: Jun. 01, 2024. [Online]. Available: https://naylampmechatronics.com/espressif-esp/176-modulo-esp-12e-esp8266-wifi.html
+[39]	“THIDO - Mini Modulo IOT GSM GPRS A6.” Accessed: Jun. 01, 2024. [Online]. Available: https://electronicathido.com/detallesProducto.php?id=QzNqR3NySEdGQ0hKcjMvNWxCbThqQT09
+[40]	“Supercapacitor XV de celda grande | 2,7 V | 300 F a 600 F | Eaton.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.eaton.com/mx/es-mx/catalog/electronic-components/xv-supercapacitor.html
+[41]	“LT3652 Datasheet and Product Info | Analog Devices.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.analog.com/en/products/lt3652.html
+[42]	“LTC3652 Datasheet(PDF) - Linear Technology.” Accessed: Jun. 01, 2024. [Online]. Available: https://www.alldatasheet.com/datasheet-pdf/pdf/416450/LINER/LTC3652.html
+[43]	“The Open Source Beehives Project - The IAAC.” Accessed: May 31, 2024. [Online]. Available: https://iaac.net/project/open-source-beehives-project/
+[44]	M. Gales and S. Young, “The Application of Hidden Markov Models in Speech Recognition,” Foundations and Trends® in Signal Processing, vol. 1, no. 3, pp. 195–304, 2008, doi: 10.1561/2000000004.
+[45]	Joy-IT, “SEN-DHT22 Temperature and humidity sensor.”
+[46]	“Datasheet 3134-Micro Load Cell (0-20kg)-CZL635 What do you have to know?,” 3134, Accessed: Feb. 21, 2024. [Online]. Available: https://www.gotronic.fr/pj-460.pdf
+[47]	“Tutorial trasmisor de celda de carga HX711, Balanza Digital.” Accessed: Feb. 21, 2024. [Online]. Available: https://naylampmechatronics.com/blog/25_tutorial-trasmisor-de-celda-de-carga-hx711-balanza-digital.html
+[48]	“ESP32-C2 Wi-Fi & BLE 5 SoC | Espressif Systems.” Accessed: Jun. 03, 2024. [Online]. Available: https://www.espressif.com/en/products/socs/esp32-c2
+[49]	“ESP32 Series Datasheet 2.4 GHz Wi-Fi + Bluetooth ® + Bluetooth LE SoC Including,” 2024, Accessed: Jun. 03, 2024. [Online]. Available: www.espressif.com
+[50]	“Installing ESP32 Board in Arduino IDE 2 (Windows, Mac OS X, Linux) | Random Nerd Tutorials.” Accessed: Jun. 03, 2024. [Online]. Available: https://randomnerdtutorials.com/installing-esp32-arduino-ide-2-0/
+[51]	“The I2S Protocol and Why Digital Audio is Everywhere | Keysight Blogs.” Accessed: Jun. 03, 2024. [Online]. Available: https://www.keysight.com/blogs/en/tech/bench/2022/04/29/the-i2s-protocol-and-why-digital-audio-is-everywhere#:~:text=I2S%20is%20a%20serial%20bus,select%2C%20and%20a%20data%20line.
+[52]	“INMP441 Omnidirectional Microphone with Bottom Port and I 2 S Digital Output GENERAL DESCRIPTION”, Accessed: Jun. 03, 2024. [Online]. Available: www.invensense.com
+ 
+[CM1]FECHA ACTUAL
+[CM2]Eventos de interés dentro de una colmena
+[CM3]Añadir una lista de eventos de interés resumida
+[CM4]Que se ha hecho, en general, una historia
+
+
+
+
+
+
+
+
+
