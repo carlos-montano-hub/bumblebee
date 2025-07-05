@@ -20,6 +20,17 @@ style=ieee
 \usepackage{pst-all,amssymb,graphicx,marvosym,array,fancyhdr,amsmath,multirow,pdflscape,rotating}
 \usepackage{tabularx}
 \usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize
+\lstset{
+    inputencoding=utf8,
+    extendedchars=true,
+    literate={ñ}{{\~n}}1 {Ñ}{{\~N}}1
+             {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+             {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+}
 \pagestyle{fancy}
 
 \fancyhf{} % Clear all headers/footers
@@ -52,22 +63,22 @@ style=ieee
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.95}
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{backcolour},
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,
-    breaklines=true,
-    captionpos=b,
-    keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
-    showspaces=false,
-    showstringspaces=false,
-    showtabs=false,
-    tabsize=2
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
 }
 \lstset{style=mystyle}
 \newboolean{showAutorizacion}
@@ -75,23 +86,23 @@ style=ieee
 
 \maketitle
 
-\frontmatter
+% \frontmatter
 
-\include{chapters/abstract}
+% \include{chapters/abstract}
 
-\tableofcontents
+% \tableofcontents
 % {\noskip\listoffigures} % No usar en informes parciales
 % {\noskip\listoftables} % No usar en informes parciales
 
 \mainmatter
-\include{chapters/introduccion}
-\include{chapters/chapter1/index}
-\include{chapters/chapter2/index}
+% \include{chapters/introduccion}
+% \include{chapters/chapter1/index}
+% \include{chapters/chapter2/index}
 \include{chapters/chapter3/index}
 
 
 \backmatter
 
-\printbibliography[title={REFERENCIAS}]
+% \printbibliography[title={REFERENCIAS}]
 
 \end{document}

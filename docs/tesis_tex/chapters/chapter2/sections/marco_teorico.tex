@@ -79,12 +79,42 @@ Los términos Colmenas IOT o colmenas inteligentes se refieren a la adición de 
 \subsubsection{Sistema inteligente}
 Se refiere a un concepto abstracto en el cual se define a un sistema que actúa y razona de manera humana o de manera lógica \cite{russell_norvig_2022}. Es uno de los posibles métodos para procesar datos de un sistema IOT \cite{open_source_beehives_project_iaac}.
 
-\subsection{Minería de datos}
+\subsubsection{Minería de datos}
+Se refiere al proceso de aplicar métodos computacionales a grandes cantidades de datos con el objetivo de revelar información nueva, no trivial y relevante \cite{fayyad1996kdd}. Esto incluye la aplicación de algoritmos específicos para la extracción de patrones, la limpieza de datos, el preprocesamiento y la extracción de características.
+
 
 \subsubsection{Preprocesamiento de datos}
 El preprocesamiento de datos es una etapa en la minería de datos que consiste en preparar y limpiar el conjunto de datos con el objetivo de mejorar su calidad para que sean adecuados para el análisis o modelado. Esto implica corregir valores inválidos, eliminar columnas irrelevantes, manejar valores faltantes, ajustar datos inconsistentes, entre otros \cite{statistical_modeling_in_machine_learning_2023}.
 
-\subsubsection{Aprendizaje máquina}
+\subsubsection{Aprendizaje automático}
+El aprendizaje automático, o aprendizaje maquina, es una rama de la inteligencia artificial que se centra en desarrollar algoritmos capaces de aprender automáticamente a partir de los datos y mejorar su desempeño con la experiencia, sin ser programados explícitamente. Formalmente, se dice que un programa aprende de una experiencia $E$ respecto a una clase de tareas $T$ y una medida de desempeño $P$, si su desempeño en las tareas de $T$, medida por $P$, mejora con la experiencia $E$. En otras palabras, el desempeño del algoritmo en una tarea mejora conforme gana experiencia al realizarla \cite{mitchell1997machine}.
+
 
 \subsubsection{Extracción de características}
 La extracción de características es una técnica de preprocesamiento de datos utilizada en el aprendizaje máquina para transformar un conjunto de datos complejos y con muchas características, en un espacio más manejable y representativo. Se utiliza cuando hay demasiadas características ya sea para un análisis efectivo o para la visualización de datos \cite{richer_coelho_2013}.
+
+\subsubsection{Características de audio}
+
+\begin{itemize}
+    \item \textbf{Zero Crossing Rate (ZCR):} Número de veces que la señal cruza el eje cero por unidad de tiempo. Indica la frecuencia de cambios en la señal, útil para distinguir sonidos ruidosos y tonales \cite{muller2015fundamentals}.
+
+    \item \textbf{RMS (Root Mean Square):} Raíz cuadrada del promedio cuadrático de las muestras; mide energía promedio de la señal, útil para comparar su intensidad relativa entre segmentos \cite{sound_quality_heyboer2010}.
+
+    \item \textbf{Energía:} Suma de los cuadrados de las amplitudes de la señal, representa la potencia o intensidad del sonido \cite{rabiner2010fundamentals}.
+
+    \item \textbf{Entropía de energía:} Mide la distribución y variabilidad de la energía dentro de una señal, calculada usando entropía de Shannon sobre segmentos de energía \cite{li2017audio}.
+
+    \item \textbf{Centroide espectral:} Promedio ponderado de las frecuencias presentes en una señal, que refleja el "brillo" percibido del sonido \cite{peeters2004musical}.
+
+    \item \textbf{Dispersión espectral:} Desviación estándar de la distribución espectral alrededor del centroide, indica la extensión del contenido frecuencial \cite{peeters2004musical}.
+
+    \item \textbf{Entropía espectral:} Entropía de Shannon aplicada a la densidad espectral de potencia, mide la complejidad del espectro \cite{jiang2011spectral}.
+
+    \item \textbf{Flujo espectral:} Cambio en el espectro de potencia entre frames consecutivos, usado para detectar transiciones y dinámica en la señal \cite{foote1999automatic}.
+
+    \item \textbf{Rolloff espectral:} Frecuencia debajo de la cual se acumula un porcentaje dado (e.g., 85\%) de la energía espectral, útil para distinguir sonidos agudos de graves \cite{tzanetakis2002musical}.
+
+    \item \textbf{MFCC (1 a 13):} Coeficientes cepstrales calculados sobre la escala de frecuencias Mel, que modelan el timbre y la estructura espectral, ampliamente usados en reconocimiento de voz y análisis musical \cite{davis1980comparison}.
+\end{itemize}
+
+

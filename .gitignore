@@ -417,3 +417,4 @@ build/
 *.snm
 *.vrb
 *.synctex(busy)
+*.auxlock
