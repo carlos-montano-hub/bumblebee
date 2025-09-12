@@ -7,12 +7,13 @@
 backend=biber,
 style=ieee
 ]{biblatex}
-\addbibresource{referencias.bib}
+\usepackage{pgfgantt}
 \usepackage[spanish]{babel}
 \usepackage{pgfgantt}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{array}
+\addbibresource{referencias.bib}
 \usepackage{caption}
 \usepackage[table]{xcolor}
 \usepackage{xcolor}
@@ -23,7 +24,6 @@ style=ieee
 \usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{external}
-\tikzexternalize
 \lstset{
     inputencoding=utf8,
     extendedchars=true,
@@ -86,7 +86,7 @@ style=ieee
 
 \maketitle
 
-% \frontmatter
+\frontmatter
 
 % \include{chapters/abstract}
 
@@ -95,14 +95,14 @@ style=ieee
 % {\noskip\listoftables} % No usar en informes parciales
 
 \mainmatter
-% \include{chapters/introduccion}
-% \include{chapters/chapter1/index}
-% \include{chapters/chapter2/index}
+\include{chapters/introduccion}
+\include{chapters/chapter1/index}
+\include{chapters/chapter2/index}
 \include{chapters/chapter3/index}
 
 
 \backmatter
 
-% \printbibliography[title={REFERENCIAS}]
+\printbibliography[title={REFERENCIAS}]
 
 \end{document}
