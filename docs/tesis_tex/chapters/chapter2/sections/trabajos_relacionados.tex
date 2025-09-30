@@ -1,98 +1,90 @@
-\subsection{Introducción}
 La adición de tecnologías de internet de las cosas (IoT) en la apicultura ha significado un cambio revolucionario a comparación de las prácticas tradicionales, aumentando la eficiencia, productividad y escalabilidad. Estas tecnologías involucran el uso de diferentes sistemas interconectados, incluyendo sensores, microcontroladores y software, con el objetivo de ayudar a monitorear y administrar las actividades apícolas en tiempo real.
 En este capítulo se exploran las aplicaciones relevantes en las cuales se han desarrollado las aplicaciones de IoT en el monitoreo de colmenas apícolas, con el objetivo de dar seguimiento a la salud y actividad de las colonias de abejas, proveyendo así información de la colmena, incluyendo parámetros como temperatura, humedad, peso y acústica que ayudan a los apicultores a mantener colonias saludables y tomar decisiones acordes a la información en tiempo real.
 La arquitectura de sistemas IoT para monitoreo de colmenas involucra varios componentes clave, incluyendo nodos de sensores, sistemas de transmisión de datos, sistemas de energía y el componente de procesamiento de datos. En este capítulo se examinan las prácticas utilizadas para implementar estos sistemas.
 
-\subsection{Nodos de sensores}
-Este capítulo se enfoca en examinar las implementaciones de nodos de sensores. Los nodos de sensores son componentes críticos en el monitoreo de colmenas, ya que estos son los encargados de colectar datos en variables ambientales y específicas de la colmena, haciendo posible el análisis de datos y permitiendo la toma de decisiones.
+\subsection{Embedded Software for IoT Bee Hive Monitoring Node}
+Este artículo presenta un sistema embebido para monitoreo de variables relevantes; se propone un sistema que tiene las capacidades de monitorear humedad, temperatura, peso y audio. Sin embargo, solo se detalla la implementación del monitoreo de humedad y temperatura. Para este sistema se utilizó el sensor SHT21~\cite{sht21} para la medición de temperatura y humedad.~\cite{vidrascu_svasta_2017a}  
+El sistema está construido alrededor del componente ESP8266 que integra un microcontrolador Tensilica L106 de 32 bits en conjunto con el módulo transmisor Wi-Fi que integra circuitos de radiofrecuencia y es capaz de transmitir datos mediante interfaces digitales como SPI, I2C, y UART. Además, el módulo ESP8266 cuenta con tres modos de operación: activo, dormido y dormido profundo, los cuales son aprovechados por el sistema para optimizar el uso de energía.~\cite{vidrascu_svasta_2017a}
 
-\subsubsection{Embedded Software for IoT Bee Hive Monitoring Node}
-En este artículo se presenta un sistema embebido para monitoreo de variables relevantes, se propone un sistema que tiene las capacidades de monitorear humedad, temperatura, peso y audio, sin embargo, no se implementó el monitoreo de peso y audio. Para este sistema se utilizó el sensor SHT21~\cite{sht21} para la medición de temperatura y humedad.~\cite{vidrascu_svasta_2017a}
-
-\subsubsection{A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring}
-En el sistema propuesto en este artículo se desarrolla un sistema de monitoreo de parámetros relevantes para la colmena, incluyendo peso, sonido, temperatura, humedad y CO$_2$. El objetivo es desarrollar un sistema que dé una visión general del ambiente interno y externo de la colmena.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
-Este sistema es modular y se compone de dos módulos principales:
+\subsection{A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring}
+Este sistema desarrolla un monitoreo de parámetros relevantes para la colmena, incluyendo peso, sonido, temperatura, humedad y CO$_2$.~\cite{cecchi_spinsante_terenzi_orcioni_2020}  
+Es modular y se compone de dos módulos principales:  
 \begin{itemize}
-    \item \textbf{Módulo Abeja}: Este módulo se instala en cada colmena y está constituido por un módulo Raspberry Pi 3B~\cite{buy_raspberry_pi3_model_b}, una tarjeta de sonido UCA22~\cite{behringer_uca222}, dos micrófonos ADMP401 MEMS~\cite{admp401_datasheet}, dos sensores de humedad y temperatura DHT22~\cite{liu}, células de carga TAL220~\cite{loadcell_tal220_sparkfun} con el módulo interfaz HX711~\cite{hx711_sparkfun} y un sensor de CO$_2$ TL6615~\cite{t6615_telaire}.
-    \item \textbf{Módulo Reina}: Este módulo se instala cerca del grupo de sensores abeja y se encarga de colectar la información de los mismos. También está constituido por una Raspberry Pi 3B, sensores DHT22 y un puente 5G (no especificado) utilizado para comunicarse con el servidor remoto.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
-\end{itemize}
-El sistema de micrófonos recopila muestras de 30 segundos cada 10 minutos, a una tasa de 32 kHz.
+    \item \textbf{Módulo Abeja}: Raspberry Pi 3B~\cite{buy_raspberry_pi3_model_b}, tarjeta de sonido UCA22~\cite{behringer_uca222}, micrófonos ADMP401 MEMS~\cite{admp401_datasheet}, sensores DHT22~\cite{liu}, células de carga TAL220~\cite{loadcell_tal220_sparkfun} con HX711~\cite{hx711_sparkfun} y sensor de CO$_2$ TL6615~\cite{t6615_telaire}.
+    \item \textbf{Módulo Reina}: Raspberry Pi 3B, sensores DHT22 y un puente 5G (no especificado) utilizado para comunicarse con el servidor remoto.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
+\end{itemize}  
+Este artículo se energiza mediante una conexión a la red eléctrica, los módulos Reina y Abeja consumen 4 y 4.2 watts respectivamente.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
 
-\subsubsection{High Reliability Wireless Sensor Node for Bee Hive Monitoring}
-En este artículo se propone un sistema diseñado para condiciones ambientales de entre -20 a 60 grados centígrados y con una arquitectura principalmente modular, permitiendo intercambiar sensores según se requiera, esto mediante la interfaz digital I2C.~\cite{vidrascu_svasta_vladescu_2016}
-Se denota la importancia de utilizar sensores de temperatura y humedad, principalmente durante el invierno para prevenir la formación de rocío dentro de la colmena. El sensor de temperatura utilizado fue un SHT21 de Sensirion, este sensor tiene un consumo de 1mW en modo medición y 1~$\mu$W en modo inactivo.~\cite{vidrascu_svasta_vladescu_2016}
-Se utiliza el sistema de medición de peso HX711 de Avia Semiconductor que consta de un sistema de alimentación, un amplificador y un convertidor analógico digital de 24-bit, en conjunto con 4 células de carga. Todo este sistema tiene un consumo de 8.25mW en modo activo y 5.5~$\mu$W en modo inactivo.~\cite{vidrascu_svasta_vladescu_2016}
-Adicionalmente, el sistema cuenta con un sensor de inclinación DMA08 para monitorear si la colmena está nivelada, si ha sido robada y detectar caídas.~\cite{vidrascu_svasta_vladescu_2016}
-El sistema también cuenta con un micrófono MP34DT05-A, la justificación para este elemento es que es útil para detectar eventos de enjambre y escasez de comida en el invierno.~\cite{vidrascu_svasta_vladescu_2016}
+\subsection{High Reliability Wireless Sensor Node for Bee Hive Monitoring}
+Este sistema está diseñado para condiciones de entre -20 a 60 °C con una arquitectura modular que permite intercambiar sensores mediante interfaz I2C.~\cite{vidrascu_svasta_vladescu_2016}  
+Incluye sensores SHT21, sistema HX711 con células de carga, sensor de inclinación DMA08 y micrófono MP34DT05-A.~\cite{vidrascu_svasta_vladescu_2016}  
+Además, utiliza un módulo ESP8266 serie 32-bit a 80MHz para conexión Wi-Fi directa.~\cite{vidrascu_svasta_vladescu_2016}  
+En cuanto a la energía, se emplean supercapacitores XV de Eaton~\cite{supercapacitor_xv_eaton} junto con paneles solares (no especificados) y un convertidor step up.~\cite{vidrascu_svasta_vladescu_2016}
 
-\subsubsection{Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service}
-En esta investigación se procesa información recopilada de un sistema que utiliza un micrófono TDK InvenSense ICS-40300 y una placa Atmel ATmega32U4 sobre la colmena para posteriormente ser procesada en un servidor remoto.~\cite{zgank_2019}
+\subsection{Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service}
+Este sistema utiliza un micrófono TDK InvenSense ICS-40300 y una placa Atmel ATmega32U4 sobre la colmena, procesando los datos en un servidor remoto.~\cite{zgank_2019}  
+El procesamiento de datos acústicos tiene como objetivo la detección de enjambres, utilizando datos del Open Source Beehives Project (OSBP)~\cite{open_source_beehives_project_iaac}. Se aplican métodos MFCC y LPC para extracción de características y HMM/GMM para clasificación.~\cite{zgank_2019}
 
-\subsubsection{Maintenance-free IoT Gateway Design for Bee Hive Monitoring}
-El módulo descrito en este artículo tiene las capacidades de recopilar información importante sobre el estado de la colmena mediante: un sensor SHT21 para medir humedad y temperatura, un sensor de presión atmosférica MPL3115A2~\cite{nxp_mpl3115a2}, un sensor de intensidad lumínica TSL2561~\cite{tsl2561_adafruit}, células de carga HX711 colocadas con el objetivo de monitorear el peso de la colmena, un sensor de radiación UV VEML6075~\cite{adafruit_veml6075} y finalmente, un sensor de concentración de polvo GP2Y1010AU0F~\cite{vidrascu_svasta_2017b}.~\cite{vidrascu_svasta_2017b}
+\subsection{Maintenance-free IoT Gateway Design for Bee Hive Monitoring}
+Este módulo recopila información con sensores SHT21, MPL3115A2~\cite{nxp_mpl3115a2}, TSL2561~\cite{tsl2561_adafruit}, HX711, VEML6075~\cite{adafruit_veml6075} y GP2Y1010AU0F~\cite{vidrascu_svasta_2017b}.~\cite{vidrascu_svasta_2017b}  
+Para transmisión de datos se utiliza un ESP8266-12 (A.I.Thinker) y un módem A6 GSM/GPRS (no en bib).~\cite{vidrascu_svasta_2017b}  
+El sistema obtiene energía de paneles solares (no especificados) con reguladores LT3652~\cite{lt3652_datasheet} y LTC3652~\cite{ltc3652_datasheet}.~\cite{vidrascu_svasta_2017b}
 
-\subsubsection{A Pi-Based IoT System Design}
-En este sistema se integra la suite de sensores de GrovePi~\cite{chen_chien_hsu_jing_lin_lin_2020}, en concreto los sensores de humedad, temperatura, GPS, sonido e imágenes térmicas.~\cite{chen_chien_hsu_jing_lin_lin_2020}
-
-\subsection{Sistema de transmisión de datos}
-Este capítulo se centra en los sistemas de transmisión de datos utilizados en estos sistemas, presentando diversas soluciones de hardware y software que permiten la transmisión eficiente de datos desde las colmenas hasta las plataformas de análisis y monitoreo remoto.
-
-\subsubsection{Embedded Software for IoT Bee Hive Monitoring Node}
-El sistema está construido alrededor del componente ESP8266 que integra un microcontrolador Tensilica L106 32-bit en conjunto con el módulo transmisor Wi-Fi que integra circuitos de radio frecuencia y es capaz de transmitir datos mediante interfaces digitales como SPI, I2C, y UART. Además, el módulo ESP8266 cuenta con tres modos de operación: activo, dormido y dormido profundo, los cuales son aprovechados por el sistema para optimizar el uso de energía.~\cite{vidrascu_svasta_2017a}
-
-\subsubsection{High Reliability Wireless Sensor Node for Bee Hive Monitoring}
-En este sistema también se utiliza un módulo ESP8266 serie 32-bit a 80MHz, el objetivo de utilizar este componente es simplificar el diseño utilizando la capacidad del componente para una conexión Wi-Fi directa.~\cite{vidrascu_svasta_vladescu_2016}
-
-\subsubsection{Maintenance-free IoT Gateway Design for Bee Hive Monitoring}
-El módulo ESP8266 es de nuevo utilizado en este sistema, en concreto la versión ESP8266-12 (no en bib) producido por A.I.Thinker para dar conectividad al módulo que contiene el nodo de sensores. Adicionalmente en este proyecto se agrega un módem A6 GSM/GPRS (no en bib) que sirve como compuerta para conectar los módulos a la red 5G.~\cite{vidrascu_svasta_2017b}
-
-\subsubsection{A Pi-Based IoT System Design}
-Este sistema también implementa el método de múltiples módulos con conexión Wi-Fi conectados a un módem independiente que se conecta a la red móvil para proveer de internet a los módulos.~\cite{chen_chien_hsu_jing_lin_lin_2020}
-
-\subsection{Manejo de energía}
-Este capítulo examina las diversas estrategias de manejo de energía implementadas en sistemas de monitoreo avanzado de colmenas. Desde la conexión a la red eléctrica hasta soluciones autónomas con energía solar y supercapacitores.
-
-\subsubsection{A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring}
-En este artículo se energiza mediante una conexión a la red eléctrica, los módulos Reina y Abeja consumen 4 y 4.2 watts respectivamente.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
-
-\subsubsection{High Reliability Wireless Sensor Node for Bee Hive Monitoring}
-Para este sistema se tomó la decisión de utilizar supercapacitores XV Supercapacitor de Eaton~\cite{supercapacitor_xv_eaton}, principalmente por su vida útil de 20 años y su alto desempeño en altas temperaturas, en conjunto con paneles solares (no especificados) y un convertidor step up para transformar el voltaje de salida del panel de 2.7V a 3.3V.~\cite{vidrascu_svasta_vladescu_2016}
-
-\subsubsection{Maintenance-free IoT Gateway Design for Bee Hive Monitoring}
-En esta investigación, la energía se obtiene utilizando paneles solares (no especificado) en conjunto con un módulo LT3652~\cite{lt3652_datasheet} que regula la cantidad de voltaje de salida del panel solar para maximizar la transferencia de energía. Además, se utiliza un cargador LTC3652~\cite{ltc3652_datasheet} para ajustar el voltaje de carga de los supercapacitores al voltaje especificado por el módulo LT3652.~\cite{vidrascu_svasta_2017b}
-
-\subsubsection{A Pi-Based IoT System Design}
-En este sistema se cuenta con una batería para dispositivos celulares con una capacidad de 10000 mAh (180000 Joules a 5V) que mantiene el sistema encendido entre 27 y 33 horas.~\cite{chen_chien_hsu_jing_lin_lin_2020}
-
-\subsection{Procesamiento de datos}
-El capítulo se enfoca en el procesamiento de datos acústicos para la detección de eventos de enjambre en un servicio agrícola basado en IoT.
-
-\subsubsection{Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service}
-Como ya se mencionó, el enfoque de esta investigación es el procesamiento de datos acústicos con el objetivo de detectar eventos de enjambre, el recurso principal para esto es el desarrollo del modelo es el proyecto de fuente abierta de colmenas Open Source Beehives Project (OSBP)~\cite{open_source_beehives_project_iaac}.~\cite{zgank_2019}
-Los datos de entrenamiento fueron recopilados del OSBP, los cuales consistieron de aproximadamente 122 minutos de audio a los cuales se les disminuyó la frecuencia a 16kHz, la resolución a 16 bits y fueron divididos en muestras de 3 segundos, resultando en 1800 muestras destinadas para entrenamiento y 643 para pruebas. Se tomó la precaución de utilizar muestras de una sola colmena.~\cite{zgank_2019}
-El diseño experimental se desarrolló utilizando referencias de reconocimiento del habla~\cite{gales_young_2008}; de este modo, se desarrollaron dos procesos, los cuales consistieron en aplicar una extracción de características al audio para generar un vector de características que posteriormente sería clasificado.~\cite{zgank_2019}
-Para la extracción de características se utilizaron dos métodos:
-\begin{itemize}
-    \item \textbf{Mel-Frequency Cepstral Coefficients (MFCC)}: Este es el principal método para la extracción de características, el resultado de este proceso fue un vector con 12 coeficientes Mel-Frequency Cepstral a los cuales se les sumó un coeficiente de energía. Posteriormente se calcularon y añadieron las derivadas de primer y segundo orden para los primeros 13 elementos, lo que resultó en 39 coeficientes.~\cite{zgank_2019}
-    \item \textbf{Linear Predictive Coding (LPC)}: Este método fue secundario y utilizado como comparación, durante este proceso también se aplicó una sustracción espectral para reducir el ruido de fondo. Este método requiere una señal en el dominio de la frecuencia, por lo que se utilizó una transformada rápida de Fourier (Fast Fourier Transform, FFT) para transformar la frecuencia.~\cite{zgank_2019}
-\end{itemize}
-En cuanto a la clasificación de muestras se utilizaron dos métodos paralelos:
-\begin{itemize}
-    \item \textbf{Hidden Markov Model (HMM)}: Este método se desarrolló con dos topologías, una con 15 estados, similar a los modelos de reconocimiento del habla, y otra con un estado, similar a los modelos de GMM.~\cite{zgank_2019}
-    \item \textbf{Gaussian Mixture Model (GMM)}: Para este modelo se inició con la inicialización plana de parámetros y se continuó con la reestimación de Baum-Welch, repitiendo el proceso hasta alcanzar 32 mezclas de PDFs Gaussianas por estado.~\cite{zgank_2019}
-\end{itemize}
+\subsection{A Pi-Based IoT System Design}
+Este sistema integra la suite de sensores GrovePi: humedad, temperatura, GPS, sonido e imágenes térmicas.~\cite{chen_chien_hsu_jing_lin_lin_2020}  
+Implementa múltiples módulos Wi-Fi conectados a un módem independiente con conexión a red móvil.~\cite{chen_chien_hsu_jing_lin_lin_2020}  
+Se alimenta con una batería de 10000 mAh (180000 J a 5V), con autonomía de 27–33 h.~\cite{chen_chien_hsu_jing_lin_lin_2020}
 
 \subsection{Conclusión}
 A lo largo de este capítulo, se han explorado diversas arquitecturas y tecnologías utilizadas en estos sistemas, destacando los componentes esenciales como los nodos de sensores y los sistemas de transmisión de datos, así como las soluciones innovadoras para el manejo de energía y el procesamiento de datos.
 \begin{itemize}
-    \item \textbf{Nodos de Sensores}: Los sistemas presentados varían en cuanto a la complejidad y especificidad de los sensores utilizados, pero todos apuntan a proporcionar una visión detallada del ambiente interno y externo de la colmena. Los sensores más comunes incluyen:
-          \begin{itemize}
-              \item Temperatura y Humedad: Sensores como el SHT21 y DHT22.
-              \item Peso: Células de carga junto con el módulo HX711.
-              \item Acústica: Micrófonos MEMS, como el ADMP401 y MP34DT05-A.
-          \end{itemize}
-    \item \textbf{Sistemas de Transmisión de Datos}: La mayoría de los sistemas utilizan el módulo ESP8266 para la transmisión de datos vía Wi-Fi, destacando su eficiencia energética y capacidad de operación en modos de bajo consumo. Algunos sistemas también incorporan módulos GSM/GPRS para asegurar la conectividad con la red móvil en áreas remotas.
-    \item \textbf{Manejo de Energía}: Las soluciones energéticas tienen una amplia variación, sin embargo, la opción más común es el uso de paneles solares en conjunto con baterías de alta capacidad. Adicionalmente se destaca el uso de supercapacitores como una opción para almacenar energía.
-    \item \textbf{Procesamiento de Datos}: La utilización de modelos como HMM y GMM para clasificar eventos en las colmenas demuestra el potencial del procesamiento avanzado de datos en la mejora de la gestión apícola.
+    \item \textbf{Nodos de Sensores}: Los sistemas presentados varían en complejidad, pero todos incluyen sensores de temperatura, humedad, peso y acústica.
+    \item \textbf{Sistemas de Transmisión de Datos}: Predomina el uso del módulo ESP8266, con casos que incorporan GSM/GPRS.
+    \item \textbf{Manejo de Energía}: Paneles solares, baterías y supercapacitores son las soluciones más comunes.
+    \item \textbf{Procesamiento de Datos}: Se emplean MFCC, LPC, HMM y GMM en clasificación de eventos acústicos.
 \end{itemize}
-Los trabajos relacionados en sistemas de monitoreo de colmenas basados en IoT muestran un progreso notable en términos de integración de tecnologías y mejora de la eficiencia. Sin embargo, hay margen para la innovación, especialmente en áreas como la conectividad, la optimización energética y el desarrollo de algoritmos más avanzados para el análisis de datos. La colaboración entre investigadores, ingenieros y apicultores es crucial para impulsar esta área de oportunidad y asegurar un futuro sostenible para la apicultura.
+La adición de tecnologías de internet de las cosas (IoT) en la apicultura ha significado un cambio revolucionario a comparación de las prácticas tradicionales, aumentando la eficiencia, productividad y escalabilidad. Estas tecnologías involucran el uso de diferentes sistemas interconectados, incluyendo sensores, microcontroladores y software, con el objetivo de ayudar a monitorear y administrar las actividades apícolas en tiempo real.
+En este capítulo se exploran las aplicaciones relevantes en las cuales se han desarrollado las aplicaciones de IoT en el monitoreo de colmenas apícolas, con el objetivo de dar seguimiento a la salud y actividad de las colonias de abejas, proveyendo así información de la colmena, incluyendo parámetros como temperatura, humedad, peso y acústica que ayudan a los apicultores a mantener colonias saludables y tomar decisiones acordes a la información en tiempo real.
+La arquitectura de sistemas IoT para monitoreo de colmenas involucra varios componentes clave, incluyendo nodos de sensores, sistemas de transmisión de datos, sistemas de energía y el componente de procesamiento de datos. En este capítulo se examinan las prácticas utilizadas para implementar estos sistemas.
+
+\subsection{Embedded Software for IoT Bee Hive Monitoring Node}
+Este artículo presenta un sistema embebido para monitoreo de variables relevantes; se propone un sistema que tiene las capacidades de monitorear humedad, temperatura, peso y audio. Sin embargo, no se implementó el monitoreo de peso y audio. Para este sistema se utilizó el sensor SHT21~\cite{sht21} para la medición de temperatura y humedad.~\cite{vidrascu_svasta_2017a}  
+El sistema está construido alrededor del componente ESP8266 que integra un microcontrolador Tensilica L106 32-bit en conjunto con el módulo transmisor Wi-Fi que integra circuitos de radio frecuencia y es capaz de transmitir datos mediante interfaces digitales como SPI, I2C, y UART. Además, el módulo ESP8266 cuenta con tres modos de operación: activo, dormido y dormido profundo, los cuales son aprovechados por el sistema para optimizar el uso de energía.~\cite{vidrascu_svasta_2017a}
+
+\subsection{A Smart Sensor-Based Measurement System for Advanced Bee Hive Monitoring}
+Este sistema desarrolla un monitoreo de parámetros relevantes para la colmena, incluyendo peso, sonido, temperatura, humedad y CO$_2$.~\cite{cecchi_spinsante_terenzi_orcioni_2020}  
+Es modular y se compone de dos módulos principales:  
+\begin{itemize}
+    \item \textbf{Módulo Abeja}: Raspberry Pi 3B~\cite{buy_raspberry_pi3_model_b}, tarjeta de sonido UCA22~\cite{behringer_uca222}, micrófonos ADMP401 MEMS~\cite{admp401_datasheet}, sensores DHT22~\cite{liu}, células de carga TAL220~\cite{loadcell_tal220_sparkfun} con HX711~\cite{hx711_sparkfun} y sensor de CO$_2$ TL6615~\cite{t6615_telaire}.
+    \item \textbf{Módulo Reina}: Raspberry Pi 3B, sensores DHT22 y un puente 5G (no especificado) utilizado para comunicarse con el servidor remoto.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
+\end{itemize}  
+Este artículo se energiza mediante una conexión a la red eléctrica, los módulos Reina y Abeja consumen 4 y 4.2 watts respectivamente.~\cite{cecchi_spinsante_terenzi_orcioni_2020}
+
+\subsection{High Reliability Wireless Sensor Node for Bee Hive Monitoring}
+Este sistema está diseñado para condiciones de entre -20 a 60 °C con una arquitectura modular que permite intercambiar sensores mediante interfaz I2C.~\cite{vidrascu_svasta_vladescu_2016}  
+Incluye sensores SHT21, sistema HX711 con células de carga, sensor de inclinación DMA08 y micrófono MP34DT05-A.~\cite{vidrascu_svasta_vladescu_2016}  
+Además, utiliza un módulo ESP8266 serie 32-bit a 80MHz para conexión Wi-Fi directa.~\cite{vidrascu_svasta_vladescu_2016}  
+En cuanto a la energía, se emplean supercapacitores XV de Eaton~\cite{supercapacitor_xv_eaton} junto con paneles solares (no especificados) y un convertidor step up.~\cite{vidrascu_svasta_vladescu_2016}
+
+\subsection{Bee Swarm Activity Acoustic Classification for an IoT-Based Farm Service}
+Este sistema utiliza un micrófono TDK InvenSense ICS-40300 y una placa Atmel ATmega32U4 sobre la colmena, procesando los datos en un servidor remoto.~\cite{zgank_2019}  
+El procesamiento de datos acústicos tiene como objetivo la detección de enjambres, utilizando datos del Open Source Beehives Project (OSBP)~\cite{open_source_beehives_project_iaac}. Se aplican métodos MFCC y LPC para extracción de características y HMM/GMM para clasificación.~\cite{zgank_2019}
+
+\subsection{Maintenance-free IoT Gateway Design for Bee Hive Monitoring}
+Este módulo recopila información con sensores SHT21, MPL3115A2~\cite{nxp_mpl3115a2}, TSL2561~\cite{tsl2561_adafruit}, HX711, VEML6075~\cite{adafruit_veml6075} y GP2Y1010AU0F~\cite{vidrascu_svasta_2017b}.~\cite{vidrascu_svasta_2017b}  
+Para transmisión de datos se utiliza un ESP8266-12 (A.I.Thinker) y un módem A6 GSM/GPRS (no en bib).~\cite{vidrascu_svasta_2017b}  
+El sistema obtiene energía de paneles solares (no especificados) con reguladores LT3652~\cite{lt3652_datasheet} y LTC3652~\cite{ltc3652_datasheet}.~\cite{vidrascu_svasta_2017b}
+
+\subsection{A Pi-Based IoT System Design}
+Este sistema integra la suite de sensores GrovePi: humedad, temperatura, GPS, sonido e imágenes térmicas.~\cite{chen_chien_hsu_jing_lin_lin_2020}  
+Implementa múltiples módulos Wi-Fi conectados a un módem independiente con conexión a red móvil.~\cite{chen_chien_hsu_jing_lin_lin_2020}  
+Se alimenta con una batería de 10000 mAh (180000 J a 5V), con autonomía de 27–33 h.~\cite{chen_chien_hsu_jing_lin_lin_2020}
+
+\subsection{Conclusión}
+A lo largo de este capítulo, se han explorado diversas arquitecturas y tecnologías utilizadas en estos sistemas, destacando los componentes esenciales como los nodos de sensores y los sistemas de transmisión de datos, así como las soluciones innovadoras para el manejo de energía y el procesamiento de datos.
+\begin{itemize}
+    \item \textbf{Nodos de Sensores}: Los sistemas presentados varían en complejidad, pero todos incluyen sensores de temperatura, humedad, peso y acústica.
+    \item \textbf{Sistemas de Transmisión de Datos}: Predomina el uso del módulo ESP8266, con casos que incorporan GSM/GPRS.
+    \item \textbf{Manejo de Energía}: Paneles solares, baterías y supercapacitores son las soluciones más comunes.
+    \item \textbf{Procesamiento de Datos}: Se emplean MFCC, LPC, HMM y GMM en clasificación de eventos acústicos.
+\end{itemize}
