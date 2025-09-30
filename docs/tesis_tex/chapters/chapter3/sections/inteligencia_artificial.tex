@@ -1,8 +1,8 @@
 \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth]{assets/cap_3/comparacion_audio.png}
-    \caption{Comparación de audio.}
-    \label{fig:comparacion_audio}
+  \centering
+  \includegraphics[width=\textwidth]{assets/cap_3/comparacion_audio.png}
+  \caption{Comparación de audio.}
+  \label{fig:comparacion_audio}
 \end{figure}
 
 \subsection{Características de audio}
@@ -12,15 +12,15 @@ Se describen los cálculos e implementación en Python. Se asume audio monofóni
 \subsubsection{Zero Crossing Rate (ZCR)}
 \textbf{Algoritmo} \parencite{rabiner2011tasdp, tzanetakis2002musical}
 \begin{enumerate}
-    \item Dividir la señal continua en trozos cortos de igual tamaño llamados \emph{tramas} (por ejemplo, 2048 muestras).
-    \item En cada trama, mirar el signo de la muestra actual y de la anterior. Cuando el signo cambia, contamos un cruce por cero.
-    \item Sumar los cruces en la trama y normalizar por la longitud de la trama para obtener una tasa comparable entre señales.
-    \item Usar la serie de tasas a lo largo del tiempo para detectar regiones ruidosas o con consonantes no sonoras.
+  \item Dividir la señal continua en trozos cortos de igual tamaño llamados \emph{tramas} (por ejemplo, 2048 muestras).
+  \item En cada trama, mirar el signo de la muestra actual y de la anterior. Cuando el signo cambia, contamos un cruce por cero.
+  \item Sumar los cruces en la trama y normalizar por la longitud de la trama para obtener una tasa comparable entre señales.
+  \item Usar la serie de tasas a lo largo del tiempo para detectar regiones ruidosas o con consonantes no sonoras.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-\text{ZCR}[t]=\frac{1}{2L}\sum_{n=1}^{L-1}\big|\operatorname{sgn}(x_t[n])-\operatorname{sgn}(x_t[n-1])\big|
+  \text{ZCR}[t]=\frac{1}{2L}\sum_{n=1}^{L-1}\big|\operatorname{sgn}(x_t[n])-\operatorname{sgn}(x_t[n-1])\big|
 \]
 
 \textbf{Código}
@@ -36,14 +36,14 @@ def zero_crossing_rate(y, frame_length=2048, hop_length=512):
 \subsubsection{Energía}
 \textbf{Algoritmo} \parencite{giannakopoulos2014intro, muller2015fmp}
 \begin{enumerate}
-    \item Cortar la señal en tramas.
-    \item Elevar al cuadrado cada muestra de la trama para medir “cuánta señal” hay.
-    \item Sumar esos cuadrados. Un valor alto indica mayor intensidad sonora en esa ventana.
+  \item Cortar la señal en tramas.
+  \item Elevar al cuadrado cada muestra de la trama para medir “cuánta señal” hay.
+  \item Sumar esos cuadrados. Un valor alto indica mayor intensidad sonora en esa ventana.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-E_t = \sum_{n=1}^{L} x_t[n]^2
+  E_t = \sum_{n=1}^{L} x_t[n]^2
 \]
 
 \textbf{Código}
@@ -58,14 +58,14 @@ def frame_energy(y, frame_length=2048, hop_length=512):
 \subsubsection{RMS (Root Mean Square)}
 \textbf{Algoritmo} \parencite{oppenheim2010dsp, muller2015fmp}
 \begin{enumerate}
-    \item Calcular la energía de la trama.
-    \item Dividir por el número de muestras para obtener una media.
-    \item Tomar la raíz cuadrada para regresar a la escala de la señal. RMS es una “intensidad promedio” estable frente a picos.
+  \item Calcular la energía de la trama.
+  \item Dividir por el número de muestras para obtener una media.
+  \item Tomar la raíz cuadrada para regresar a la escala de la señal. RMS es una “intensidad promedio” estable frente a picos.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-\text{RMS}_t=\sqrt{\frac{1}{L}\sum_{n=1}^{L}x_t[n]^2}
+  \text{RMS}_t=\sqrt{\frac{1}{L}\sum_{n=1}^{L}x_t[n]^2}
 \]
 
 \textbf{Código}
@@ -80,14 +80,14 @@ def rms(y, frame_length=2048, hop_length=512):
 \subsubsection{Entropía de energía}
 \textbf{Algoritmo} \parencite{peeters2004large, giannakopoulos2014intro}
 \begin{enumerate}
-    \item Dentro de cada trama, dividir en \(Q\) subtramas contiguas.
-    \item Calcular la energía de cada subtrama y normalizar para obtener proporciones \(p_i\) que sumen 1.
-    \item Calcular la entropía de Shannon de esas proporciones. Valores altos indican energía repartida; bajos, energía concentrada.
+  \item Dentro de cada trama, dividir en \(Q\) subtramas contiguas.
+  \item Calcular la energía de cada subtrama y normalizar para obtener proporciones \(p_i\) que sumen 1.
+  \item Calcular la entropía de Shannon de esas proporciones. Valores altos indican energía repartida; bajos, energía concentrada.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-H_t=-\sum_{i=1}^{Q}p_i\log_2 p_i,\qquad p_i=\frac{E_i}{\sum_j E_j}
+  H_t=-\sum_{i=1}^{Q}p_i\log_2 p_i,\qquad p_i=\frac{E_i}{\sum_j E_j}
 \]
 
 \textbf{Código}
@@ -106,13 +106,13 @@ def energy_entropy(y, frame_length=2048, hop_length=512, n_sub=10, eps=1e-10):
 \subsubsection{Centroide espectral}
 \textbf{Algoritmo} \parencite{tzanetakis2002musical, muller2015fmp}
 \begin{enumerate}
-    \item Calcular el espectro de magnitud en cada trama.
-    \item Multiplicar cada magnitud por su frecuencia y promediar. Es el “centro de masa” del espectro.
+  \item Calcular el espectro de magnitud en cada trama.
+  \item Multiplicar cada magnitud por su frecuencia y promediar. Es el “centro de masa” del espectro.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-C_t=\frac{\sum_{k} f_k |X_t(f_k)|}{\sum_{k}|X_t(f_k)|}
+  C_t=\frac{\sum_{k} f_k |X_t(f_k)|}{\sum_{k}|X_t(f_k)|}
 \]
 
 \textbf{Código}
@@ -126,13 +126,13 @@ def spectral_centroid(y, sr, n_fft=2048, hop_length=512):
 \subsubsection{Dispersión espectral}
 \textbf{Algoritmo} \parencite{tzanetakis2002musical, peeters2004large}
 \begin{enumerate}
-    \item Calcular el centroide espectral \(C_t\).
-    \item Calcular la desviación estándar de las frecuencias, ponderada por la energía. Mide qué tan “ancho” es el espectro.
+  \item Calcular el centroide espectral \(C_t\).
+  \item Calcular la desviación estándar de las frecuencias, ponderada por la energía. Mide qué tan “ancho” es el espectro.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-\sigma_t=\sqrt{\frac{\sum_k (f_k-C_t)^2|X_t(f_k)|}{\sum_k|X_t(f_k)|}}
+  \sigma_t=\sqrt{\frac{\sum_k (f_k-C_t)^2|X_t(f_k)|}{\sum_k|X_t(f_k)|}}
 \]
 
 \textbf{Código}
@@ -147,13 +147,13 @@ def spectral_spread(y, sr, n_fft=2048, hop_length=512):
 \subsubsection{Entropía espectral}
 \textbf{Algoritmo} \parencite{peeters2004large, muller2015fmp}
 \begin{enumerate}
-    \item Calcular el espectro de magnitud y normalizarlo para que las magnitudes formen una distribución \(p_k\).
-    \item Calcular la entropía de Shannon de \(p_k\). Alta entropía: espectro plano; baja entropía: energía concentrada en pocas bandas.
+  \item Calcular el espectro de magnitud y normalizarlo para que las magnitudes formen una distribución \(p_k\).
+  \item Calcular la entropía de Shannon de \(p_k\). Alta entropía: espectro plano; baja entropía: energía concentrada en pocas bandas.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-H_t=-\sum_{k} p_k\log_2 p_k,\qquad p_k=\frac{|X_t(f_k)|}{\sum_{j}|X_t(f_j)|}
+  H_t=-\sum_{k} p_k\log_2 p_k,\qquad p_k=\frac{|X_t(f_k)|}{\sum_{j}|X_t(f_j)|}
 \]
 
 \textbf{Código}
@@ -169,14 +169,14 @@ def spectral_entropy(y, sr, n_fft=2048, hop_length=512, eps=1e-12):
 \subsubsection{Flujo espectral}
 \textbf{Algoritmo} \parencite{foote1999novelty, muller2015fmp}
 \begin{enumerate}
-    \item Calcular dos espectros consecutivos y normalizarlos.
-    \item Restar espectro anterior al actual. Conservar solo las diferencias positivas.
-    \item Elevar al cuadrado y sumar. Valores altos indican cambios repentinos de timbre o ataque.
+  \item Calcular dos espectros consecutivos y normalizarlos.
+  \item Restar espectro anterior al actual. Conservar solo las diferencias positivas.
+  \item Elevar al cuadrado y sumar. Valores altos indican cambios repentinos de timbre o ataque.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-\text{Flujo}_t=\sum_k\big(\max\{0, |X_t|-|X_{t-1}|\}\big)^2
+  \text{Flujo}_t=\sum_k\big(\max\{0, |X_t|-|X_{t-1}|\}\big)^2
 \]
 
 \textbf{Código}
@@ -193,13 +193,13 @@ def spectral_flux(y, sr, n_fft=2048, hop_length=512, eps=1e-12):
 \subsubsection{Rolloff espectral}
 \textbf{Algoritmo} \parencite{tzanetakis2002musical, peeters2004large}
 \begin{enumerate}
-    \item Ordenar magnitudes por frecuencia ascendente.
-    \item Encontrar la frecuencia \(f_{k_c}\) donde la suma acumulada alcanza una fracción fija (por ejemplo, 85\%) de la energía total.
+  \item Ordenar magnitudes por frecuencia ascendente.
+  \item Encontrar la frecuencia \(f_{k_c}\) donde la suma acumulada alcanza una fracción fija (por ejemplo, 85\%) de la energía total.
 \end{enumerate}
 
 \textbf{Fórmula}
 \[
-\sum_{k=1}^{k_c}|X(f_k)|=\alpha\sum_{k=1}^{K}|X(f_k)|,\quad \alpha\in(0,1).
+  \sum_{k=1}^{k_c}|X(f_k)|=\alpha\sum_{k=1}^{K}|X(f_k)|,\quad \alpha\in(0,1).
 \]
 
 \textbf{Código}
@@ -211,40 +211,40 @@ def spectral_rolloff(y, sr, n_fft=2048, hop_length=512, roll_percent=0.85):
 
 % ======================
 \subsubsection{MFCC (Mel Frequency Cepstral Coefficients)}
-\textbf{Algoritmo} \parencite{davis1980comparison, muller2015fmp, slaney1998auditory, logan2000mfcc}
+\textbf{Algoritmo} \parencite{davis1980tassp, muller2015fmp, slaney1998auditory, logan2000mfcc}
 \begin{enumerate}
-    \item \emph{(Opcional) Pre-énfasis}: atenuar bajas frecuencias y realzar altas con \(y[n]=x[n]-\alpha x[n-1]\) (\(\alpha\approx0.95\)). Ayuda a estabilizar el espectro.
-    \item \emph{Enmarcado y ventana}: dividir en tramas de \(L\) muestras con salto \(H\). Aplicar ventana de Hann para reducir fugas espectrales.
-    \item \emph{STFT y potencia}: calcular la FFT por trama y obtener espectrograma de potencias \(P_t[k]\).
-    \item \emph{Banca Mel}: proyectar \(P_t[k]\) sobre \(M\) filtros triangulares \(\{H_m[k]\}\) espaciados en la escala Mel. Esto aproxima la resolución frecuencial humana.
-    \item \emph{Compresión logarítmica}: \(L_t[m]=\log(E_t[m]+\varepsilon)\) con \(E_t[m]=\sum_k H_m[k]P_t[k]\). Reduce rango dinámico y aproxima la percepción.
-    \item \emph{DCT-II}: aplicar DCT a \(L_t[m]\) para obtener \(c_t[i]\). Los primeros \(N\) coeficientes (típicamente 12–13) capturan la envolvente espectral. Opcionalmente omitir \(c_0\) y usar energía RMS/Log-E.
-    \item \emph{(Opcional) Liftering}: suavizar la envolvente cepstral con \(S[i]\) para desacoplar lenta y rápida variación.
-    \item \emph{(Opcional) Dinámicas}: calcular \(\Delta\) y \(\Delta^2\) con regresión temporal. Útiles para modelar cambios.
-    \item \emph{(Recomendado) Normalización}: CMVN por señal o por conjunto para robustez entre grabaciones.
+  \item \emph{(Opcional) Pre-énfasis}: atenuar bajas frecuencias y realzar altas con \(y[n]=x[n]-\alpha x[n-1]\) (\(\alpha\approx0.95\)). Ayuda a estabilizar el espectro.
+  \item \emph{Enmarcado y ventana}: dividir en tramas de \(L\) muestras con salto \(H\). Aplicar ventana de Hann para reducir fugas espectrales.
+  \item \emph{STFT y potencia}: calcular la FFT por trama y obtener espectrograma de potencias \(P_t[k]\).
+  \item \emph{Banca Mel}: proyectar \(P_t[k]\) sobre \(M\) filtros triangulares \(\{H_m[k]\}\) espaciados en la escala Mel. Esto aproxima la resolución frecuencial humana.
+  \item \emph{Compresión logarítmica}: \(L_t[m]=\log(E_t[m]+\varepsilon)\) con \(E_t[m]=\sum_k H_m[k]P_t[k]\). Reduce rango dinámico y aproxima la percepción.
+  \item \emph{DCT-II}: aplicar DCT a \(L_t[m]\) para obtener \(c_t[i]\). Los primeros \(N\) coeficientes (típicamente 12–13) capturan la envolvente espectral. Opcionalmente omitir \(c_0\) y usar energía RMS/Log-E.
+  \item \emph{(Opcional) Liftering}: suavizar la envolvente cepstral con \(S[i]\) para desacoplar lenta y rápida variación.
+  \item \emph{(Opcional) Dinámicas}: calcular \(\Delta\) y \(\Delta^2\) con regresión temporal. Útiles para modelar cambios.
+  \item \emph{(Recomendado) Normalización}: CMVN por señal o por conjunto para robustez entre grabaciones.
 \end{enumerate}
 % Sugerencias típicas: n_fft=2048, hop_length=512, n_mels=40, n_mfcc=13, lifter=22.
 
-\textbf{Fórmulas} \parencite{davis1980comparison, muller2015fmp}
+\textbf{Fórmulas} \parencite{davis1980tassp, muller2015fmp}
 \[
-m(f)=2595\log_{10}\!\left(1+\frac{f}{700}\right),\quad
-P_t[k]=\frac{|X_t[k]|^2}{N_{\mathrm{fft}}}
+  m(f)=2595\log_{10}\!\left(1+\frac{f}{700}\right),\quad
+  P_t[k]=\frac{|X_t[k]|^2}{N_{\mathrm{fft}}}
 \]
 \[
-E_t[m]=\sum_{k=0}^{K-1} H_m[k]\;P_t[k],\qquad
-L_t[m]=\log\!\big(E_t[m]+\varepsilon\big)
+  E_t[m]=\sum_{k=0}^{K-1} H_m[k]\;P_t[k],\qquad
+  L_t[m]=\log\!\big(E_t[m]+\varepsilon\big)
 \]
 \[
-c_t[i]=\sum_{m=0}^{M-1} L_t[m]\cos\!\Big(\frac{\pi i}{M}\big(m+\tfrac12\big)\Big),\quad i=0,\dots,N-1
+  c_t[i]=\sum_{m=0}^{M-1} L_t[m]\cos\!\Big(\frac{\pi i}{M}\big(m+\tfrac12\big)\Big),\quad i=0,\dots,N-1
 \]
 \[
-\tilde c_t[i]=\Big(1+\frac{L_c}{2}\sin\frac{\pi i}{L_c}\Big)c_t[i]\quad\text{(liftering, \(L_c\approx22\))}
+  \tilde c_t[i]=\Big(1+\frac{L_c}{2}\sin\frac{\pi i}{L_c}\Big)c_t[i]\quad\text{(liftering, \(L_c\approx22\))}
 \]
 \[
-\Delta c_t[i]=\frac{\sum_{n=1}^{N_d}n\big(c_{t+n}[i]-c_{t-n}[i]\big)}{2\sum_{n=1}^{N_d}n^2}\quad\text{(típico \(N_d=2\))}
+  \Delta c_t[i]=\frac{\sum_{n=1}^{N_d}n\big(c_{t+n}[i]-c_{t-n}[i]\big)}{2\sum_{n=1}^{N_d}n^2}\quad\text{(típico \(N_d=2\))}
 \]
 
-\textbf{Código} \parencite{davis1980comparison, muller2015fmp}
+\textbf{Código} \parencite{davis1980tassp, muller2015fmp}
 \begin{lstlisting}[language=Python, label={lst:mfcc_code}, caption={MFCC básicos (librosa)}]
 import numpy as np
 import librosa
