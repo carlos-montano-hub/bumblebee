@@ -1,8 +1,7 @@
-\subsection{Introducción}
 La implementación de la infraestructura de telecomunicaciones ha transformado numerosos aspectos de la vida cotidiana y el ámbito industrial, dando lugar a innovaciones que facilitan la comunicación y el control de diversos sistemas. Uno de estos avances es el Internet de las Cosas (IoT), que conecta objetos físicos a la red, permitiendo su monitoreo y control a través de dispositivos electrónicos y software. En este contexto, en el área de la apicultura se han adoptado tecnologías IoT para mejorar la gestión y el monitoreo de las colmenas, creando lo que se conoce como colmenas inteligentes.
 
 En este capítulo se ofrece un marco teórico sobre los conceptos clave del internet, IoT y su aplicación en la apicultura. Se explora la arquitectura IoT, desglosada en sus siete capas fundamentales, y se examina la interacción de los sensores en estos sistemas. Además, se profundiza en el uso de IoT en las colmenas, destacando su capacidad para monitorear parámetros críticos como la temperatura, la humedad y el peso de la colmena, así como para detectar el enjambrado a través del análisis de sonidos específicos. También se proporciona una visión general sobre la inteligencia artificial y su potencial integración en sistemas IoT para optimizar el control y análisis de datos en la apicultura.
-\subsection{Apicultura}
+\section{Apicultura}
 Se refiere a la crianza y explotación de abejas, de las cuales se obtienen productos como miel, cera y polen, y que al mismo tiempo realizan el servicio de polinización de plantas.
 
 \subsection{Abejas}
@@ -25,6 +24,7 @@ Como se observa en la figura~\ref{fig:abejas}, las castas de abejas son las sigu
     \item \textbf{Reinas}: Son la única hembra completa de la colonia; su única responsabilidad es reproducirse y poner huevos.
     \item \textbf{Drones}: Similar a la reina; su única responsabilidad es reproducirse con reinas de otras colonias.
 \end{enumerate}
+\section{Indicadores Físicos}
 
 \subsection{Temperatura de la colmena}
 Una colmena debe de mantener una temperatura cercana a los 34 grados centígrados, para lograr esto pueden implementar ciertos mecanismos de regulación de temperatura. \cite{david_cramp}
@@ -42,18 +42,18 @@ El evento de enjambre sucede cuando una colonia de abejas ha sobrepasado el lím
 
 Uno de los principales indicadores del enjambrado es el sonido que emiten las abejas, durante este proceso comienzan a emitir un sonido de vibración, este sonido es conocido por los apicultores y es la principal fuente de información que se obtiene sobre este proceso \cite{david_cramp} \cite{chadwick_alton_tennant_fitzmaurice_earl_2016}.
 
-\subsection{Internet e IoT}
+\section{Internet e IoT}
 
-\subsubsection{Internet}
+\subsection{Internet}
 En el contexto actual, internet se refiere a una red global con varios protocolos de conectividad que permite comunicar paquetes de datos de dispositivos, mediante un sistema de rúters, a la red. \cite{kamal_2017}
 
-\subsubsection{Rúter, router o enrutador}
+\subsection{Rúter, router o enrutador}
 Se refiere a un dispositivo capaz de almacenar direcciones y enlaces mediante las cuales se encarga de mandar paquetes de datos.\cite{kamal_2017}
 
-\subsubsection{Internet de las cosas (IoT)}
+\subsection{Internet de las cosas (IoT)}
 El termino de internet de las coas, o IOT por sus siglas en inglés (Internet of things), se refiere al concepto de entrelazar objetos físicos dentro de una red de internet, mediante componentes electrónicos y sistemas de software, con el objetivo de permitir la comunicación entre ellos y monitorear o controlar un sistema físico. \cite{kamal_2017}
 
-\subsubsection{Arquitectura IoT}
+\subsection{Arquitectura IoT}
 Este concepto se refiere a la forma de estructurar u diseñar un sistema IOT y estos se dividen en capas y son 7 principales
 \begin{enumerate}
     \renewcommand\labelenumi{\arabic{enumi}.}
@@ -68,32 +68,31 @@ Este concepto se refiere a la forma de estructurar u diseñar un sistema IOT y e
 Estas capas sirven para estructurar y definir la arquitectura del sistema IOT.\cite{kamal_2017}
 
 
-\subsubsection{Sensores}
+\subsection{Sensores}
 El sistema IOT interactúa con sensores, dispositivos físicos con el objetivo de adquirir datos mediante la capacidad de reaccionar a parámetros físicos como la humedad, temperatura, presión y luz y convertirla en energía eléctrica capaz de interactuar con el sistema. Durante esta interacción es posible configurar los dispositivos de manera que se ajusten a los requerimientos de la aplicación.\cite{kamal_2017}
 
-\subsubsection{Colmenas inteligentes}
+\subsection{Colmenas inteligentes}
 Los términos Colmenas IOT o colmenas inteligentes se refieren a la adición de un sistema IOT a una colmena apícola, esto con el objetivo de monitorear los parámetros de la colonia de abejas y hacer accesible la información de manera que pueda ser procesada para conocer el estado de la colmena. \cite{open_source_beehives_project_iaac}
 
-\subsection{Inteligencia artificial}
+\section{Inteligencia artificial}
 
-\subsubsection{Sistema inteligente}
+\subsection{Sistema inteligente}
 Se refiere a un concepto abstracto en el cual se define a un sistema que actúa y razona de manera humana o de manera lógica \cite{russell_norvig_2022}. Es uno de los posibles métodos para procesar datos de un sistema IOT \cite{open_source_beehives_project_iaac}.
 
-\subsubsection{Minería de datos}
+\subsection{Minería de datos}
 Se refiere al proceso de aplicar métodos computacionales a grandes cantidades de datos con el objetivo de revelar información nueva, no trivial y relevante \cite{fayyad1996kdd}. Esto incluye la aplicación de algoritmos específicos para la extracción de patrones, la limpieza de datos, el preprocesamiento y la extracción de características.
 
 
-\subsubsection{Preprocesamiento de datos}
+\subsection{Preprocesamiento de datos}
 El preprocesamiento de datos es una etapa en la minería de datos que consiste en preparar y limpiar el conjunto de datos con el objetivo de mejorar su calidad para que sean adecuados para el análisis o modelado. Esto implica corregir valores inválidos, eliminar columnas irrelevantes, manejar valores faltantes, ajustar datos inconsistentes, entre otros \cite{statistical_modeling_in_machine_learning_2023}.
 
-\subsubsection{Aprendizaje automático}
+\subsection{Aprendizaje automático}
 El aprendizaje automático, o aprendizaje maquina, es una rama de la inteligencia artificial que se centra en desarrollar algoritmos capaces de aprender automáticamente a partir de los datos y mejorar su desempeño con la experiencia, sin ser programados explícitamente. Formalmente, se dice que un programa aprende de una experiencia $E$ respecto a una clase de tareas $T$ y una medida de desempeño $P$, si su desempeño en las tareas de $T$, medida por $P$, mejora con la experiencia $E$. En otras palabras, el desempeño del algoritmo en una tarea mejora conforme gana experiencia al realizarla \cite{mitchell1997machine}.
 
 
-\subsubsection{Extracción de características}
-La extracción de características es una técnica de preprocesamiento de datos utilizada en el aprendizaje máquina para transformar un conjunto de datos complejos y con muchas características, en un espacio más manejable y representativo. Se utiliza cuando hay demasiadas características ya sea para un análisis efectivo o para la visualización de datos \cite{richer_coelho_2013}.
+\subsection{Características de audio}
+La extracción de características es una técnica de preprocesamiento de datos utilizada en el aprendizaje máquina para transformar un conjunto de datos complejos y con muchas características, en un espacio más manejable y representativo. Se utiliza cuando hay demasiadas características, ya sea para un análisis efectivo o para la visualización de datos \cite{richer_coelho_2013}.
 
-\subsubsection{Características de audio}
 
 \begin{itemize}
     \item \textbf{Zero Crossing Rate (ZCR):} Número de veces que la señal cruza el eje cero por unidad de tiempo. Indica la frecuencia de cambios en la señal, útil para distinguir sonidos ruidosos y tonales \cite{muller2015fundamentals}.

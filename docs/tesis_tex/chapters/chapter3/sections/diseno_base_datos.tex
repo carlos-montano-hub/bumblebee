@@ -1,6 +1,167 @@
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth]{assets/cap_3/diseno_bd.png}
-    \caption{Diseño de la base de datos}
-    \label{fig:diseno_bd}
-\end{figure}
+\label{subsec:db_guard}
+
+\subsection{Base de datos de seguridad}
+Esta base de datos concentra la información necesaria para gestionar el acceso al sistema. Contiene el catálogo de roles disponibles, los usuarios registrados y los tokens de refresco de sesión. Bajo este esquema se asegura que cada usuario esté vinculado a un rol específico y que cada token de sesión pueda asociarse a un usuario.
+\paragraph{Entidades y relaciones}
+\begin{itemize}
+  \item \textbf{user\_role}: catálogo de roles.
+  \item \textbf{app\_user}: usuarios de la aplicación; cada usuario pertenece a un rol.
+  \item \textbf{refresh\_token}: token asociado a un usuario y con vencimiento.
+\end{itemize}
+
+\paragraph{Esquema lógico (PostgreSQL)}
+% Los nombres se muestran en snake_case; ajustar a la estrategia de nombres de JPA/Hibernate si difiere.
+\begin{table}[H]
+\centering
+\caption{Tablas y llaves en la base de datos \texttt{beehive\_guard}}
+\label{tab:guard_schema}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tabla} & \textbf{Llave primaria} & \textbf{Llave foranea} \\ \hline
+user\_role & id BIGSERIAL & -- \\ \hline
+app\_user & id UUID & role\_id \(\rightarrow\) user\_role(id) \\ \hline
+refresh\_token & id BIGSERIAL &
+app\_user\_id \(\rightarrow\) app\_user(id) \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{DDL de referencia}
+
+\begin{lstlisting}[language=SQL, label={lst:guard-database-schema}, caption={Esquema de la base de datos guard-database}]
+-- PostgreSQL 14+
+CREATE EXTENSION IF NOT EXISTS pgcrypto; -- gen_random_uuid()
+
+CREATE TABLE user_role (
+  id BIGSERIAL PRIMARY KEY,
+  description TEXT NOT NULL
+);
+
+CREATE TABLE app_user (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT,
+  phone_number TEXT,
+  email_address TEXT NOT NULL UNIQUE,
+  role_id BIGINT NOT NULL REFERENCES user_role(id),
+  password TEXT NOT NULL
+);
+
+CREATE TABLE refresh_token (
+  id BIGSERIAL PRIMARY KEY,
+  token TEXT NOT NULL UNIQUE,
+  app_user_id UUID NOT NULL
+    REFERENCES app_user(id) ON DELETE CASCADE,
+  expiry_date TIMESTAMPTZ NOT NULL
+);
+
+\end{lstlisting}
+
+\subsection{Base de datos de colmenares}
+Esta base de datos almacena la información relativa a colmenares (\texttt{apiary}), colmenas (\texttt{beehive}) y las mediciones asociadas a cada colmena (\texttt{measure}).
+El esquema garantiza la relación jerárquica entre apiarios y colmenas, y la persistencia histórica de las mediciones.
+
+\paragraph{Entidades y relaciones}
+\begin{itemize}
+    \item \textbf{apiary}: catálogo de apiarios, identificados por su propietario y nombre.
+    \item \textbf{beehive}: colmenas asociadas a un apiario, con identificación única mediante número de serie.
+    \item \textbf{measure}: registros de temperatura, humedad, peso y audio de una colmena, junto con su clasificación como anómala o normal
+\end{itemize}
+
+\paragraph{Esquema lógico (PostgreSQL)}
+\begin{table}[H]
+\centering
+\caption{Tablas y llaves en la base de datos \texttt{beehive\_nest}}
+\label{tab:apiary_schema}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tabla} & \textbf{Llave primaria} & \textbf{Llave foránea} \\ \hline
+apiary & id BIGSERIAL & -- \\ \hline
+beehive & id BIGSERIAL & apiary\_id \(\rightarrow\) apiary(id) \\ \hline
+measure & id BIGSERIAL & beehive\_id \(\rightarrow\) beehive(id) \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{DDL de referencia}
+
+\begin{lstlisting}[language=SQL, label={lst:apiary-database-schema}, caption={Esquema de la base de datos beehive-nest}]
+-- PostgreSQL 14+
+
+CREATE TABLE apiary (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT NOT NULL,
+  owner UUID NOT NULL
+);
+
+CREATE TABLE beehive (
+  id BIGSERIAL PRIMARY KEY,
+  name TEXT,
+  serial TEXT NOT NULL UNIQUE,
+  latitude DOUBLE PRECISION,
+  longitude DOUBLE PRECISION,
+  apiary_id BIGINT NOT NULL REFERENCES apiary(id) ON DELETE CASCADE
+);
+
+CREATE TABLE measure (
+  id BIGSERIAL PRIMARY KEY,
+  time TIMESTAMPTZ NOT NULL,
+  beehive_id BIGINT NOT NULL REFERENCES beehive(id) ON DELETE CASCADE,
+  temperature DOUBLE PRECISION,
+  humidity DOUBLE PRECISION,
+  weight DOUBLE PRECISION,
+  audio_recording_url TEXT,
+  label TEXT
+);
+\end{lstlisting}
+
+\subsection{Base de datos de características}
+La base de datos \texttt{mind-database} almacena las características acústicas extraídas de cada medición. Cada registro en la tabla \texttt{features} se vincula a una medición específica. Esta base de datos solo contiene una tabla.
+
+\paragraph{Entidades y relaciones}
+\begin{itemize}
+  \item \textbf{features}: almacena las características calculadas a partir de una medición de audio. Se relaciona con la tabla \texttt{measure} mediante la llave foránea \texttt{measurement\_id}.
+\end{itemize}
+
+\paragraph{Esquema lógico (PostgreSQL)}
+\begin{table}[H]
+\centering
+\caption{Tabla unica en la base de datos \texttt{mind-database}}
+\label{tab:features_schema}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Tabla} & \textbf{Llave primaria} & \textbf{Llave foránea} \\ \hline
+features & id BIGSERIAL & measurement\_id \(\rightarrow\) measure(id) \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{DDL de referencia}
+
+\begin{lstlisting}[language=SQL, label={lst:features-database-schema}, caption={Esquema de la tabla features en mind-database}]
+-- PostgreSQL 14+
+
+CREATE TABLE features (
+  id BIGSERIAL PRIMARY KEY,
+  measurement_id UUID NOT NULL REFERENCES measure(id) ON DELETE CASCADE,
+  date DATE NOT NULL,
+  zero_crossing_rate DOUBLE PRECISION,
+  energy DOUBLE PRECISION,
+  energy_entropy DOUBLE PRECISION,
+  spectral_centroid DOUBLE PRECISION,
+  spectral_spread DOUBLE PRECISION,
+  spectral_entropy DOUBLE PRECISION,
+  spectral_flux DOUBLE PRECISION,
+  spectral_rolloff DOUBLE PRECISION,
+  mfcc_1 DOUBLE PRECISION,
+  mfcc_2 DOUBLE PRECISION,
+  mfcc_3 DOUBLE PRECISION,
+  mfcc_4 DOUBLE PRECISION,
+  mfcc_5 DOUBLE PRECISION,
+  mfcc_6 DOUBLE PRECISION,
+  mfcc_7 DOUBLE PRECISION,
+  mfcc_8 DOUBLE PRECISION,
+  mfcc_9 DOUBLE PRECISION,
+  mfcc_10 DOUBLE PRECISION,
+  mfcc_11 DOUBLE PRECISION,
+  mfcc_12 DOUBLE PRECISION,
+  mfcc_13 DOUBLE PRECISION,
+  label VARCHAR(50)
+);
+\end{lstlisting}

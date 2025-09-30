@@ -23,6 +23,7 @@ style=ieee
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{tikz}
+\usepackage[strings]{underscore}
 \usetikzlibrary{external}
 \lstset{
     inputencoding=utf8,
@@ -45,7 +46,7 @@ style=ieee
 % Para links sin decoración
 \hypersetup{colorlinks=false,allbordercolors=white}
 
-\title{Sistema de monitoreo de variables físicas de colmenas apícolas utilizando reconocimiento de patrones}
+\title{Sistema de monitoreo de variables físicas de colmenas apícolas utilizando IOT y redes neuronales}
 \date{\today}
 \grado{Maestría en Ciencias De la Computación}
 \author{Carlos Humberto Montaño Alcalá}
@@ -89,15 +90,18 @@ style=ieee
 
 % \include{chapters/abstract}
 
-% \tableofcontents
+\tableofcontents
 % {\noskip\listoffigures} % No usar en informes parciales
 % {\noskip\listoftables} % No usar en informes parciales
 
 \mainmatter
-\include{chapters/introduccion}
 \include{chapters/chapter1/index}
 \include{chapters/chapter2/index}
 \include{chapters/chapter3/index}
+% TODO
+% Redo introduccion
+% reorganizar trabajos relacionados
+% Crear cap 4 y pasar IA de cap 3
 
 
 \backmatter

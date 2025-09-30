@@ -21,11 +21,11 @@ El sistema se organiza en cuatro bloques principales: \emph{nodo de sensado}, \e
 
 Los flujos principales del sistema son:
 \begin{enumerate}
-    \item El nodo captura los datos de la colmena y los envía al servicio \textit{beehive-nest}.
+    \item El nodo de sensores captura los datos de la colmena y los envía al servicio \textit{beehive-nest}.
     \item La aplicación móvil consulta periódicamente \textit{beehive-nest} para obtener la información más reciente.
-    \item Los archivos de audio se almacenan en el \textit{audio-container}, con metadatos registrados en \textit{beehive-nest}.
-    \item \textit{beehive-mind} procesa las grabaciones y genera resultados de clasificación que se registran en su base de datos y se exponen a la aplicación.
-    \item \textit{beehive-guard} gestiona la autenticación y autorización en todas las interacciones.
+    \item Los archivos de audio se almacenan en el \textit{audio-container}, con metadatos registrados en la base de datos \textit{nest-database}.
+    \item El servicio \textit{beehive-mind} procesa las grabaciones, genera un vector de características del audio y determina si la señal es anómala o normal; dichos resultados se registran en su base de datos y se exponen a la aplicación móvil.
+    \item El servicio \textit{beehive-guard} gestiona la autenticación y autorización en todas las interacciones entre la aplicación móvil y el sistema.
 \end{enumerate}
 
 \begin{figure}[!ht]
@@ -45,8 +45,8 @@ Los flujos principales del sistema son:
         beehive-guard & Autenticación y seguridad & \texttt{PostgreSQL (guard-database)} \\
         beehive-nest & Gestión de metadatos y registros & \texttt{PostgreSQL (nest-database)} \\
         beehive-mind & Análisis de audio con IA & \texttt{PostgreSQL (mind-database)} \\
-        audio-container & Almacenamiento de audios crudos &  (raw-audios) \\
-        beehive-app & Interfaz para el apicultor & -- \\ \bottomrule
+        audio-container & Almacenamiento de audios crudos &  S3/MinIO (raw-audios) \\
+        beehive-app & Interfaz para el apicultor & Local en celular \\ \bottomrule
     \end{tabular}
     \label{tab:componentes_sistema}
 \end{table}

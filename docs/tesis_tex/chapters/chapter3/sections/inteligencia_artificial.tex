@@ -1,9 +1,4 @@
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=\textwidth]{assets/cap_3/comparacion_audio.png}
-    \caption{Comparación de audio.}
-    \label{fig:comparacion_audio}
-\end{figure}
+
 
 \subsection{Características de audio}
 Se describen los cálculos e implementación en Python. Se asume audio monofónico \(y\) a frecuencia de muestreo \(sr\). Para estéreo, aplicar las funciones por canal. Parámetros por defecto: \(\texttt{n\_fft}=2048\), \(\texttt{hop\_length}=512\), ventana Hann \parencite{mcfee2015librosa}.
@@ -167,7 +162,7 @@ def spectral_entropy(y, sr, n_fft=2048, hop_length=512, eps=1e-12):
 
 % ======================
 \subsubsection{Flujo espectral}
-\textbf{Algoritmo} \parencite{foote1999novelty, muller2015fmp}
+\textbf{Algoritmo} \parencite{muller2015fmp}
 \begin{enumerate}
     \item Calcular dos espectros consecutivos y normalizarlos.
     \item Restar espectro anterior al actual. Conservar solo las diferencias positivas.
@@ -306,4 +301,11 @@ def mfcc_full(y, sr, n_fft=2048, hop_length=512,
 \end{lstlisting}
 
 % Notas: Ajustar n_mels y n_mfcc según el dominio (zumbido de colmena suele concentrar energía en bandas medias-bajas).
+\subsection{Clasificación de audio}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{assets/cap_3/comparacion_audio.png}
+    \caption{Comparación de audio.}
+    \label{fig:comparacion_audio}
+\end{figure}
