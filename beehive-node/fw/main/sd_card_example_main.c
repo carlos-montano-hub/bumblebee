@@ -9,15 +9,8 @@
 */
 
 #include <string.h>
-#include <sys/unistd.h>
-#include <sys/stat.h>
-#include "esp_vfs_fat.h"
-#include "sdmmc_cmd.h"
-
-#if SOC_SDMMC_IO_POWER_EXTERNAL
-#include "sd_pwr_ctrl_by_on_chip_ldo.h"
-#endif
 #include "node_sd.h"
+#include "esp_log.h"
 
 #define EXAMPLE_MAX_CHAR_SIZE    64
 
@@ -33,8 +26,20 @@ void app_main(void)
 
     node_sd_init();
 
-    node_sd_create_file("hello.txt");
-    node_sd_write_file("/sdcard/hello.txt", "Hello Beehive!");
-    nose_sd_read_file("hello.txt");
+    ret = node_sd_create_file("hello.txt");
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to create file on SD card");
+            return;
+        }
+    ret = node_sd_write_file("/sdcard/hello.txt", "Hello Beehive!");
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to write file on SD card");
+            return;
+        }
+    ret = nose_sd_read_file("hello.txt");
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Failed to read file from SD card");
+            return;
+        }
     node_sd_deinit();
 }
