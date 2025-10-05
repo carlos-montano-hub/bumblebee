@@ -22,6 +22,7 @@ static const char *TAG = "main";
 
 void app_main(void)
 {
+    ESP_LOGI(TAG, "Starting SD card example");
     esp_err_t ret;
 
     node_sd_init();
