@@ -2,14 +2,18 @@
 # in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.16)
 
-# Select which app to build
-# Options: wifi_example, sd_card_example
-option(BUILD_SD_CARD_EXAMPLE "Build SD card example app" OFF)
+# Choose which app to build
+set(APP_NAME "i2s_recorder" CACHE STRING "Select which application to build")
 
-if(BUILD_SD_CARD_EXAMPLE)
-    set(EXTRA_COMPONENT_DIRS apps/sd_card_example)
+message(STATUS "Building application: ${APP_NAME}")
+
+# Path to app
+set(APP_PATH ${CMAKE_SOURCE_DIR}/apps/${APP_NAME})
+
+if (EXISTS ${APP_PATH}/CMakeLists.txt)
+    set(EXTRA_COMPONENT_DIRS ${APP_PATH})
 else()
-    set(EXTRA_COMPONENT_DIRS apps/esp_http_client_example)
+    message(FATAL_ERROR "Invalid APP_NAME: ${APP_NAME}. Folder not found at ${APP_PATH}")
 endif()
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)

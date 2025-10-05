@@ -37,7 +37,7 @@ void app_main(void)
             ESP_LOGE(TAG, "Failed to write file on SD card");
             return;
         }
-    ret = nose_sd_read_file("hello.txt");
+    ret = node_sd_read_file("hello.txt");
         if (ret != ESP_OK) {
             ESP_LOGE(TAG, "Failed to read file from SD card");
             return;

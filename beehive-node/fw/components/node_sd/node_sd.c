@@ -14,10 +14,10 @@
 
 static const char *TAG = "node_sd";
 
-#define MOUNT_POINT "/sdcard"
+
 
 static sdmmc_card_t *card = NULL;
-static const char mount_point[] = MOUNT_POINT;
+static const char mount_point[] = SD_MOUNT_POINT;
 
 // By default, SD card frequency is initialized to SDMMC_FREQ_DEFAULT (20MHz)
 // For setting a specific frequency, use host.max_freq_khz (range 400kHz - 20MHz for SDSPI)
@@ -63,7 +63,7 @@ pin_configuration_t config = {
  * @brief Validate a filename and build the full path for SD card operations.
  *
  * This function checks that the filename is not NULL, is not empty, and does not exceed 32 characters.
- * It then constructs the full file path using the MOUNT_POINT and stores it in file_path_out.
+ * It then constructs the full file path using the SD_MOUNT_POINT and stores it in file_path_out.
  *
  * @param file_name         The name of the file (must be a valid, non-empty string, max 32 chars).
  * @param file_path_out     Output buffer to store the full file path.
@@ -80,7 +80,7 @@ static esp_err_t node_sd_validate_and_build_path(const char *file_name, char *fi
         ESP_LOGE(TAG, "Filename length invalid!");
         return ESP_FAIL;
     }
-    int n = snprintf(file_path_out, file_path_out_size, MOUNT_POINT"/%s", file_name);
+    int n = snprintf(file_path_out, file_path_out_size, SD_MOUNT_POINT"/%s", file_name);
     if (n < 0 || (size_t)n >= file_path_out_size) {
         ESP_LOGE(TAG, "Filename too long for path buffer!");
         return ESP_FAIL;
@@ -89,6 +89,31 @@ static esp_err_t node_sd_validate_and_build_path(const char *file_name, char *fi
 }
 
 // Exposed API functions
+
+
+
+esp_err_t node_sd_open(node_sd_file_t *file, const char *path, const char *mode)
+{
+    file->fp = fopen(path, mode);
+    if (file->fp == NULL) return ESP_FAIL;
+    strncpy(file->path, path, sizeof(file->path));
+    return ESP_OK;
+}
+
+esp_err_t node_sd_write(node_sd_file_t *file, const void *data, size_t len)
+{
+    if (!file->fp) return ESP_FAIL;
+    fwrite(data, 1, len, file->fp);
+    return ESP_OK;
+}
+
+esp_err_t node_sd_close(node_sd_file_t *file)
+{
+    if (!file->fp) return ESP_FAIL;
+    fclose(file->fp);
+    file->fp = NULL;
+    return ESP_OK;
+}
 
 
 esp_err_t node_sd_create_file(const char *file_name)
@@ -135,7 +160,7 @@ esp_err_t node_sd_write_file(const char *path, char *data)
 }
 
 
-esp_err_t nose_sd_read_file(const char *file_name)
+esp_err_t node_sd_read_file(const char *file_name)
 {
     char file_path[64];
     // Use the helper to validate and build the full path

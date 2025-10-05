@@ -1,0 +1,7 @@
+menu "I2S Recorder Configuration"
+    config EXAMPLE_REC_TIME
+        int "Example Recording Time in Seconds"
+        default 15
+        help
+            Set the time for recording audio in seconds.
+endmenu
