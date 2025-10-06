@@ -418,3 +418,6 @@ build/
 *.vrb
 *.synctex(busy)
 *.auxlock
+
+# Auto generated dependencies by ESP-IDF build system
+beehive-node/fw/managed_components/**
