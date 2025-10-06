@@ -1,0 +1,4 @@
+dependencies:
+  sd_card:
+    path: ${IDF_PATH}/examples/storage/sd_card/sdmmc/components/sd_card
+  esp-idf-lib/dht: '*'

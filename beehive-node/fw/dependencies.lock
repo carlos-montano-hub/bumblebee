@@ -1,0 +1,31 @@
+dependencies:
+  espressif/qrcode:
+    component_hash: 3b493771bc5d6ad30cbf87c25bf784aada8a08c941504355b55d6b75518ed7bc
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.0~2
+  idf:
+    source:
+      type: idf
+    version: 5.4.2
+  protocol_examples_common:
+    dependencies: []
+    source:
+      path: /home/ivan/esp/v5.4.2/esp-idf/examples/common_components/protocol_examples_common
+      type: local
+    version: '*'
+  sd_card:
+    dependencies: []
+    source:
+      path: /home/ivan/esp/v5.4.2/esp-idf/examples/storage/sd_card/sdmmc/components/sd_card
+      type: local
+    version: '*'
+direct_dependencies:
+- espressif/qrcode
+- protocol_examples_common
+- sd_card
+manifest_hash: b52ea8d571720a87d7fa425d4d76e0f4e3e63acd80a2a95df6937fb92f3b82ed
+target: esp32s3
+version: 2.0.0

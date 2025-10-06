@@ -1,0 +1,10 @@
+menu "DHT Middleware pinout configuration"
+    config NODE_DHT_GPIO
+        int "GPIO number"
+        default 4
+        help
+            GPIO number where the DHT data pin is connected.
+            This GPIO will be used for both input and output.
+            Make sure to connect a pull-up resistor (4.7k-10k) between
+            the data pin and VCC.
+endmenu
