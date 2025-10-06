@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # Choose which app to build
-set(APP_NAME "esp_http_client_example" CACHE STRING "Select which application to build")
+set(APP_NAME "hx711_example" CACHE STRING "Select which application to build")
 message(STATUS "Building application: ${APP_NAME}")
 
 # Paths
